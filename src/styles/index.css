@@ -43,6 +43,7 @@ body {
 .menu-list__link:hover {
   color: #4fa0df;
   text-decoration: underline;
+  cursor: pointer;
 }
 .menu-list__search {
   text-decoration: none;
@@ -57,7 +58,13 @@ body {
 
 .footer {
   width: 100%;
-  height: 50px;
+  height: 2.5rem;
+  background-color: #364b56;
+  position: absolute;
+  bottom: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-top: 1px solid black;
 }
 
 .footer-list {
@@ -65,10 +72,25 @@ body {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  gap: 5px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
+.footer-list__link {
+  text-decoration: none;
+  color: white;
+  font-size: small;
+  height: 100%;
+  width: 100%;
+  margin: 1.5rem;
+}
+.footer-list__link:hover {
+  color: #4fa0df;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .header {
   display: flex;
   justify-content: center;

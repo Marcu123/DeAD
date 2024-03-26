@@ -3,3 +3,10 @@ $nav-color: #ffffff;
 $link-color: #4fa0df;
 $background-color: #e3e8e9;
 $text-color: #263741;
+$footer-color: #364b56;
+
+@mixin hover-link{
+    color: $link-color;
+    text-decoration: underline;
+    cursor: pointer;
+}
