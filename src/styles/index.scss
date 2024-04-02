@@ -1,23 +1,32 @@
 @use 'base';
 
-body{
+html,body{
+    height: auto;
     margin: 0;
     padding: 0;
     font-family: base.$font-stack;
     background-color: base.$background-color;
+    border:0px;
 }
+
+body::-webkit-scrollbar {
+    width: 0;
+    background: transparent; 
+}
+
+
 .main-menu{
     width: 100%;
     height: 100%;
     background-color: base.$nav-color;
     border-bottom: 2px solid #000000;
+    padding-top: 2px;
 }
 
 .menu-list{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 30px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -25,7 +34,7 @@ body{
     &__element{
         width: 100px;
         height: 100%;
-        padding: 15px;
+        
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -38,6 +47,7 @@ body{
         }
         text-decoration: none;
         color: base.$text-color;
+        font-weight: bold;
         height: 100%;
         width: 100%;
         display: flex;
@@ -58,26 +68,28 @@ body{
     }
 }
 
+
 .footer{
-    width: 100%;
-    height: 2.5rem;
+    height: 4rem;
     background-color: base.$footer-color;
     
     position: relative;
+    left: 0;
     bottom: 0;
+    width: 100%;
+    text-align: center;
 
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-
-    border-top: 1px solid black;
+    border-style: none;
+    border-bottom: 3px #364b56 solid ;
+    
 }
+
 
 .footer-list{
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    gap: 5px;
 
     list-style: none;
 
@@ -89,10 +101,8 @@ body{
         color: white;
         font-size: small;
 
-        height: 100%;
-        width: 100%;
-        margin: 1.5rem;
-
+        margin: 0;
+        padding: 0;
         &:hover{
             @include base.hover-link;
         }
@@ -105,3 +115,46 @@ body{
     height: 100%;
     color: base.$text-color;
 }
+
+.main-image{
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    object-fit: cover;
+}
+
+@media (max-width: 500px){
+    .menu-list{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.7rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        &__element{
+            width: 100px;
+            height: 100%;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        &__search{
+            text-decoration: none;
+            color: base.$text-color;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            margin-bottom: 0.5rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
