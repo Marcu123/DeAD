@@ -36,6 +36,11 @@ body::-webkit-scrollbar {
     &__search{
         @include base.nav-list-search;
     }
+
+    &__logo{
+        width: 55px;
+        height: 55px;
+    }
 }
 
 @media (max-width: 500px){
@@ -57,6 +62,10 @@ body::-webkit-scrollbar {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            padding: 4px;
+
+            font-size: 24px;
         }
     
         &__search{
@@ -70,23 +79,27 @@ body::-webkit-scrollbar {
             justify-content: center;
             align-items: center;
         }
+        &__logo{
+            width: 70px;
+            height: 70px;
+        }
     }
 }
 
 
 .footer{
-    height: 4rem;
+    height: 100%;
     background-color: base.$footer-color;
-    
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
 
     border-style: none;
     border-bottom: 3px #364b56 solid ;
+
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 100%;  
     
+    list-style: none;
+    text-decoration: none;
 }
 
 
@@ -99,18 +112,41 @@ body::-webkit-scrollbar {
     list-style: none;
 
     margin: 0;
-    padding: 0;
+    padding: 12px;
+
+    &__element{
+        padding-bottom: 4px;
+    }
 
     &__link{
         text-decoration: none;
-        color: white;
         font-size: small;
+        color: white;
 
         margin: 0;
         padding: 0;
         &:hover{
             @include base.hover-link;
         }
+    }
+}
+
+@media (max-width: 768px){
+    .footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        text-decoration: none;
+    }
+    .footer-list{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        text-decoration: none;
     }
 }
 .header{
@@ -122,6 +158,12 @@ body::-webkit-scrollbar {
     margin-top: 80px;
     margin-bottom: 50px;
     text-align: center;
+}
+@media (max-width: 650px){
+    .header{
+        margin-top: 40px;
+        margin-bottom: 25px;
+    }
 }
 
 .main-image-container {
@@ -169,8 +211,8 @@ body::-webkit-scrollbar {
         border: 4px solid black;
         border-radius: 30px;
 
-        width: 120px;
-        height: 120px;
+        width: 150px;
+        height: 150px;
 
         &:hover{
             background-color: #4fa1df3f;
@@ -185,7 +227,7 @@ body::-webkit-scrollbar {
 
 }
 
-@media (max-width:500px){
+@media (max-width:700px){
     .button-list{
         display: flex;
         flex-direction: column;
@@ -197,6 +239,7 @@ body::-webkit-scrollbar {
         padding: 0;
     
         &__element{
+
             width: 100px;
             height: 100%;
             
@@ -204,13 +247,19 @@ body::-webkit-scrollbar {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            padding: 16px;
         }
     
         &__image{
             height:100px;
             width:100px;
-            border: 1px solid black;
+            
+            padding: 12px;
+            border: 3px solid black;
+            border-radius: 30px;
         }
     }
 }
+
 
