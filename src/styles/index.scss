@@ -100,6 +100,16 @@ body::-webkit-scrollbar {
     
     list-style: none;
     text-decoration: none;
+
+    padding-top: 10px;
+    text-align: center;
+}
+
+.footer-title{
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 10px;
 }
 
 
@@ -128,6 +138,11 @@ body::-webkit-scrollbar {
         &:hover{
             @include base.hover-link;
         }
+    }
+
+    &__contact{
+        color: white;
+        font-size: small;
     }
 }
 
