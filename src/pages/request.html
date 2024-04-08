@@ -41,12 +41,24 @@
     <div class="form-instr">
       <form action="#" method="post" class="request-form">
         <label for="name">Name of the visitor/visitors:</label>
-        <input type="text" id="name" name="name" placeholder="Petraru Marcu, Ioja Stefan" >
+        <input type="text" id="name" name="name" placeholder="Petraru Marcu, Ioja Stefan">
         <div class="name-visitor">
           <h2>Instructions</h2>
           <p>Complete the name placeholder with your Last Name and First Name accordingly to your ID Card if you are not
             visiting alone, complete with the other visitors names</p>
           <p>Example: Ioja Stefan, Petraru Marcu</p>
+        </div>
+
+        <label for="visitType">Visitor Type</label>
+        <select name="visitType" id="visitType">
+          <option value="family">Family</option>
+          <option value="friend">Friend</option>
+          <option value="lawyer">Lawyer</option>
+          <option value="legal guardian">Legal guardian</option>
+        </select>
+        <div class="type-visitor">
+          <h2>Instructions</h2>
+          <p>Choose the type of visitor you are. If there are others visitor, they don't need to complete.</p>
         </div>
 
         <label for="cnp">CNP/CNPs:</label>
@@ -60,7 +72,7 @@
 
         <label for="imageUpload">Photo with the visitor/visitors:</label>
         <input type="file" id="imageUpload" name="image" accept="image/*" multiple>
-        
+
         <label for="email">Email/Emails:</label>
         <input type="email" id="email" name="email" placeholder="marcuioja@gmail.com, iojamarcu@yahoo.ro">
         <div class="email-visitor">

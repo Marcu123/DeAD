@@ -310,6 +310,14 @@ label {
   cursor: pointer;
 }
 
+#visitType {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 #button:hover {
   background-color: #0056b3;
 }
@@ -342,6 +350,10 @@ input[type=file] {
   display: none;
 }
 
+.type-visitor {
+  display: none;
+}
+
 #name:focus + .name-visitor {
   display: block;
   margin-bottom: 20px;
@@ -363,6 +375,11 @@ input[type=file] {
 }
 
 #prisoner-cnp:focus + .inmate-cnp {
+  display: block;
+  margin-bottom: 20px;
+}
+
+#visitType:focus + .type-visitor {
   display: block;
   margin-bottom: 20px;
 }
@@ -395,6 +412,13 @@ input[type=file] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+  }
+  #visitType {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
   }
 }
 
