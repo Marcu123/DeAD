@@ -242,14 +242,13 @@ body::-webkit-scrollbar {
 .text{
     color: base.$text-color;
     padding-bottom: 20px;
-}
+    &__link{
+        text-decoration: none;
+        color: base.$text-color;
+        font-weight: bold;
 
-.contact-link {
-    text-decoration: none;
-    color: base.$text-color;
-    font-weight: bold;
-
-    &:hover {
-        @include base.hover-link;
+        &:hover {
+            @include base.hover-link;
+        }
     }
 }

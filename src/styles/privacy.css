@@ -243,13 +243,12 @@ body::-webkit-scrollbar {
   color: #263741;
   padding-bottom: 20px;
 }
-
-.contact-link {
+.text__link {
   text-decoration: none;
   color: #263741;
   font-weight: bold;
 }
-.contact-link:hover {
+.text__link:hover {
   color: #4fa0df;
   text-decoration: underline;
   cursor: pointer;
