@@ -1,4 +1,4 @@
-@use 'base';
+@use "base";
 
 * {
     margin: 0;
@@ -208,81 +208,17 @@ body::-webkit-scrollbar {
         text-decoration: none;
     }
 
-    .request-form {
-        width: 500px;
-        height: 700px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f0f0f0;
-        border-radius: 8px;
-        margin-bottom: 30px;
-    }
-
-    .request-form {
-        width: 500px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f0f0f0;
-        border-radius: 8px;
-        margin-bottom: 30px;
-    }
-    
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
-    
-    #name,
-    #email,
-    #phone-number,
-    #cnp,
-    #prisoner-cnp {
-        width: 100%;
-        padding: 35px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-    
-    #button {
-        padding: 35px 45px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
 }
 
-.header {
+.form-container{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    color: base.$text-color;
-    margin-top: 80px;
-    margin-bottom: 50px;
-    text-align: center;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center
 }
 
-@media (max-width: 650px) {
-    .header {
-        margin-top: 40px;
-        margin-bottom: 25px;
-    }
-}
-
-
-
-.request-form {
-    width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+.form {
+    @include base.form;
 }
 
 label {
@@ -291,11 +227,11 @@ label {
     font-weight: bold;
 }
 
-#name,
+#username,
 #email,
 #phone-number,
 #cnp,
-#prisoner-cnp {
+#password {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -312,15 +248,6 @@ label {
     cursor: pointer;
 }
 
-#visitType{
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
-}
-
 #button:hover {
     background-color: #0056b3;
 }
@@ -329,102 +256,20 @@ input[type="file"] {
     margin-bottom: 20px;
 }
 
-.name-visitor {
-    display: none;
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: base.$text-color;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    text-align: center;
 }
 
-.cnp-visitor {
-    display: none;
-}
-
-.photo-visitor {
-    display: none;
-}
-
-.email-visitor {
-    display: none;
-}
-
-.phone-visitor {
-    display: none;
-}
-
-.inmate-cnp {
-    display: none;
-}
-
-.type-visitor {
-    display: none;
-}
-
-#name:focus+.name-visitor {
-    display: block;
-    margin-bottom: 20px;
-}
-
-#email:focus+.email-visitor {
-    display: block;
-    margin-bottom: 20px;
-}
-
-#phone-number:focus+.phone-visitor {
-    display: block;
-    margin-bottom: 20px;
-}
-
-#cnp:focus+.cnp-visitor {
-    display: block;
-    margin-bottom: 20px;
-}
-
-#prisoner-cnp:focus+.inmate-cnp {
-    display: block;
-    margin-bottom: 20px;
-}
-
-#visitType:focus+.type-visitor {
-    display: block;
-    margin-bottom: 20px;
-}
-
-
-@media (max-width: 768px) {
-    .request-form {
-        width: 300px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f0f0f0;
-        border-radius: 8px;
-        margin-bottom: 30px;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    }
-
-    #name,
-    #email,
-    #phone-number,
-    #cnp,
-    #prisoner-cnp {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    #button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    #visitType{
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+@media (max-width: 650px) {
+    .header {
+        margin-top: 40px;
+        margin-bottom: 25px;
     }
 }

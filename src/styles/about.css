@@ -242,41 +242,16 @@ body::-webkit-scrollbar {
   margin: 50px;
 }
 
-.about-title {
+.box {
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+.box__title {
   color: #263741;
   font-size: 2rem;
   font-weight: bold;
   padding-bottom: 10px;
 }
-
-.about-us {
-  padding: 30px;
-  border: 2px solid black;
-  margin-bottom: 20px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-}
-
-.our-vision {
-  padding: 30px;
-  border: 2px solid black;
-  margin-bottom: 20px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-}
-
-.our-com {
-  padding: 30px;
-  border: 2px solid black;
-  margin-bottom: 20px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-}
-
-.get-in-touch {
-  padding: 30px;
-  border: 2px solid black;
-  margin-bottom: 20px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-}
-
 .sep {
   padding: 20px;
 }
