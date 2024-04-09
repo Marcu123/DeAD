@@ -1,1 +1,42 @@
-@use 'common/base.scss'
+@use 'common/base.scss';
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.panel{
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
+    grid-template-rows: 100%;
+    width: 1000px;
+
+    margin-bottom:50px;
+
+    &__buttons{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &__button{
+        width: 100%;
+        padding: 10px 20px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        background-color: #364b56;
+
+        text-align: left;
+        text-decoration: none;
+
+        &:hover{
+            background-color: #364b56f0;
+            border-bottom: 2px solid black;
+            border-left: 4px solid base.$link-color;
+        }
+    }
+    &__info{
+
+    }
+}
