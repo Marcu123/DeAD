@@ -1,17 +1,50 @@
-/* Error: Undefined mixin.
- *    ,
- * 36 |         @include base.hover-link;
- *    |         ^^^^^^^^^^^^^^^^^^^^^^^^
- *    '
- *   sass\contact.scss 36:9  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined mixin.\a    \2577 \a 36 \2502          @include base.hover-link;\d\a    \2502          ^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   sass\\contact.scss 36:9  root stylesheet";
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.25rem;
+  color: #263741;
+  margin: 50px;
 }
+
+.example {
+  padding: 30px;
+  border: 2px solid black;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.contact-text-start {
+  color: #263741;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.contact-link {
+  text-decoration: none;
+  color: #263741;
+  font-weight: bold;
+}
+.contact-link:hover {
+  color: #4fa0df;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.contact-text {
+  color: #263741;
+  font-size: 1.25rem;
+  padding-bottom: 20px;
+}
+
+.contact-text-final {
+  color: #263741;
+  font-size: 1.3rem;
+  padding-top: 15px;
+  padding-bottom: 20px;
+}
+
+/*# sourceMappingURL=contact.css.map */

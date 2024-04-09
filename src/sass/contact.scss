@@ -33,7 +33,9 @@
     font-weight: bold;
 
     &:hover {
-        @include base.hover-link;
+        color: base.$link-color;
+        text-decoration: underline;
+        cursor: pointer;
     }
 }
 

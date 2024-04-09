@@ -1,17 +1,23 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 1 | @use 'base';
- *   | ^^^^^^^^^^^
- *   '
- *   sass\privacy.scss 1:1  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @use 'base';\d\a   \2502  ^^^^^^^^^^^\a   \2575 \a   sass\\privacy.scss 1:1  root stylesheet";
+.example {
+  padding: 30px;
+  border: 2px solid black;
+  margin: 30px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
+
+.text {
+  color: #263741;
+  padding-bottom: 20px;
+}
+.text__link {
+  text-decoration: none;
+  color: #263741;
+  font-weight: bold;
+}
+.text__link:hover {
+  color: #4fa0df;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=privacy.css.map */
