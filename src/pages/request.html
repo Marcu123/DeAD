@@ -6,6 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../styles/request.css">
+
+  <link rel="stylesheet" href="/src/styles/common/body.css" />
+  <link rel="stylesheet" href="/src/styles/common/header.css" />
+
+  <link rel="stylesheet" href="/src/styles/common/navbar.css" />
+  <link rel="stylesheet" href="/src/styles/common/footer.css" />
+  <link rel="stylesheet" href="/src/styles/common/form.css">
+
   <title>Request</title>
 </head>
 
@@ -39,9 +47,9 @@
       Form for requesting to visit a prisoner!
     </h1>
     <div class="form-instr">
-      <form action="#" method="post" class="request-form">
+      <form action="#" method="post" class="form">
         <label for="name">Name of the visitor/visitors:</label>
-        <input type="text" id="name" name="name" placeholder="Petraru Marcu, Ioja Stefan">
+        <input type="text" id="name" name="name" class="form__field" placeholder="Petraru Marcu, Ioja Stefan">
         <div class="name-visitor">
           <h2>Instructions</h2>
           <p>Complete the name placeholder with your Last Name and First Name accordingly to your ID Card if you are not
@@ -50,7 +58,7 @@
         </div>
 
         <label for="visitType">Visitor Type</label>
-        <select name="visitType" id="visitType">
+        <select name="visitType" id="visitType" class="form__field">
           <option value="family">Family</option>
           <option value="friend">Friend</option>
           <option value="lawyer">Lawyer</option>
@@ -62,7 +70,7 @@
         </div>
 
         <label for="cnp">CNP/CNPs:</label>
-        <input type="text" id="cnp" name="cnp" placeholder="5030411111111, 3040411111111" autocomplete="off">
+        <input type="text" id="cnp" class="form__field" name="cnp" placeholder="5030411111111, 3040411111111" autocomplete="off">
         <div class="cnp-visitor">
           <h2>Instructions</h2>
           <p>Complete the CNP placeholder with your CNP accordingly to your ID Card and if you are not visiting alone,
@@ -74,7 +82,7 @@
         <input type="file" id="imageUpload" name="image" accept="image/*" multiple>
 
         <label for="email">Email/Emails:</label>
-        <input type="email" id="email" name="email" placeholder="marcuioja@gmail.com, iojamarcu@yahoo.ro">
+        <input type="email" id="email" class="form__field" name="email" placeholder="marcuioja@gmail.com, iojamarcu@yahoo.ro">
         <div class="email-visitor">
           <h2>Instructions</h2>
           <p>Complete the email placeholder with your email and if you are not visiting alone, complete with the other
@@ -83,7 +91,7 @@
         </div>
 
         <label for="phone-number">Phone Number/Numbers:</label>
-        <input type="tel" id="phone-number" name="phone-number" placeholder="0743123456, 0787654321">
+        <input type="tel" id="phone-number" class="form__field" name="phone-number" placeholder="0743123456, 0787654321">
         <div class="phone-visitor">
           <h2>Instructions</h2>
           <p>Complete the Phone placeholder with your phone number and if you are not visiting alone, complete with the
@@ -92,69 +100,70 @@
         </div>
 
         <label for="prisoner-cnp">Inmate CNP:</label>
-        <input type="text" id="prisoner-cnp" name="prisoner-cnp" placeholder="5030411111111">
+        <input type="text" id="prisoner-cnp" class="form__field" name="prisoner-cnp" placeholder="5030411111111">
         <div class="inmate-cnp">
           <h2>Instructions</h2>
           <p>Complete the inmate CNP placeholder with the person you want to visit</p>
           <p>Example: 5030411111111</p>
         </div>
 
-        <button type="submit" id="button">Submit</button>
+        <button type="submit" id="button" class="form__button">Submit</button>
       </form>
 
   </main>
   <footer class="footer">
-    <div class>
-      <p class="footer-title">Social Media</p>
-      <ul class="footer-list">
-        <li class="footer-list__element">
-          <a class="footer-list__link" href="https://www.instagram.com/">Instagram</a>
+    <div>
+      <p class="footer__title">Social Media</p>
+      <ul class="footer__list">
+        <li class="footer__list__element">
+          <a class="footer__list__link" href="https://www.instagram.com/">Instagram</a>
         </li>
-        <li class="footer-list__element">
-          <a class="footer-list__link" href="https://twitter.com/?lang=ro">Twitter</a>
+        <li class="footer__list__element">
+          <a class="footer__list__link" href="https://twitter.com/?lang=ro">Twitter</a>
         </li>
-        <li class="footer-list__element">
-          <a class="footer-list__link" href="https://www.facebook.com/">Facebook</a>
+        <li class="footer__list__element">
+          <a class="footer__list__link" href="https://www.facebook.com/">Facebook</a>
         </li>
-        <li class="footer-list__element">
-          <a class="footer-list__link" href="https://www.youtube.com/">Youtube</a>
+        <li class="footer__list__element">
+          <a class="footer__list__link" href="https://www.youtube.com/">Youtube</a>
         </li>
       </ul>
     </div>
     <div>
+
     </div>
-    <div class=>
-      <p class="footer-title">Link-uri utile</p>
-      <ul class="footer-list">
-        <li class="footer-list__element">
-          <a class="footer-list__link" href="https://www.mai.gov.ro/">Ministerul Afacerilor Interne</a>
+    <div>
+      <p class="footer__title">Link-uri utile</p>
+      <ul class="footer__list">
+        <li class="footer__list__element">
+          <a class="footer__list__link" href="https://www.mai.gov.ro/">Ministerul Afacerilor Interne</a>
         </li>
-        <li class="footer-list__element">
-          <a class="footer-list__link" href="https://www.fbi.gov/investigate">Federal Bureau of Investigation</a>
+        <li class="footer__list__element">
+          <a class="footer__list__link" href="https://www.fbi.gov/investigate">Federal Bureau of Investigation</a>
         </li>
-        <li class="footer-list__element">
-          <a class="footer-list__link" href="https://www.interpol.int/en">Interpol</a>
+        <li class="footer__list__element">
+          <a class="footer__list__link" href="https://www.interpol.int/en">Interpol</a>
         </li>
-        <li class="footer-list__element">
-          <a class="footer-list__link" href="privacy.html">Privacy policy</a>
+        <li class="footer__list__element">
+          <a class="footer__list__link" href="/src/pages/privacy.html">Privacy policy</a>
         </li>
       </ul>
     </div>
     <div></div>
-    <div class>
-      <p class="footer-title">Contact</p>
-      <ul class="footer-list">
-        <li class="footer-list__element">
-          <a class="footer-list__link" href="https://www.instagram.com/valentinioja/">Instagram: Stefan Ioja</a>
+    <div>
+      <p class="footer__title">Contact</p>
+      <ul class="footer__list">
+        <li class="footer__list__element">
+          <a class="footer__list__link" href="https://www.instagram.com/valentinioja/">Instagram: Stefan Ioja</a>
         </li>
-        <li class="footer-list__element">
-          <p class="footer-list__contact">Telefon Valentin Ioja: 0712345678</p>
+        <li class="footer__list__element">
+          <p class="footer__list__contact">Telefon Valentin Ioja: 0712345678</p>
         </li>
-        <li class="footer-list__element">
-          <a class="footer-list__link" href="https://www.instagram.com/marcu.petraru/">Instagram: Marcu Petraru</a>
+        <li class="footer__list__element">
+          <a class="footer__list__link" href="https://www.instagram.com/marcu.petraru/">Instagram: Marcu Petraru</a>
         </li>
-        <li class="footer-list__element">
-          <p class="footer-list__contact">Telefon Marcu Petraru: 0787654321</p>
+        <li class="footer__list__element">
+          <p class="footer__list__contact">Telefon Marcu Petraru: 0787654321</p>
         </li>
       </ul>
     </div>

@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #263741;
+  margin-top: 80px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+@media (max-width: 650px) {
+  .header {
+    margin-top: 40px;
+    margin-bottom: 25px;
+  }
+}
+
+/*# sourceMappingURL=header.css.map */

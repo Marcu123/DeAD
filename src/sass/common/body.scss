@@ -1,0 +1,21 @@
+@use 'base';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: auto;
+    margin: 0;
+    padding: 0;
+    font-family: base.$font-stack;
+    background-color: base.$background-color;
+    border:0px;
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+    background: transparent; 
+}

@@ -1,0 +1,104 @@
+.footer {
+  height: 100%;
+  background-color: #364b56;
+  border-style: none;
+  border-bottom: 3px #364b56 solid;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 100%;
+  list-style: none;
+  text-decoration: none;
+  padding-top: 10px;
+  text-align: center;
+}
+.footer__title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.footer__list {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 12px;
+}
+.footer__list__element {
+  padding-bottom: 4px;
+}
+.footer__list__link {
+  text-decoration: none;
+  font-size: small;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+.footer__list__link:hover {
+  color: #4fa0df;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.footer__list__contact {
+  color: white;
+  font-size: small;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+  }
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+  }
+}
+@media (min-width: 912px) and (max-width: 1368px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+  }
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+  }
+}
+@media (min-width: 800px) and (max-width: 1400px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+  }
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+  }
+}
+
+/*# sourceMappingURL=footer.css.map */
