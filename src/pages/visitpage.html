@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../styles/visitinfo.css" />
+  <link rel="stylesheet" href="../styles/visitpage.css" />
 
   <link rel="stylesheet" href="../styles/common/body.css" />
   <link rel="stylesheet" href="../styles/common/header.css" />
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="../styles/common/navbar.css" />
   <link rel="stylesheet" href="../styles/common/footer.css" />
   <link rel="stylesheet" href="../styles/common/form.css" />
-  <title>See Visit Info</title>
+  <title>Visit Page</title>
 </head>
 
 <body>
@@ -43,12 +43,20 @@
       </header>
 
   <main>
-    <h1 class="header">See Visit Info</h1>
-    <form action="../pages/visitpage.html" method="get" class = "form">
-        <label for="id">Request Id: </label>
-        <input type="text" class="form__field" name="id" placeholder="" autocomplete="off" required>
-        <button type="submit" class="form__button">Submit</button>
-    </form>
+    <h1 class="header">Visit Page</h1>
+    <div class = "user-account">
+        <div class="user-account__info">
+            <p class = "user-account__info__text">Request id: 1</p>
+            <p class = "user-account__info__text">Inmate CNP: 555555555555</p>
+            <p class = "user-account__info__text">Objects Traded: knife</p>
+            <p class = "user-account__info__text">Conversation Resume: nothing new</p>
+            <p class = "user-account__info__text">Health Status: well</p>
+            <p class = "user-account__info__text">Mood: sad</p>
+            <p class = "user-account__info__text">Witness(es): </p>
+
+
+        </div>
+    </div>
     <div class="sep"></div>
   </main>
 
