@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="../../publicfavicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../styles/common/panel.css">
-  <link rel="stylesheet" href="../styles/userprofile.css">
+  <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../styles/about.css">
 
   <link rel="stylesheet" href="../styles/common/body.css" />
   <link rel="stylesheet" href="../styles/common/header.css" />
 
   <link rel="stylesheet" href="../styles/common/navbar.css" />
   <link rel="stylesheet" href="../styles/common/footer.css" />
-  <title>User Account</title>
+  <link rel="stylesheet" href="../styles/common/form.css" />
+  <title>Add Inmate</title>
 </head>
 
 <body>
@@ -21,10 +21,10 @@
     <nav class="navbar">
       <ul class="nav-list">
         <li class="nav-list__element">
-          <a href="../../publicindex.html"><img src="../assets/logo.png" class="nav-list__logo" /></a>
+          <a href="../../public/index.html"><img src="../assets/logo.png" class="nav-list__logo" /></a>
         </li>
         <li class="nav-list__element">
-          <a class="nav-list__link" href="../../publicindex.html">Home</a>
+          <a class="nav-list__link" href="/public/index.html">Home</a>
         </li>
         <li class="nav-list__element">
           <a class="nav-list__link" href="about.html">About</a>
@@ -42,28 +42,32 @@
     </nav>
   </header>
 
-      <main>
-        <h1 class="header">Your account</h1>
-        <div class = "panel">
-          <div class="panel__buttons">
-            <a href="changeinfo.html" class="panel__button">Change Information</a>
-            <a href="changepassword.html" class="panel__button">Change Password</a>
-            <a href="requesthistory.html" class="panel__button">Requests</a>
-            <a href="visitinfo.html" class="panel__button">See Visit Info</a>
-            <a href="../..../../publicindex.html" class="panel__button">Log Out</a>
-          </div>
-          <div>
-          </div>
-          <div class = "panel__info">
-            <img src = "../assets/user.png">
-            <div class = "panel__text">username: xyz</div>
-            <div class = "panel__text">email: xyz</div>
-            <div class = "panel__text">cnp: xyz</div>
-            <div class = "panel__text">phone number: xyz</div>
-        </div>
-        </div>
-        
-      </main>
+  <main>
+    <h1 class="header">
+        Add Inmate
+    </h1>
+
+    <form action="#" method="get" class="form">
+
+        <label for="name">Name</label>
+        <input type="text" class="form__field" name="name" required>
+
+        <label for="prisoner-cnp">Inmate CNP</label>
+        <input type="text" class="form__field" name="prisoner-cnp" required>
+
+        <label for="date">Date of incarceration</label>
+        <input type="text" class="form__field" name="date" required>
+
+        <label for="end">End of incarceration</label>
+        <input type="text" class="form__field" name="end" required>
+
+        <label for="crime">Crime</label>
+        <input type="text" class="form__field" name="crime" required>
+
+        <button type="submit" class="form__button">Add</button>
+    </form>
+    <div class="sep"></div>
+</main>
 
       <footer class="footer">
         <div>

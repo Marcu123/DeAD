@@ -2,18 +2,19 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="../src/styles/index.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../publicfavicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../styles/statistics.css" />
 
-  <link rel="stylesheet" href="../src/styles/common/body.css" />
-  <link rel="stylesheet" href="../src/styles/common/header.css" />
+  <link rel="stylesheet" href="../styles/common/body.css" />
+  <link rel="stylesheet" href="../styles/common/header.css" />
 
-  <link rel="stylesheet" href="../src/styles/common/navbar.css" />
-  <link rel="stylesheet" href="../src/styles/common/footer.css" />
+  <link rel="stylesheet" href="../styles/common/navbar.css" />
+  <link rel="stylesheet" href="../styles/common/footer.css" />
+  <link rel="stylesheet" href="../styles/common/form.css">
 
-  <title>Home</title>
+  <title>Request</title>
 </head>
 
 <body>
@@ -21,19 +22,19 @@
     <nav class="navbar">
       <ul class="nav-list">
         <li class="nav-list__element">
-          <a href="index.html"><img src="../src/assets/logo.png" class="nav-list__logo" /></a>
+          <a href="../../publicindex.html"><img src="../assets/logo.png" class="nav-list__logo" /></a>
         </li>
         <li class="nav-list__element">
-          <a class="nav-list__link" href="index.html">Home</a>
+          <a class="nav-list__link" href="../../publicindex.html">Home</a>
         </li>
         <li class="nav-list__element">
-          <a class="nav-list__link" href="../src/pages/about.html">About</a>
+          <a class="nav-list__link" href="about.html">About</a>
         </li>
         <li class="nav-list__element">
-          <a class="nav-list__link" href="../src/pages/contact.html">Contact</a>
+          <a class="nav-list__link" href="contact.html">Contact</a>
         </li>
         <li class="nav-list__element">
-          <a class="nav-list__link" href="../src/pages/request.html">Request</a>
+          <a class="nav-list__link" href="request.html">Request</a>
         </li>
         <li class="nav-list__element">
           <input class="nav-list__search" type="text" placeholder="Search.." />
@@ -41,44 +42,30 @@
       </ul>
     </nav>
   </header>
-
   <main>
-    <div class="main-image-container">
-      <img class="main-image" src="../src/assets/fundalbun.png" alt="Prison" />
-      <div class="main-image-gradient"></div>
-    </div>
     <h1 class="header">
-      Welcome to DeAD, International Detention Administration!
+      Statistics generator
     </h1>
+      <form action="#" method="post" class="form">
+        <label for="criteria">Criteria:</label>
+        <select name="criteria" class="form__field">
+          <option value="crime category">Crime Category</option>
+          <option value="age group">Age group</option>
+          <option value="gender">Gender</option>
+        </select>
 
-    <ul class="button-list">
-      <li class="button-list__element">
-        <a href="../src/pages/searchpage.html">
-          <img class="button-list__image" src="../src/assets/search_inmate.png" title="Search inmate" />
-        </a>
-        <p class="button-list__text">Search inmate</p>
-      </li>
-      <li class="button-list__element">
-        <a href="../src/pages/request.html">
-          <img class="button-list__image" src="../src/assets/request.png" title="Request" />
-        </a>
-        <p class="button-list__text">Request visit</p>
-      </li>
-      <li class="button-list__element">
-        <a href="../src/pages/userlog.html">
-          <img class="button-list__image" src="../src/assets/user.png" title="User account" />
-        </a>
-        <p class="button-list__text">User account</p>
-      </li>
-      <li class="button-list__element">
-        <a href="../src/pages/adminlog.html">
-          <img class="button-list__image" src="../src/assets/admin.png" title="Admin account" />
-        </a>
-        <p class="button-list__text">Admin account</p>
-      </li>
-    </ul>
+        <label for="format">Format:</label>
+        <select name="format" class="form__field">
+          <option value="html">HTML</option>
+          <option value="json">JSON</option>
+          <option value="csv">CSV</option>
+        </select>
+
+        <button type="submit" class="form__button">Generate</button>
+    </form>
+    <div class="sep"></div>
+
   </main>
-
   <footer class="footer">
     <div>
       <p class="footer__title">Social Media</p>
@@ -113,7 +100,7 @@
           <a class="footer__list__link" href="https://www.interpol.int/en">Interpol</a>
         </li>
         <li class="footer__list__element">
-          <a class="footer__list__link" href="../src/pages/privacy.html">Privacy policy</a>
+          <a class="footer__list__link" href="../pages/privacy.html">Privacy policy</a>
         </li>
       </ul>
     </div>

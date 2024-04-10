@@ -16,3 +16,15 @@
 input[type="file"] {
     margin-bottom: 20px;
 }
+
+.link{
+    text-decoration: none;
+    color: base.$text-color;
+    font-size: medium;
+
+    &:hover {
+        color: base.$link-color;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}

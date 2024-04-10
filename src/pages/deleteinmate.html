@@ -4,86 +4,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="../../publicfavicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../styles/userlog.css">
+  <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../styles/deleteinmate.css" />
 
   <link rel="stylesheet" href="../styles/common/body.css" />
   <link rel="stylesheet" href="../styles/common/header.css" />
 
   <link rel="stylesheet" href="../styles/common/navbar.css" />
   <link rel="stylesheet" href="../styles/common/footer.css" />
-  <link rel="stylesheet" href="../styles/common/form.css">
-  <title>User Account</title>
+  <link rel="stylesheet" href="../styles/common/form.css" />
+  <title>Delete Inmate</title>
 </head>
 
 <body>
-  <header>
-    <nav class="navbar">
-      <ul class="nav-list">
-        <li class="nav-list__element">
-          <a href="../../publicindex.html"><img src="../assets/logo.png" class="nav-list__logo" /></a>
-        </li>
-        <li class="nav-list__element">
-          <a class="nav-list__link" href="../../publicindex.html">Home</a>
-        </li>
-        <li class="nav-list__element">
-          <a class="nav-list__link" href="about.html">About</a>
-        </li>
-        <li class="nav-list__element">
-          <a class="nav-list__link" href="contact.html">Contact</a>
-        </li>
-        <li class="nav-list__element">
-          <a class="nav-list__link" href="request.html">Request</a>
-        </li>
-        <li class="nav-list__element">
-          <input class="nav-list__search" type="text" placeholder="Search.." />
-        </li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <nav class="navbar">
+          <ul class="nav-list">
+            <li class="nav-list__element">
+              <a href="../../public/index.html"><img src="../assets/logo.png" class="nav-list__logo" /></a>
+            </li>
+            <li class="nav-list__element">
+              <a class="nav-list__link" href="../../public/index.html">Home</a>
+            </li>
+            <li class="nav-list__element">
+              <a class="nav-list__link" href="about.html">About</a>
+            </li>
+            <li class="nav-list__element">
+              <a class="nav-list__link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-list__element">
+              <a class="nav-list__link" href="request.html">Request</a>
+            </li>
+            <li class="nav-list__element">
+              <input class="nav-list__search" type="text" placeholder="Search.." />
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-  <main class = "form-container">
-    <div>
-        <h1 class = "header">Login</h1>
-    <form action="../pages/userprofile.html" method="get" class = "form">
-        <label for="password">Username: </label>
-        <input type="password" class="form__field" name="username" placeholder="" autocomplete="off" required>
-
-        <label for="new_password">Password: </label>
-        <input type="password" class="form__field" name="password" placeholder="" autocomplete="off" required>
-
-        <label for="keeplogged"><input type="radio" class="form__radio" name="keeplogged" value="true">Remember me</label>
-
-        <button type="submit" class="form__button">Submit</button>
-
-        <a href="forgotpassword.html" class="link">Forgot password?</a>
-    </form>
-</div>
-
-    <div>
-        <h1 class = "header">Register</h1>
+  <main>
+    <h1 class="header">Delete Inmate</h1>
     <form action="#" method="post" class = "form">
-        <label for="username">Username: </label>
-        <input type="text" class="form__field" name="username" placeholder="" autocomplete="off" required>
-
-        <label for="password">Password: </label>
-        <input type="password" class="form__field" name="password" placeholder="" autocomplete="off" required>
-
-        <label for="email">E-mail address: </label>
-        <input type="email" class="form__field" name="email" placeholder="" autocomplete="off" required>
-
-        <label for="cnp">CNP: </label>
+        <label for="username">CNP: </label>
         <input type="text" class="form__field" name="cnp" placeholder="" autocomplete="off" required>
-
-        <label for="imageUpload">Photo: </label>
-        <input type="file" name="image" accept="image/*" required>
-
-        <label for="phone-number">Phone Number: </label>
-        <input type="tel" class="form__field" name="phone-number" placeholder="" autocomplete="off" required>
-
-        <button type="submit" class="form__button">Submit</button>
+        <button type="submit" class="form__button">Delete</button>
     </form>
-</div>
+    <div class="sep"></div>
   </main>
 
   <footer class="footer">

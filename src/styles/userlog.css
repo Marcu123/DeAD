@@ -14,4 +14,15 @@ input[type=file] {
   margin-bottom: 20px;
 }
 
+.link {
+  text-decoration: none;
+  color: #263741;
+  font-size: medium;
+}
+.link:hover {
+  color: #4fa0df;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=userlog.css.map */
