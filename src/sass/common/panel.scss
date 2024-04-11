@@ -57,3 +57,113 @@ main{
         font-size: large;
     }
 }
+
+
+@media (max-width: 768px) {
+    .panel{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        width: 100%;
+        margin-bottom:50px;
+    
+        &__buttons{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        &__button{
+            width: 100%;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            background-color: #364b56;
+    
+            text-align: left;
+            text-decoration: none;
+    
+            &:hover{
+                background-color: #364b56f0;
+                border-bottom: 2px solid black;
+                border-left: 4px solid base.$link-color;
+            }
+        }
+        &__info{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+    
+            padding: 30px;
+            border: 2px solid black;
+            margin: 30px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    
+            width: 200px;
+        }
+        &__text{
+            color: base.$text-color;
+            padding-bottom: 20px;
+    
+            font-size: large;
+        }
+    }
+  }
+
+  @media (min-width: 800px) and (max-width: 1400px) {
+    .panel{
+        display: grid;
+        grid-template-columns: 45% 10% 45%;
+        grid-template-rows: 100%;
+        width: 700px;
+    
+        margin-bottom:250px;
+    
+        &__buttons{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        &__button{
+            width: 100%;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            background-color: #364b56;
+    
+            text-align: left;
+            text-decoration: none;
+    
+            &:hover{
+                background-color: #364b56f0;
+                border-bottom: 2px solid black;
+                border-left: 4px solid base.$link-color;
+            }
+        }
+        &__info{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+    
+            padding: 30px;
+            border: 2px solid black;
+            margin: 30px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    
+            width: 100%;
+        }
+        &__text{
+            color: base.$text-color;
+            padding-bottom: 20px;
+    
+            font-size: large;
+        }
+    }
+}

@@ -23,9 +23,10 @@
         <li class="nav-list__element">
           <a href="../../public/index.html"><img src="../assets/logo.png" class="nav-list__logo" /></a>
         </li>
-        <li class="nav-list__element">
-          <a class="nav-list__link" href="../../public/index.html">Home</a>
-        </li>
+        <div class="search-box">
+          <button class="btn-search"><img src="../../src/assets/search-solid.svg" alt="Search" /></button>
+          <input type="text" class="input-search" placeholder="Search inmate...">
+        </div>
         <li class="nav-list__element">
           <a class="nav-list__link" href="about.html">About</a>
         </li>
@@ -36,7 +37,7 @@
           <a class="nav-list__link" href="request.html">Request</a>
         </li>
         <li class="nav-list__element">
-          <input class="nav-list__search" type="text" placeholder="Search.." />
+          <a class="nav-list__link" href="userlog.html">Profile</a>
         </li>
       </ul>
     </nav>
@@ -60,29 +61,29 @@
     </form>
 </div>
 
-    <div>
-        <h1 class = "header">Register</h1>
-    <form action="#" method="post" class = "form">
-        <label for="username">Username: </label>
-        <input type="text" class="form__field" name="username" placeholder="" autocomplete="off" required>
+<div>
+  <h1 class = "header">Register</h1>
+<form action="#" method="post" class = "form">
+  <label for="username">Username: </label>
+  <input type="text" class="form__field" name="username" placeholder="" autocomplete="off" required>
 
-        <label for="password">Password: </label>
-        <input type="password" class="form__field" name="password" placeholder="" autocomplete="off" required>
+  <label for="password">Password: </label>
+  <input type="password" class="form__field" name="password" placeholder="" autocomplete="off" required>
 
-        <label for="email">E-mail address: </label>
-        <input type="email" class="form__field" name="email" placeholder="" autocomplete="off" required>
+  <label for="email">E-mail address: </label>
+  <input type="email" class="form__field" name="email" placeholder="" autocomplete="off" required>
 
-        <label for="cnp">CNP: </label>
-        <input type="text" class="form__field" name="cnp" placeholder="" autocomplete="off" required>
+  <label for="cnp">CNP: </label>
+  <input type="text" class="form__field" name="cnp" placeholder="" autocomplete="off" required>
 
-        <label for="imageUpload">Photo: </label>
-        <input type="file" name="image" accept="image/*" required>
+  <label for="imageUpload">Photo: </label>
+  <input type="file" name="image" accept="image/*" required>
 
-        <label for="phone-number">Phone Number: </label>
-        <input type="tel" class="form__field" name="phone-number" placeholder="" autocomplete="off" required>
+  <label for="phone-number">Phone Number: </label>
+  <input type="tel" class="form__field" name="phone-number" placeholder="" autocomplete="off" required>
 
-        <button type="submit" class="form__button">Submit</button>
-    </form>
+  <button type="submit" class="form__button">Submit</button>
+</form>
 </div>
   </main>
 

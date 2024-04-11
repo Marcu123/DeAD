@@ -9,9 +9,20 @@
 
 @media (max-width: 1060px){
     .form-container{
+        display: flex;
         flex-direction: column;
     }
 }
+
+@media (max-width: 299px) {
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+  }
+}
+
 
 input[type="file"] {
     margin-bottom: 20px;

@@ -13,6 +13,8 @@
 .box{
     padding: 30px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    border: 2px solid black;
+
     &__title{
         color: base.$text-color;
         font-size: 2rem;
