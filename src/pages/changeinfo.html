@@ -7,59 +7,62 @@
     <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../styles/changeinfo.css">
 
-    <link rel="stylesheet" href="../styles/common/body.css" />
-    <link rel="stylesheet" href="../styles/common/header.css" />
+    <link rel="stylesheet" href="../styles/common/body.css" >
+    <link rel="stylesheet" href="../styles/common/header.css" >
 
-    <link rel="stylesheet" href="../styles/common/navbar.css" />
-    <link rel="stylesheet" href="../styles/common/footer.css" />
+    <link rel="stylesheet" href="../styles/common/navbar.css" >
+    <link rel="stylesheet" href="../styles/common/footer.css" >
     <link rel="stylesheet" href="../styles/common/form.css">
     <title>Change Info</title>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <ul class="nav-list">
-                <li class="nav-list__element">
-                    <a href="../../public/index.html"><img src="../assets/logo.png" class="nav-list__logo" /></a>
-                </li>
-                <div class="search-box">
-                  <button class="btn-search"><img src="../../src/assets/search-solid.svg" alt="Search" /></button>
-                  <input type="text" class="input-search" placeholder="Search inmate...">
-                </div>
-                <li class="nav-list__element">
-                    <a class="nav-list__link" href="about.html">About</a>
-                </li>
-                <li class="nav-list__element">
-                    <a class="nav-list__link" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-list__element">
-                    <a class="nav-list__link" href="request.html">Request</a>
-                </li>
-                <li class="nav-list__element">
-                  <a class="nav-list__link" href="userlog.html">Profile</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <nav class="navbar">
+      <ul class="nav-list">
+        <li class="nav-list__element">
+          <a href="../../public/index.html"><img src="../assets/logo.png" class="nav-list__logo" alt="logo"></a>
+        </li>
+        <li>
+        <div class="search-box">
+          <button class="btn-search"><img src="../../src/assets/search-solid.svg" alt="Search" ></button>
+          <input type="text" class="input-search" placeholder="Search inmate...">
+        </div>
+      </li>
+        <li class="nav-list__element">
+          <a class="nav-list__link" href="about.html">About</a>
+        </li>
+        <li class="nav-list__element">
+          <a class="nav-list__link" href="contact.html">Contact</a>
+        </li>
+        <li class="nav-list__element">
+          <a class="nav-list__link" href="request.html">Request</a>
+        </li>
+        <li class="nav-list__element">
+          <a class="nav-list__link" href="userlog.html">Profile</a>
+        </li>
+        
+      </ul>
+    </nav>
+  </header>
 
     <main>
         <h1 class = "header">Change your account's information</h1>
         <form action="#" method="post" class = "form">
             <label for="username">Username: </label>
-            <input type="text" class="form__field" name="username" placeholder="" autocomplete="off">
+            <input type="text" class="form__field" name="username" id="username" placeholder="" autocomplete="off">
     
             <label for="email">E-mail address: </label>
-            <input type="email" class="form__field" name="email" placeholder="" autocomplete="off">
+            <input type="email" class="form__field" name="email" id="email" placeholder="" autocomplete="off">
     
             <label for="cnp">CNP: </label>
-            <input type="text" class="form__field" name="cnp" placeholder="" autocomplete="off">
+            <input type="text" class="form__field" name="cnp" id="cnp" placeholder="" autocomplete="off">
     
             <label for="imageUpload">Photo: </label>
-            <input type="file" name="image" class="form__field form__field--file" accept="image/*">
+            <input type="file" name="image" class="form__field form__field--file" id="imageUpload" accept="image/*">
     
             <label for="phone-number">Phone Number: </label>
-            <input type="tel" class="form__field" name="phone-number" placeholder="" autocomplete="off">
+            <input type="tel" class="form__field" name="phone-number" id="phone-number" placeholder="" autocomplete="off">
     
             <button type="submit" class="form__button">Submit</button>
         </form>

@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../styles/statistics.css" />
+  <link rel="stylesheet" href="../styles/statistics.css" >
 
-  <link rel="stylesheet" href="../styles/common/body.css" />
-  <link rel="stylesheet" href="../styles/common/header.css" />
+  <link rel="stylesheet" href="../styles/common/body.css" >
+  <link rel="stylesheet" href="../styles/common/header.css" >
 
-  <link rel="stylesheet" href="../styles/common/navbar.css" />
-  <link rel="stylesheet" href="../styles/common/footer.css" />
+  <link rel="stylesheet" href="../styles/common/navbar.css" >
+  <link rel="stylesheet" href="../styles/common/footer.css" >
   <link rel="stylesheet" href="../styles/common/form.css">
 
   <title>Statistics</title>
@@ -22,12 +22,14 @@
     <nav class="navbar">
       <ul class="nav-list">
         <li class="nav-list__element">
-          <a href="../../public/index.html"><img src="../assets/logo.png" class="nav-list__logo" /></a>
+          <a href="../../public/index.html"><img src="../assets/logo.png" class="nav-list__logo" alt="logo"></a>
         </li>
+        <li>
         <div class="search-box">
-          <button class="btn-search"><img src="../../src/assets/search-solid.svg" alt="Search" /></button>
+          <button class="btn-search"><img src="../../src/assets/search-solid.svg" alt="Search" ></button>
           <input type="text" class="input-search" placeholder="Search inmate...">
         </div>
+      </li>
         <li class="nav-list__element">
           <a class="nav-list__link" href="about.html">About</a>
         </li>
@@ -40,6 +42,7 @@
         <li class="nav-list__element">
           <a class="nav-list__link" href="userlog.html">Profile</a>
         </li>
+        
       </ul>
     </nav>
   </header>
@@ -49,14 +52,14 @@
     </h1>
       <form action="#" method="post" class="form">
         <label for="criteria">Criteria:</label>
-        <select name="criteria" class="form__field">
+        <select name="criteria" class="form__field" id="criteria">
           <option value="crime category">Crime Category</option>
           <option value="age group">Age group</option>
           <option value="gender">Gender</option>
         </select>
 
         <label for="format">Format:</label>
-        <select name="format" class="form__field">
+        <select name="format" class="form__field" id="format">
           <option value="html">HTML</option>
           <option value="json">JSON</option>
           <option value="csv">CSV</option>

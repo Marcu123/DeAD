@@ -5,49 +5,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../styles/visitinfo.css" />
+  <link rel="stylesheet" href="../styles/visitinfo.css" >
 
-  <link rel="stylesheet" href="../styles/common/body.css" />
-  <link rel="stylesheet" href="../styles/common/header.css" />
+  <link rel="stylesheet" href="../styles/common/body.css" >
+  <link rel="stylesheet" href="../styles/common/header.css" >
 
-  <link rel="stylesheet" href="../styles/common/navbar.css" />
-  <link rel="stylesheet" href="../styles/common/footer.css" />
-  <link rel="stylesheet" href="../styles/common/form.css" />
+  <link rel="stylesheet" href="../styles/common/navbar.css" >
+  <link rel="stylesheet" href="../styles/common/footer.css" >
+  <link rel="stylesheet" href="../styles/common/form.css" >
   <title>See Visit Info</title>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-          <ul class="nav-list">
-            <li class="nav-list__element">
-              <a href="../../public/index.html"><img src="../assets/logo.png" class="nav-list__logo" /></a>
-            </li>
-            <div class="search-box">
-              <button class="btn-search"><img src="../../src/assets/search-solid.svg" alt="Search" /></button>
-              <input type="text" class="input-search" placeholder="Search inmate...">
-            </div>
-            <li class="nav-list__element">
-              <a class="nav-list__link" href="about.html">About</a>
-            </li>
-            <li class="nav-list__element">
-              <a class="nav-list__link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-list__element">
-              <a class="nav-list__link" href="request.html">Request</a>
-            </li>
-            <li class="nav-list__element">
-              <a class="nav-list__link" href="userlog.html">Profile</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+  <header>
+    <nav class="navbar">
+      <ul class="nav-list">
+        <li class="nav-list__element">
+          <a href="../../public/index.html"><img src="../assets/logo.png" class="nav-list__logo" alt="logo"></a>
+        </li>
+        <li>
+        <div class="search-box">
+          <button class="btn-search"><img src="../../src/assets/search-solid.svg" alt="Search" ></button>
+          <input type="text" class="input-search" placeholder="Search inmate...">
+        </div>
+      </li>
+        <li class="nav-list__element">
+          <a class="nav-list__link" href="about.html">About</a>
+        </li>
+        <li class="nav-list__element">
+          <a class="nav-list__link" href="contact.html">Contact</a>
+        </li>
+        <li class="nav-list__element">
+          <a class="nav-list__link" href="request.html">Request</a>
+        </li>
+        <li class="nav-list__element">
+          <a class="nav-list__link" href="userlog.html">Profile</a>
+        </li>
+        
+      </ul>
+    </nav>
+  </header>
 
   <main>
     <h1 class="header">See Visit Info</h1>
     <form action="../pages/visitpage.html" method="get" class = "form">
         <label for="id">Request Id: </label>
-        <input type="text" class="form__field" name="id" placeholder="" autocomplete="off" required>
+        <input type="text" class="form__field" name="id" id="id" placeholder="" autocomplete="off" required>
         <button type="submit" class="form__button">Submit</button>
     </form>
     <div class="sep"></div>
