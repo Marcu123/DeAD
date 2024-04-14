@@ -78,7 +78,7 @@
   right: 0px;
   color: #fbfbfb;
   background-color: transparent;
-  pointer-events: painted;
+  pointer-events: none;
 }
 .nav-list__btn-search:focus ~ .input-search {
   width: 200px;

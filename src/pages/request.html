@@ -40,6 +40,9 @@
           <a class="nav-list__link" href="request.html">Request</a>
         </li>
         <li class="nav-list__element">
+          <a class="nav-list__link" href="help.html">Help</a>
+        </li>
+        <li class="nav-list__element">
           <a class="nav-list__link" href="userlog.html">Profile</a>
         </li>
         
@@ -72,6 +75,23 @@
           <h2>Instructions</h2>
           <p>Choose the type of visitor you are. If there are others visitor, they don't need to complete.</p>
         </div>
+
+        <label for="visit-type">Visit Type</label>
+        <select name="visit-type" id="visit-type" class="form__field">
+          <option value="health">Verify how he/she feels</option>
+          <option value="communicate">Speak about personal information</option>
+          <option value="process">Discuss how the process is going</option>
+          <option value="monthly visit">Monthly visit</option>
+          <option value="legal consultation">Legal consultation</option>
+          <option value="family">Family visit</option>
+          <option value="education">Educational session</option>
+          <option value="religious">Religious services</option>
+          <option value="therapy">Therapeutic session</option>
+        </select>
+
+
+        <label for="date">Date of the visit:</label>
+        <input type="date" id="date" class="form__field" name="date">
 
         <label for="cnp">CNP/CNPs:</label>
         <input type="text" id="cnp" class="form__field" name="cnp" placeholder="5030411111111, 3040411111111" autocomplete="off">
@@ -137,7 +157,7 @@
 
     </div>
     <div>
-      <p class="footer__title">Link-uri utile</p>
+      <p class="footer__title">Useful Links</p>
       <ul class="footer__list">
         <li class="footer__element">
           <a class="footer__link" href="https://www.mai.gov.ro/">Ministerul Afacerilor Interne</a>

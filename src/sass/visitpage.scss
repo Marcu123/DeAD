@@ -35,6 +35,23 @@
     }
 }
 
+@media (min-width: 820px) and (max-width: 1368px) {
+    .user-account{
+        width: 300px;
+    
+    }
+.sep{
+    padding: 150px;
+}
+}
+
+@media (max-width: 768px){
+    .user-account{
+        width: 300px;
+    }
+
+}
+
 
 
 main{
