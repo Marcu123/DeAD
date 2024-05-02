@@ -1,13 +1,12 @@
-drop table prison;
-drop table admins;
-drop table inmate;
-drop table users;
-drop table request;
-drop table visitor;
-drop table visit_info;
-drop table employee;
 drop table witnesses;
-
+drop table employee;
+drop table visit_info;
+drop table visitor;
+drop table request;
+drop table users;
+drop table inmate;
+drop table admins;
+drop table prison;
 
 CREATE TABLE prison (
     id SERIAL PRIMARY KEY,
