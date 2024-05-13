@@ -7,7 +7,7 @@ console.log(searchInput);
 searchInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       const searchTerm = searchInput.value;
-      const url = "searchpage/getInfo?prisoner-cnp=" + searchTerm;
+      const url = "inmateprofile?prisoner-cnp=" + searchTerm;
       window.location.href = url;
     }
 });

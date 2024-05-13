@@ -11,17 +11,4 @@ class SearchPage extends Controller {
         $this->view('searchpage');
 
     }
-    public function getInfo(){
-        if(isset($_GET['prisoner-cnp'])){
-            $cnp = $_GET['prisoner-cnp'];
-
-            $this->model('inmate');
-            $iService = new InmateService();
-
-            $inmate = $iService->getInmateByCnp($cnp);
-
-            $this->view('inmateprofile', ['inmate' => $inmate]);
-        }
-    }
-
 }
