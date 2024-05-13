@@ -1,23 +1,28 @@
 <?php
 
+@require_once 'config.php';
+
 class Database{
     private static $connection;
     private static $config;
 
     private function __construct(){
+        
     }
 
     public function __destruct(){
         if(!is_null(self::$connection)){
-            self::$connection->close();
+            self::$connection = null;
         }
     }
 
-    public function setConfig($config){
+    public static function setConfig($config){
         self::$config = $config;
     }
 
     public static function getConnection(){
+        self::setConfig(include 'config.php');
+
         if (self::$connection == null)
             self::createConnection();
 
@@ -29,8 +34,11 @@ class Database{
         $dbUser = self::$config['user'];
         $dbPass = self::$config['pass'];
 
-        self::$connection = new PDO("pgsql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
-        self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try{
+            self::$connection = new PDO("pgsql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
+            self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $e){
+            echo 'Connection failed' . $e->getMessage();
+        }
     }
 }
-?>

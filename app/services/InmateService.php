@@ -1,8 +1,5 @@
 <?php
-@require_once 'Inmate.php';
-@require_once 'Database.php';
-
-class InmateDAO {
+class InmateService {
     private $db;
 
     public function __construct() {
@@ -20,11 +17,27 @@ class InmateDAO {
             return false;
         }
         return new Inmate(
-             $row['photo'], $row['first_name'], $row['last_name'],
+            $row['photo'], $row['first_name'], $row['last_name'],
             $row['cnp'], $row['age'], $row['gender'], $row['id_prison'],
             $row['date_of_incarceracion'], $row['end_of_incarceration'], $row['crime']
         );
     }
+    public function getInmateByCnp($cnp){
+        try{
+            $stmt = $this->db->prepare("SELECT * FROM inmate WHERE cnp = :cnp");
+            $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+        return new Inmate(
+             'ceva aici', $row['first_name'], $row['last_name'],
+            $row['cnp'], $row['age'], $row['gender'], $row['id_prison'],
+            $row['date_of_incarceracion'], $row['end_of_incarceration'], $row['crime']
+        );
+    } 
 
     public function addInmate(Inmate $inmate) {
         try{
@@ -46,4 +59,3 @@ class InmateDAO {
         }
     }
 }
-?>
