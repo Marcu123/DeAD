@@ -84,8 +84,8 @@
 
     <script>
         document.getElementById('addMore').addEventListener('click', (function() {
-            const maxClicks = 2;  // Set the maximum number of allowed clicks
-            let numClicks = 0;    // Initialize click counter
+            const maxClicks = 2;
+            let numClicks = 0;
 
             return function() {
                 if (numClicks < maxClicks) {
@@ -99,7 +99,7 @@
                     ];
 
                     const delimiter = document.createElement('hr');
-                    delimiter.className = 'hr-thick'; // Apply the CSS class for styling
+                    delimiter.className = 'hr-thick';
                     form.insertBefore(delimiter, document.getElementById('addMore'));
 
                     fields.forEach(field => {
@@ -125,11 +125,11 @@
                         form.insertBefore(fieldContainer, document.getElementById('addMore'));
                     });
 
-                    numClicks++; // Increment the click counter
+                    numClicks++;
                 }
 
                 if (numClicks >= maxClicks) {
-                    document.getElementById('addMore').style.display = 'none'; // Hide button if max clicks reached
+                    document.getElementById('addMore').style.display = 'none';
                 }
             };
         })());
