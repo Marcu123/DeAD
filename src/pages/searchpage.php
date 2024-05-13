@@ -24,7 +24,7 @@
             Search for inmate's profile.
         </h1>
 
-        <form action="searchpage/getInfo" method="get" class="form">
+        <form action="inmateprofile" method="get" class="form">
 
             <label for="name">Name</label>
             <input type="text" class="form__field" id="name" name="name">
