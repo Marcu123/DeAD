@@ -21,7 +21,7 @@
 
       <main>
         <h1 class="header">Change password</h1>
-        <form action="changepassword/newPassword" method="get" class = "form">
+        <form action="changepassword/newPassword" method="post" class = "form">
             <label for="password">Current password: </label>
             <input type="password" class="form__field" name="password" id="password" placeholder="" autocomplete="off" required>
     

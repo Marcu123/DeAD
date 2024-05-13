@@ -22,14 +22,14 @@
   <main>
     <div>
         <h1 class = "header">Login</h1>
-    <form action="adminpanel.php" method="post" class = "form">
+    <form action="adminlog/login" method="post" class = "form">
         <label for="username">Username: </label>
         <input type="text" class="form__field" name="username" placeholder="" id="username" autocomplete="off" required>
 
         <label for="admin_key">Admin Key: </label>
         <input type="password" class="form__field" name="admin_key" placeholder="" id="admin_key" autocomplete="off" required>
 
-        <button type="submit" class="form__button">Submit</button>
+        <button type="submit" class="form__button" name="log_btn">Submit</button>
     </form>
     <div class="sep">
     </div>

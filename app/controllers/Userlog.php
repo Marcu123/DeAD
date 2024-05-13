@@ -83,9 +83,9 @@ class Userlog extends Controller{
     }
 
     public function logout(){
-        echo $_SERVER['REQUEST_METHOD'];
+        //echo $_SERVER['REQUEST_METHOD'];
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])){
-            echo "logout";
+            //echo "logout";
             session_destroy();
             header('Location: ../../userlog');
             exit;

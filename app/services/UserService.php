@@ -173,4 +173,16 @@ class UserService
             return false;
         }
     }
+
+    public function updatePassword($password,$username){
+        try{
+            $stmt = $this->db->prepare("UPDATE users SET password = :password WHERE username = :username");
+            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
 }

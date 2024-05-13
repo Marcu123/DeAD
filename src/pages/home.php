@@ -47,7 +47,7 @@
         <p class="button-list__text">User account</p>
       </li>
       <li class="button-list__element">
-        <a href="adminlog.php">
+        <a href="adminlog">
           <img class="button-list__image" src="../src/assets/admin.png" title="Admin account" >
         </a>
         <p class="button-list__text">Admin account</p>

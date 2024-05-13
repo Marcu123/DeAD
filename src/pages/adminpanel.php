@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +37,21 @@
             <a href ="requestadmin.php" class="panel__button">See Requests</a>
             <a href ="statistics.php" class="panel__button">Statistics</a>
             <a href ="ban.php" class="panel__button">Ban User</a>
-            <a href ="home.php" class="panel__button">Log Out</a>
+            <a href="javascript:void(0);" onclick="logoutUser();" class="panel__button">Log Out</a>
+
+            <script>
+                function logoutUser() {
+                    fetch('adminpanel', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: 'logout=1'
+                    }).then(response => {
+                        window.location.href = 'adminpanel/logout';
+                    }).catch(error => console.error('Error:', error));
+                }
+            </script>
         </div>
         <div>
         </div>
