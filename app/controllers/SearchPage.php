@@ -20,7 +20,7 @@ class SearchPage extends Controller {
 
             $inmate = $iService->getInmateByCnp($cnp);
 
-            $this->view('inmateprofile', $inmate);
+            $this->view('inmateprofile', ['inmate' => $inmate]);
         }
     }
 
