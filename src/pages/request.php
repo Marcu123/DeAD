@@ -25,14 +25,9 @@
     </h1>
     <div class="form-instr">
       <form action="#" method="post" class="form">
-        <label for="name">Name of the visitor/visitors:</label>
-        <input type="text" id="name" name="name" class="form__field" placeholder="Petraru Marcu, Ioja Stefan">
-        <div class="name-visitor">
-          <h2>Instructions</h2>
-          <p>Complete the name placeholder with your Last Name and First Name accordingly to your ID Card if you are not
-            visiting alone, complete with the other visitors names</p>
-          <p>Example: Ioja Stefan, Petraru Marcu</p>
-        </div>
+        <label for="name">Visitor Name:</label>
+        <input type="text" id="name" name="name" class="form__field" placeholder="Enter name">
+
 
         <label for="visitType">Visitor Type</label>
         <select name="visitType" id="visitType" class="form__field">
@@ -41,10 +36,7 @@
           <option value="lawyer">Lawyer</option>
           <option value="legal guardian">Legal guardian</option>
         </select>
-        <div class="type-visitor">
-          <h2>Instructions</h2>
-          <p>Choose the type of visitor you are. If there are others visitor, they don't need to complete.</p>
-        </div>
+
 
         <label for="visit-type">Visit Type</label>
         <select name="visit-type" id="visit-type" class="form__field">
@@ -63,50 +55,90 @@
         <label for="date">Date of the visit:</label>
         <input type="date" id="date" class="form__field" name="date">
 
-        <label for="cnp">CNP/CNPs:</label>
-        <input type="text" id="cnp" class="form__field" name="cnp" placeholder="5030411111111, 3040411111111" autocomplete="off">
-        <div class="cnp-visitor">
-          <h2>Instructions</h2>
-          <p>Complete the CNP placeholder with your CNP accordingly to your ID Card and if you are not visiting alone,
-            complete with the other visitors's CNP </p>
-          <p>Example: 5030411111111, 3040411111111</p>
-        </div>
+        <label for="cnp">CNP:</label>
+        <input type="text" id="cnp" class="form__field" name="cnp" placeholder="Enter cnp" autocomplete="off">
 
-        <label for="imageUpload">Photo with the visitor/visitors:</label>
+
+        <label for="imageUpload">Photo with the visitor:</label>
         <input type="file" id="imageUpload" class="form__field form__field--file" name="image" accept="image/*" multiple>
 
-        <label for="email">Email/Emails:</label>
-        <input type="email" id="email" class="form__field" name="email" placeholder="marcuioja@gmail.com, iojamarcu@yahoo.ro">
-        <div class="email-visitor">
-          <h2>Instructions</h2>
-          <p>Complete the email placeholder with your email and if you are not visiting alone, complete with the other
-            visitors's emails </p>
-          <p>Example: marcuioja@gmail.com, iojamarcu@yahoo.ro</p>
-        </div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" class="form__field" name="email" placeholder="Enter email">
 
-        <label for="phone-number">Phone Number/Numbers:</label>
-        <input type="tel" id="phone-number" class="form__field" name="phone-number" placeholder="0743123456, 0787654321">
-        <div class="phone-visitor">
-          <h2>Instructions</h2>
-          <p>Complete the Phone placeholder with your phone number and if you are not visiting alone, complete with the
-            other visitors's phone numbers </p>
-          <p>Example: 0743123456, 0787654321</p>
-        </div>
+
+        <label for="phone-number">Phone Number:</label>
+        <input type="tel" id="phone-number" class="form__field" name="phone-number" placeholder="Enter phone number">
+
 
         <label for="prisoner-cnp">Inmate CNP:</label>
-        <input type="text" id="prisoner-cnp" class="form__field" name="prisoner-cnp" placeholder="5030411111111">
-        <div class="inmate-cnp">
-          <h2>Instructions</h2>
-          <p>Complete the inmate CNP placeholder with the person you want to visit</p>
-          <p>Example: 5030411111111</p>
-        </div>
+        <input type="text" id="prisoner-cnp" class="form__field" name="prisoner-cnp" placeholder="Enter inmate cnp">
 
-        <button type="submit" id="button" class="form__button">Submit</button>
+          <button type="button" id="addMore" class="form__button">+</button>
+
+          <button type="submit" id="button" class="form__button">Submit</button>
       </form>
       </div>
   </main>
 
         <?php include 'common/footer.php'; ?>
+
+    <script>
+        document.getElementById('addMore').addEventListener('click', (function() {
+            const maxClicks = 2;  // Set the maximum number of allowed clicks
+            let numClicks = 0;    // Initialize click counter
+
+            return function() {
+                if (numClicks < maxClicks) {
+                    const form = document.querySelector('.form');
+                    const fields = [
+                        { label: 'Visitor Name:', type: 'text', id: 'name_extra' + numClicks, name: 'name_extra' + numClicks, placeholder: 'Enter name' },
+                        { label: 'CNP:', type: 'text', id: 'cnp_extra' + numClicks, name: 'cnp_extra' + numClicks, placeholder: 'Enter CNP' },
+                        { label: 'Photo with the visitor:', type: 'file', id: 'imageUpload_extra' + numClicks, name: 'image_extra' + numClicks, accept: 'image/*', multiple: true },
+                        { label: 'Email:', type: 'email', id: 'email_extra' + numClicks, name: 'email_extra' + numClicks, placeholder: 'Enter email' },
+                        { label: 'Phone Number:', type: 'tel', id: 'phone-number_extra' + numClicks, name: 'phone-number_extra' + numClicks, placeholder: 'Enter phone number' }
+                    ];
+
+                    const delimiter = document.createElement('hr');
+                    delimiter.className = 'hr-thick'; // Apply the CSS class for styling
+                    form.insertBefore(delimiter, document.getElementById('addMore'));
+
+                    fields.forEach(field => {
+                        const fieldContainer = document.createElement('div');
+
+                        const label = document.createElement('label');
+                        label.htmlFor = field.id;
+                        label.textContent = field.label;
+                        fieldContainer.appendChild(label);
+
+                        const input = document.createElement('input');
+                        input.type = field.type;
+                        input.id = field.id;
+                        input.name = field.name;
+                        input.placeholder = field.placeholder;
+                        if (field.type === 'file') {
+                            input.accept = field.accept;
+                            input.multiple = field.multiple;
+                        }
+                        input.className = 'form__field';
+                        fieldContainer.appendChild(input);
+
+                        form.insertBefore(fieldContainer, document.getElementById('addMore'));
+                    });
+
+                    numClicks++; // Increment the click counter
+                }
+
+                if (numClicks >= maxClicks) {
+                    document.getElementById('addMore').style.display = 'none'; // Hide button if max clicks reached
+                }
+            };
+        })());
+    </script>
+
+
+
+
+
 </body>
 
 </html>

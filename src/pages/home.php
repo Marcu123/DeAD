@@ -35,7 +35,7 @@
         <p class="button-list__text">Search inmate</p>
       </li>
       <li class="button-list__element">
-        <a href="request.php">
+        <a href="request">
           <img class="button-list__image" src="../src/assets/request.png" title="Request" >
         </a>
         <p class="button-list__text">Request visit</p>
