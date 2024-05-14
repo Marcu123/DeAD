@@ -26,8 +26,17 @@
 
         <form action="inmateprofile" method="get" class="form">
 
-            <label for="name">Name</label>
-            <input type="text" class="form__field" id="name" name="name">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form__field" id="first_name" name="first_name">
+
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form__field" id="last_name" name="last_name">
+
+            <label for="age">Age</label>
+            <input type="text" class="form__field" id="age" name="age">
+
+            <label for="last_name">Gender</label>
+            <input type="text" class="form__field" id="gender" name="gender">
 
             <label for="prisoner-cnp">Inmate CNP</label>
             <input type="text" class="form__field" id="prisoner-cnp" name="prisoner-cnp">
@@ -35,10 +44,10 @@
             <label for="prison">Prison</label>
             <input type="text" class="form__field" id="prison" name="prison">
 
-            <label for="date">Date of incarceration</label>
+            <label for="date_of_incarceracion">Date of incarceration</label>
             <input type="text" class="form__field" id="date" name="date">
 
-            <label for="end">End of incarceration</label>
+            <label for="end_of_incarceration">End of incarceration</label>
             <input type="text" class="form__field" id="end" name="end">
 
             <label for="crime">Crime</label>

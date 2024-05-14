@@ -124,11 +124,4 @@ class Inmate {
     {
         $this->crime = $crime;
     }
-
-    public function __toString()
-    {
-        return $this->firstName . ' ' . $this->lastName . ' ' . $this->cnp . ' ' . $this->age ;
-    }
-
-
 }
