@@ -47,13 +47,25 @@ class RequestService
         }
     }
 
-    public function getAllRequestsByVisitorName($visitorName){
+    public function getAllRequestsByVisitorCnp($visitorCnp){
         try{
-            $stmt = $this->db->prepare("SELECT * FROM request WHERE visitor_name = :visitor_name");
-            $stmt->bindParam(':visitor_name', $visitorName, PDO::PARAM_STR);
+            $stmt = $this->db->prepare("SELECT * FROM visitor WHERE cnp = :cnp");
+            $stmt->bindParam(':cnp', $visitorCnp, PDO::PARAM_STR);
             $stmt->execute();
+            $visitor = $stmt->fetch(PDO::FETCH_ASSOC);
+            $visitorName = $visitor['visitor_name'];
+
+
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+        try{
+            $stmt1 = $this->db->prepare("SELECT * FROM request WHERE visitor_name = :visitor_name");
+            $stmt1->bindParam(':visitor_name', $visitorName, PDO::PARAM_STR);
+            $stmt1->execute();
             $requests = array();
-            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            while($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
                 $request = new RequestM();
                 $request->setId($row['id']);
                 $request->setVisitorType($row['visitor_type']);
@@ -63,8 +75,22 @@ class RequestService
                 $request->setIdInmate($row['id_inmate']);
                 $request->setVisitorName($row['visitor_name']);
                 $request->setRequestCreated($row['request_created']);
+
+
+                $stmt2 = $this->db->prepare("SELECT * FROM inmate WHERE id = :id");
+                $stmt2->bindParam(':id', $row['id_inmate'], PDO::PARAM_INT);
+                $stmt2->execute();
+
+                $inmate = $stmt2->fetch(PDO::FETCH_ASSOC);
+                $inmateName = $inmate['first_name'] . ' ' . $inmate['last_name'];
+                $request->setInmateName($inmateName);
+                $request->setInmateCnp($inmate['cnp']);
+
+
                 $requests[] = $request;
+
             }
+
             return $requests;
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);

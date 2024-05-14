@@ -27,7 +27,7 @@ class InmateService {
         $prisonId = $row["id"];
         $prisonService = new PrisonService();
         $prison = $prisonService->getPrisonById($prisonId)->getName();
-        return new Inmate(
+        return new Inmate($row['id'],
             $row['photo'], $row['first_name'], $row['last_name'],
             $row['cnp'], $row['age'], $row['gender'], $prison,
             $row['date_of_incarceracion'], $row['end_of_incarceration'], $row['crime']
@@ -51,11 +51,25 @@ class InmateService {
         $prisonId = $row["id"];
         $prisonService = new PrisonService();
         $prison = $prisonService->getPrisonById($prisonId)->getName();
-        return new Inmate(
+
+        return new Inmate($row['id'],
             $row['photo'], $row['first_name'], $row['last_name'],
             $row['cnp'], $row['age'], $row['gender'], $prison,
             $row['date_of_incarceracion'], $row['end_of_incarceration'], $row['crime']
         );
+    }
+
+    public function getInmateIdByCNP($cnp){
+        try{
+            $stmt = $this->db->prepare("SELECT id FROM inmate WHERE cnp = :cnp");
+            $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['id'];
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
     }
     public function getInmateByCriteria($criteria){
         $inmates = [];
@@ -85,7 +99,7 @@ class InmateService {
                 $prisonService = new PrisonService();
                 $prison = $prisonService->getPrisonById($prisonId)->getName();
 
-                $inmates[] = new Inmate(
+                $inmates[] = new Inmate($row['id'],
                         'ceva aici', $row['first_name'], $row['last_name'],
                         $row['cnp'], $row['age'], $row['gender'], $prison,
                         $row['date_of_incarceracion'], $row['end_of_incarceration'], $row['crime']

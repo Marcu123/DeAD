@@ -136,7 +136,7 @@
             //event.preventDefault();
             const formData = new FormData(this);
             formData.append('clickCount', numClicks.toString());
-            console.log(formData.get('name0'));
+
             fetch('request/form', {
                 method: 'POST',
                 body: formData

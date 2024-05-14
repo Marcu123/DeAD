@@ -1,6 +1,7 @@
 <?php
 
 class Inmate {
+    private $id;
     public $photo;
     public $firstName;
     public $lastName;
@@ -12,7 +13,8 @@ class Inmate {
     public $endOfIncarceration;
     public $crime;
 
-    public function __construct($photo, $firstName, $lastName, $cnp, $age, $gender, $idPrison, $dateOfIncarceration, $endOfIncarceration, $crime) {
+    public function __construct($id,$photo, $firstName, $lastName, $cnp, $age, $gender, $idPrison, $dateOfIncarceration, $endOfIncarceration, $crime) {
+        $this->id = $id;
         $this->photo = $photo;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -23,6 +25,16 @@ class Inmate {
         $this->dateOfIncarceration = $dateOfIncarceration;
         $this->endOfIncarceration = $endOfIncarceration;
         $this->crime = $crime;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function getPhoto()

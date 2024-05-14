@@ -2,6 +2,7 @@
 
 class RequestM
 {
+    private $id;
     private $visitorType;
     private $visitType;
     private $dateOfVisit;
@@ -11,7 +12,11 @@ class RequestM
     private $statusChanged;
     private $visitorName;
 
+    private $inmateName;
+    private $inmateCnp;
+
     public function __construct(){
+        $this->id = "";
         $this->visitorType = "";
         $this->visitType = "";
         $this->dateOfVisit = "";
@@ -20,6 +25,8 @@ class RequestM
         $this->requestCreated = "";
         $this->statusChanged = "";
         $this->visitorName = "";
+        $this->inmateName = "";
+        $this->inmateCnp = "";
     }
 
     /**
@@ -149,6 +156,58 @@ class RequestM
     {
         $this->visitorName = $visitorName;
     }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInmateName()
+    {
+        return $this->inmateName;
+    }
+
+    /**
+     * @param string $inmateName
+     */
+    public function setInmateName($inmateName)
+    {
+        $this->inmateName = $inmateName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInmateCnp()
+    {
+        return $this->inmateCnp;
+    }
+
+    /**
+     * @param string $inmateCnp
+     */
+    public function setInmateCnp($inmateCnp)
+    {
+        $this->inmateCnp = $inmateCnp;
+    }
+
+
+
+
 
 
 

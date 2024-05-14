@@ -28,26 +28,26 @@ class Request extends Controller
 
         require_once '../app/services/InmateService.php';
         $inmateService = new InmateService();
-        $cnp = filter_input(INPUT_POST, 'cnp', FILTER_SANITIZE_SPECIAL_CHARS);
-        $inmate_id= $inmateService->getInmateByCnp($cnp);
-        $request->setIdInmate($inmate_id);
+        $cnp = filter_input(INPUT_POST, 'prisoner-cnp', FILTER_SANITIZE_SPECIAL_CHARS);
+        $inmate_id = $inmateService->getInmateIdByCNP($cnp);
 
+        $request->setIdInmate($inmate_id);
 
 
         $visitor->setVisitorName(filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS));
         $visitor->setCnp(filter_input(INPUT_POST, 'cnp', FILTER_SANITIZE_SPECIAL_CHARS));
         $visitor->setEmail(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS));
         $visitor->setPhoneNumber(filter_input(INPUT_POST, 'phone-number', FILTER_SANITIZE_SPECIAL_CHARS));
+        $clicks = intval(filter_input(INPUT_POST, 'clicks', FILTER_SANITIZE_SPECIAL_CHARS));
 
-
-        if(isset($_POST['name_extra0']) && $_POST['name_extra0'] != ""){
+        if (isset($_POST['name_extra0']) && $_POST['name_extra0'] != "") {
             $visitor0->setVisitorName(filter_input(INPUT_POST, 'name_extra0', FILTER_SANITIZE_SPECIAL_CHARS));
             $visitor0->setCnp(filter_input(INPUT_POST, 'cnp_extra0', FILTER_SANITIZE_SPECIAL_CHARS));
             $visitor0->setEmail(filter_input(INPUT_POST, 'email_extra0', FILTER_SANITIZE_SPECIAL_CHARS));
             $visitor0->setPhoneNumber(filter_input(INPUT_POST, 'phone-number_extra0', FILTER_SANITIZE_SPECIAL_CHARS));
         }
 
-        if(isset($_POST['name_extra1']) && $_POST['name_extra1'] != ""){
+        if (isset($_POST['name_extra1']) && $_POST['name_extra1'] != "") {
             $visitor1->setVisitorName(filter_input(INPUT_POST, 'name_extra1', FILTER_SANITIZE_SPECIAL_CHARS));
             $visitor1->setCnp(filter_input(INPUT_POST, 'cnp_extra1', FILTER_SANITIZE_SPECIAL_CHARS));
             $visitor1->setEmail(filter_input(INPUT_POST, 'email_extra1', FILTER_SANITIZE_SPECIAL_CHARS));
@@ -68,8 +68,12 @@ class Request extends Controller
         require_once '../app/services/VisitorService.php';
         $visitorService = new VisitorService();
         $visitorService->addVisitor($visitor);
-        $visitorService->addVisitor($visitor0);
-        $visitorService->addVisitor($visitor1);
+        if ($visitor0->getVisitorName() != "") {
+            $visitorService->addVisitor($visitor0);
+        } else if ($visitor1->getVisitorName() != "") {
+            $visitorService->addVisitor($visitor0);
+            $visitorService->addVisitor($visitor1);
+        }
 
     }
 
