@@ -24,7 +24,8 @@
       Form for requesting to visit a prisoner!
     </h1>
     <div class="form-instr">
-      <form action="#" method="post" class="form">
+        <form method="post" class="form" id="visitorForm" enctype="multipart/form-data">
+
         <label for="name">Visitor Name:</label>
         <input type="text" id="name" name="name" class="form__field" placeholder="Enter name">
 
@@ -83,60 +84,71 @@
         <?php include 'common/footer.php'; ?>
 
     <script>
-        document.getElementById('addMore').addEventListener('click', (function() {
-            const maxClicks = 2;
-            let numClicks = 0;
+        let numClicks = 0;
+        const maxClicks = 2;
 
-            return function() {
-                if (numClicks < maxClicks) {
-                    const form = document.querySelector('.form');
-                    const fields = [
-                        { label: 'Visitor Name:', type: 'text', id: 'name_extra' + numClicks, name: 'name_extra' + numClicks, placeholder: 'Enter name' },
-                        { label: 'CNP:', type: 'text', id: 'cnp_extra' + numClicks, name: 'cnp_extra' + numClicks, placeholder: 'Enter CNP' },
-                        { label: 'Photo with the visitor:', type: 'file', id: 'imageUpload_extra' + numClicks, name: 'image_extra' + numClicks, accept: 'image/*', multiple: true },
-                        { label: 'Email:', type: 'email', id: 'email_extra' + numClicks, name: 'email_extra' + numClicks, placeholder: 'Enter email' },
-                        { label: 'Phone Number:', type: 'tel', id: 'phone-number_extra' + numClicks, name: 'phone-number_extra' + numClicks, placeholder: 'Enter phone number' }
-                    ];
+        document.getElementById('addMore').addEventListener('click', function() {
+            if (numClicks < maxClicks) {
+                const form = document.querySelector('.form');
+                const delimiter = document.createElement('hr');
+                delimiter.style.border = 'none';
+                delimiter.style.height = '5px';
+                delimiter.style.backgroundColor = '#ccc';
+                form.insertBefore(delimiter, document.getElementById('addMore'));
 
-                    const delimiter = document.createElement('hr');
-                    delimiter.className = 'hr-thick';
-                    form.insertBefore(delimiter, document.getElementById('addMore'));
+                const fields = [
+                    { label: 'Visitor Name:', type: 'text', id: 'name_extra' + numClicks, name: 'name_extra' + numClicks, placeholder: 'Enter name' },
+                    { label: 'CNP:', type: 'text', id: 'cnp_extra' + numClicks, name: 'cnp_extra' + numClicks, placeholder: 'Enter CNP' },
+                    { label: 'Photo with the visitor:', type: 'file', id: 'imageUpload_extra' + numClicks, name: 'image_extra' + numClicks, accept: 'image/*', multiple: true },
+                    { label: 'Email:', type: 'email', id: 'email_extra' + numClicks, name: 'email_extra' + numClicks, placeholder: 'Enter email' },
+                    { label: 'Phone Number:', type: 'tel', id: 'phone-number_extra' + numClicks, name: 'phone-number_extra' + numClicks, placeholder: 'Enter phone number' }
+                ];
 
-                    fields.forEach(field => {
-                        const fieldContainer = document.createElement('div');
+                fields.forEach(field => {
+                    const fieldContainer = document.createElement('div');
+                    const label = document.createElement('label');
+                    label.htmlFor = field.id;
+                    label.textContent = field.label;
+                    const input = document.createElement('input');
+                    input.type = field.type;
+                    input.id = field.id;
+                    input.name = field.name;
+                    input.placeholder = field.placeholder;
+                    if (field.type === 'file') {
+                        input.accept = field.accept;
+                        input.multiple = field.multiple;
+                    }
+                    input.className = 'form__field';
+                    fieldContainer.appendChild(label);
+                    fieldContainer.appendChild(input);
+                    form.insertBefore(fieldContainer, document.getElementById('addMore'));
+                });
 
-                        const label = document.createElement('label');
-                        label.htmlFor = field.id;
-                        label.textContent = field.label;
-                        fieldContainer.appendChild(label);
+                numClicks++;
+            }
 
-                        const input = document.createElement('input');
-                        input.type = field.type;
-                        input.id = field.id;
-                        input.name = field.name;
-                        input.placeholder = field.placeholder;
-                        if (field.type === 'file') {
-                            input.accept = field.accept;
-                            input.multiple = field.multiple;
-                        }
-                        input.className = 'form__field';
-                        fieldContainer.appendChild(input);
+            if (numClicks >= maxClicks) {
+                document.getElementById('addMore').style.display = 'none';
+            }
+        });
 
-                        form.insertBefore(fieldContainer, document.getElementById('addMore'));
-                    });
-
-                    numClicks++;
+        document.getElementById('visitorForm').addEventListener('submit', function(event) {
+            //event.preventDefault();
+            const formData = new FormData(this);
+            formData.append('clickCount', numClicks.toString());
+            console.log(formData.get('name0'));
+            fetch('request/form', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Success:', response.statusText);
+                } else {
+                    console.error('Error:', response.statusText);
                 }
-
-                if (numClicks >= maxClicks) {
-                    document.getElementById('addMore').style.display = 'none';
-                }
-            };
-        })());
+            }).catch(error => console.error('Error:', error));
+        });
     </script>
-
-
-
 
 
 </body>

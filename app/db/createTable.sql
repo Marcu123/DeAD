@@ -59,12 +59,13 @@ CREATE TABLE request (
     id_inmate INT,
     request_created TIMESTAMP,
     status_changed TIMESTAMP,
+    visitor_name VARCHAR(255),
     FOREIGN KEY (id_inmate) REFERENCES inmate (id)
 );
 
 CREATE TABLE visitor (
     id SERIAL PRIMARY KEY,
-    vistor_name VARCHAR(255),
+    visitor_name VARCHAR(255),
     cnp VARCHAR(13),
     photo BYTEA,
     email VARCHAR(255),

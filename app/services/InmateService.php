@@ -1,4 +1,7 @@
 <?php
+
+require_once '../app/models/Inmate.php';
+require_once '../app/db/Database.php';
 class InmateService {
     private $db;
 
