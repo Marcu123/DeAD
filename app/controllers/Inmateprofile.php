@@ -6,7 +6,7 @@ class Inmateprofile extends Controller
     {
         $inmates = [];
 
-        if(isset($_GET['prisoner-cnp']) && strlen($_GET['prisoner-cnp'] != 0)){
+        if(isset($_GET['prisoner-cnp']) && strlen($_GET['prisoner-cnp']) != 0){
             $cnp = $_GET['prisoner-cnp'];
 
             $this->model('inmate');
@@ -28,6 +28,7 @@ class Inmateprofile extends Controller
                     }
                 } 
             }
+
 
             if(count($criteria) != 0){
                 $this->model('inmate');

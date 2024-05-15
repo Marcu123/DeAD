@@ -33,7 +33,7 @@ session_start();
             <a href ="addvisitinfo.php" class="panel__button">Add Visit Info</a>
             <a href ="deletevisitinfo.php" class="panel__button">Delete Visit Info</a>
             <a href ="updatevisitinfo.php" class="panel__button">Update Visit Info</a>
-            <a href ="visitinfo.php" class="panel__button">See Visit Info</a>
+            <a href ="visitinfo" class="panel__button">See Visit Info</a>
             <a href ="requestadmin" class="panel__button">See Requests</a>
             <a href ="statistics.php" class="panel__button">Statistics</a>
             <a href ="ban.php" class="panel__button">Ban User</a>

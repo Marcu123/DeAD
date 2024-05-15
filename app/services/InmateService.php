@@ -24,7 +24,7 @@ class InmateService {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
             return null;
         }
-        $prisonId = $row["id"];
+        $prisonId = $row["id_prison"];
         $prisonService = new PrisonService();
         $prison = $prisonService->getPrisonById($prisonId)->getName();
         return new Inmate($row['id'],
@@ -48,7 +48,7 @@ class InmateService {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
             return false;
         }
-        $prisonId = $row["id"];
+        $prisonId = $row["id_prison"];
         $prisonService = new PrisonService();
         $prison = $prisonService->getPrisonById($prisonId)->getName();
 
@@ -86,44 +86,72 @@ class InmateService {
     }
     public function getInmateByCriteria($criteria){
         $inmates = [];
-
         $query = "SELECT * FROM inmate WHERE ";
         $first = true;
 
-        foreach($criteria as $key => $value){
-            if(!$first)
-                $query .= " AND ";
 
-            $query .= $key. "=" . ":" . $key;
+        foreach ($criteria as $key => $value) {
+            if (!$first) {
+                $query .= ' AND ';
+            }
+
+
+            if ($key == 'prison') {
+                $query .= 'id_prison = :id_prison';
+            } else {
+                $query .= $key . ' = :' . $key;
+            }
+
             $first = false;
         }
 
-        try{
+
+
+        try {
             $stmt = $this->db->prepare($query);
 
-            foreach($criteria as $key => $value){
-                $stmt->bindParam(':' . $key, $value, PDO::PARAM_STR);
+
+            foreach ($criteria as $key => $value) {
+                if ($key == 'prison') {
+                    $prisonService = new PrisonService();
+                    $prisonValue = $prisonService->getIdByName($value);
+                    $stmt->bindValue(':id_prison', $prisonValue, PDO::PARAM_INT);
+                } else {
+                    $stmt->bindValue(':' . $key, $value, PDO::PARAM_STR);
+                }
+
             }
+
 
             $stmt->execute();
 
-            while( $row = $stmt->fetch(PDO::FETCH_ASSOC) ){
-                $prisonId = $row["id"];
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $prisonId = $row["id_prison"];
                 $prisonService = new PrisonService();
                 $prison = $prisonService->getPrisonById($prisonId)->getName();
 
-                $inmates[] = new Inmate($row['id'],
-                        'ceva aici', $row['first_name'], $row['last_name'],
-                        $row['cnp'], $row['age'], $row['gender'], $prison,
-                        $row['date_of_incarceracion'], $row['end_of_incarceration'], $row['crime']
-                    );
-                }
-            } catch (PDOException $e) {
-                trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-                return false;
+                $inmates[] = new Inmate(
+                    $row['id'],
+                    'ceva aici',
+                    $row['first_name'],
+                    $row['last_name'],
+                    $row['cnp'],
+                    $row['age'],
+                    $row['gender'],
+                    $prison,
+                    $row['date_of_incarceracion'],
+                    $row['end_of_incarceration'],
+                    $row['crime']
+                );
+            }
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
         }
         return $inmates;
-    } 
+    }
+
 
     public function addInmate(Inmate $inmate) {
         try{

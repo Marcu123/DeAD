@@ -31,7 +31,7 @@ session_start();
             <a href="changeinfo" class="panel__button">Change Information</a>
             <a href="changepassword" class="panel__button">Change Password</a>
             <a href="requestuser" class="panel__button">Requests</a>
-            <a href="visitinfo.php" class="panel__button">See Visit Info</a>
+            <a href="visitinfo" class="panel__button">See Visit Info</a>
               <a href="javascript:void(0);" onclick="logoutUser();" class="panel__button">Log Out</a>
 
               <script>
