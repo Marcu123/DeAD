@@ -28,7 +28,7 @@
         fetch('./requestadmin/getRequests')
             .then(response => response.json())
             .then(data => {
-                // Sortează datele astfel încât cererile cu statusul "pending" să fie primele
+
                 data.sort((a, b) => {
                     if (a.status === 'pending' && b.status !== 'pending') {
                         return -1;
@@ -39,9 +39,9 @@
                     return 0;
                 });
 
-                var requestsContainer = document.getElementById('requests-container');
+                const requestsContainer = document.getElementById('requests-container');
                 data.forEach(request => {
-                    var requestDiv = document.createElement('div');
+                    const requestDiv = document.createElement('div');
                     requestDiv.className = 'request-container';
                     requestDiv.innerHTML = `
               <p class="request-container__title">Request #${request.id}</p>
