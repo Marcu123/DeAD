@@ -32,6 +32,7 @@ class Request extends Controller
         $inmate_id = $inmateService->getInmateIdByCNP($cnp);
 
         $request->setIdInmate($inmate_id);
+        $request->setPrisonId($inmateService->getInmatePrisonId($inmate_id));
 
 
         $visitor->setVisitorName(filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS));

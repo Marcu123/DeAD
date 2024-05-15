@@ -30,4 +30,14 @@ class PrisonService{
         }
         return new Prison($row['name'], $row['inmate_number'], $row['employee_number']);
     }
+
+    public function getNrOfInmatesById($username){
+        try{
+
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+
+    }
 }

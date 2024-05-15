@@ -18,7 +18,8 @@ class RequestService
             $status = $request->getStatus();
             $idInmate = $request->getIdInmate();
             $visitorName = $request->getVisitorName();
-            $stmt = $this->db->prepare("INSERT INTO request (visitor_type, visit_type, date_of_visit, status, id_inmate,visitor_name, request_created) VALUES (:visitor_type, :visit_type, :date_of_visit, :status, :id_inmate, :visitor_name,NOW())");
+            $id_prison = $request->getPrisonId();
+            $stmt = $this->db->prepare("INSERT INTO request (visitor_type, visit_type, date_of_visit, status, id_inmate,visitor_name, request_created, id_prison) VALUES (:visitor_type, :visit_type, :date_of_visit, :status, :id_inmate, :visitor_name,NOW(), :id_prison)");
             $stmt->bindParam(':visitor_type', $visitorType, PDO::PARAM_STR);
             $stmt->bindParam(':visit_type', $visitType, PDO::PARAM_STR);
             $stmt->bindParam(':date_of_visit', $dateOfVisit, PDO::PARAM_STR);
@@ -26,6 +27,7 @@ class RequestService
             $stmt->bindParam(':visitor_name', $visitorName, PDO::PARAM_STR);
             $idInmate = intval($idInmate);
             $stmt->bindParam(':id_inmate', $idInmate, PDO::PARAM_INT);
+            $stmt->bindParam(':id_prison',$id_prison , PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
@@ -96,6 +98,10 @@ class RequestService
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
             return false;
         }
+    }
+
+    public function getAllRequestsByPrisonId($prison_id){
+
     }
 
 

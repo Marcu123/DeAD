@@ -19,44 +19,45 @@
 
 <body>
     <?php include 'common/navbar.php'; ?>
-  <main>
-    <div class="request-container">
-      <p class="request-container__title">Request #1348298</p>
-      <p class="request-container__subtitle">Visitor(s) Info:</p>
-      <p class="request-container__text">Vasile Ion</p>
-      <p class="request-container__text">CNP: 78124912</p>
-      <p class="request-container__text">Family</p>
-      <p class="request-container__text">email: vasile.ion@yahoo.ro</p>
-      <p class="request-container__text">phone number: 0798168812</p>
-      <p class="request-container__subtitle">Inmate Info: </p>
-      <p class="request-container__text">Bogdan Claudiu</p>
-      <p class="request-container__text">CNP: 2901213213</p>
-      <p class="request-container__subtitle">Date: </p>
-      <p class="request-container__text">12/09/2025</p>
-        
-        <button type="submit" class="request-container__button">Accept</button>
-        <button type="submit" class="request-container__button">Deny</button>
-    </div>  
-    <div class="request-container">
-      <p class="request-container__title">Request #1348118</p>
-      <p class="request-container__subtitle">Visitor(s) Info:</p>
-      <p class="request-container__text">Vasile Ion</p>
-      <p class="request-container__text">CNP: 78124912</p>
-      <p class="request-container__text">Family</p>
-      <p class="request-container__text">email: vasile.ion@yahoo.ro</p>
-      <p class="request-container__text">phone number: 0798168812</p>
-      <p class="request-container__subtitle">Inmate Info: </p>
-      <p class="request-container__text">Bogdan Claudiu</p>
-      <p class="request-container__text">CNP: 2901213213</p>
-      <p class="request-container__subtitle">Date: </p>
-      <p class="request-container__text">12/04/2025</p>
-
-        <button type="submit" class="request-container__button">Accept</button>
-        <button type="submit" class="request-container__button">Deny</button>
-    </div>  
-  </main>
+    <main id="requests-container">
+        <div id="request-container"></div>
+    </main>
 
     <?php include 'common/footer.php'; ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('./requestadmin/getRequests')
+                .then(response => response.json())
+                .then(data => {
+                    //console.log(data);
+                    var requestsContainer = document.getElementById('requests-container');
+                    data.forEach(request => {
+                        var requestDiv = document.createElement('div');
+                        requestDiv.className = 'request-container';
+                        requestDiv.innerHTML = `
+              <p class="request-container__title">Request #${request.id}</p>
+                <p class="request-container__text">status: ${request.status}</p>
+              <p class="request-container__subtitle">Visitor(s) Info:</p>
+              <p class="request-container__text">${request.visitor_name}</p>
+              <p class="request-container__text">CNP: ${request.cnp}</p>
+              <p class="request-container__text">${request.visitor_type}</p>
+              <p class="request-container__text">email: ${request.email}</p>
+              <p class="request-container__text">phone number: ${request.phone_number}</p>
+              <p class="request-container__subtitle">Inmate Info: </p>
+              <p class="request-container__text">${request.inmate_name}</p>
+              <p class="request-container__text">CNP: ${request.inmate_cnp}</p>
+              <p class="request-container__subtitle">Date of visit: </p>
+              <p class="request-container__text">${request.date_of_visit}</p>
+                <button type="submit" class="request-container__button">Accept</button>
+                <button type="submit" class="request-container__button">Deny</button>
+            `;
+                        requestsContainer.appendChild(requestDiv);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 
 </html>

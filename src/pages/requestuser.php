@@ -38,6 +38,7 @@ session_start();
                     requestDiv.className = 'request-container';
                     requestDiv.innerHTML = `
               <p class="request-container__title">Request #${request.id}</p>
+                <p class="request-container__text">status: ${request.status}</p>
               <p class="request-container__subtitle">Visitor(s) Info:</p>
               <p class="request-container__text">${request.visitor_name}</p>
               <p class="request-container__text">CNP: ${request.cnp}</p>

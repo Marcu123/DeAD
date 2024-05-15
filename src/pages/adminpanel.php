@@ -34,7 +34,7 @@ session_start();
             <a href ="deletevisitinfo.php" class="panel__button">Delete Visit Info</a>
             <a href ="updatevisitinfo.php" class="panel__button">Update Visit Info</a>
             <a href ="visitinfo.php" class="panel__button">See Visit Info</a>
-            <a href ="requestadmin.php" class="panel__button">See Requests</a>
+            <a href ="requestadmin" class="panel__button">See Requests</a>
             <a href ="statistics.php" class="panel__button">Statistics</a>
             <a href ="ban.php" class="panel__button">Ban User</a>
             <a href="javascript:void(0);" onclick="logoutUser();" class="panel__button">Log Out</a>
@@ -56,10 +56,10 @@ session_start();
         <div>
         </div>
         <div class="panel__info">
-          <div class="panel__text">Prison: Jilava</div>
-          <div class="panel__text">Number of inmates: 10000000</div>
-          <div class="panel__text">Number of employees: 5</div>
-          <div class="panel__text">New visit requests: 382</div>
+          <div class="panel__text">Prison: <?php echo $_SESSION['prison_name']?></div>
+          <div class="panel__text">Number of inmates: <?php echo $_SESSION['inmates_nr']?></div>
+          <div class="panel__text">Number of employees: <?php echo $_SESSION['empl_nr']?></div>
+          <div class="panel__text">New visit requests: <?php echo $_SESSION['requests_nr']?></div>
           
         </div>
     </div>

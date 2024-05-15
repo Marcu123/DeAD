@@ -9,10 +9,10 @@ drop table admins;
 drop table prison;
 
 CREATE TABLE prison (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
-    inmate_number INT,
-    employee_number INT
+                        id SERIAL PRIMARY KEY,
+                        name VARCHAR(255),
+                        inmate_number INT,
+                        employee_number INT
 );
 
 CREATE TABLE admins (
@@ -51,18 +51,19 @@ CREATE TABLE users (
 );
 
 CREATE TABLE request (
-    id SERIAL PRIMARY KEY,
-    visitor_type VARCHAR(255),
-    visit_type VARCHAR(255),
-    date_of_visit TIMESTAMP,
-    status VARCHAR(100),
-    id_inmate INT,
-    request_created TIMESTAMP,
-    status_changed TIMESTAMP,
-    visitor_name VARCHAR(255),
-    FOREIGN KEY (id_inmate) REFERENCES inmate (id)
+                         id SERIAL PRIMARY KEY,
+                         visitor_type VARCHAR(255),
+                         visit_type VARCHAR(255),
+                         date_of_visit TIMESTAMP,
+                         status VARCHAR(100),
+                         id_inmate INT,
+                         request_created TIMESTAMP,
+                         status_changed TIMESTAMP,
+                         visitor_name VARCHAR(255),
+                         id_prison INT,
+                         FOREIGN KEY (id_inmate) REFERENCES inmate (id),
+                         FOREIGN KEY (id_prison) REFERENCES prison (id)
 );
-
 CREATE TABLE visitor (
     id SERIAL PRIMARY KEY,
     visitor_name VARCHAR(255),

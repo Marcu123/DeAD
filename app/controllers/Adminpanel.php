@@ -16,4 +16,6 @@ class Adminpanel extends Controller
         header('Location: ../adminlog');
     }
 
+
+
 }

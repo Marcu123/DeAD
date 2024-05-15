@@ -14,6 +14,7 @@ class RequestM
 
     private $inmateName;
     private $inmateCnp;
+    private $prison_id;
 
     public function __construct(){
         $this->id = "";
@@ -27,7 +28,26 @@ class RequestM
         $this->visitorName = "";
         $this->inmateName = "";
         $this->inmateCnp = "";
+        $this->prison_id = "";
     }
+
+    /**
+     * @return string
+     */
+    public function getPrisonId()
+    {
+        return $this->prison_id;
+    }
+
+    /**
+     * @param string $prison_id
+     */
+    public function setPrisonId($prison_id)
+    {
+        $this->prison_id = $prison_id;
+    }
+
+
 
     /**
      * @return string

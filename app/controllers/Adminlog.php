@@ -21,9 +21,15 @@ class Adminlog extends Controller
 
 
             if ($adminService->getAdminByUsername($username)) {
+
                 if (password_verify($admin_key, $adminService->getPasswordByUsername($username))) {
                     $_SESSION['username'] = $username;
                     $_SESSION['admin_key'] = $admin_key;
+                    $_SESSION['prison_name'] = $adminService->getPrisonByUsername($username);
+                    $_SESSION['requests_nr'] = $adminService->getNewRequestsNr($username);
+                    require_once '../app/services/PrisonService.php';
+                    $prisonService = new PrisonService();
+                    $_SESSION['inmates_nr'] = $prisonService->getNrOfInmatesById($username);
 
                     header('Location: ../adminpanel');
 
@@ -38,6 +44,11 @@ class Adminlog extends Controller
             }
         }
 
+    }
+
+    public function da(){
+        $password = password_hash('baba', PASSWORD_DEFAULT);
+        echo $password;
     }
 
 

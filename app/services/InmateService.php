@@ -71,6 +71,19 @@ class InmateService {
             return false;
         }
     }
+
+    public function getInmatePrisonId($id){
+        try{
+            $stmt = $this->db->prepare("SELECT id_prison FROM inmate WHERE id = :id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['id_prison'];
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
     public function getInmateByCriteria($criteria){
         $inmates = [];
 
