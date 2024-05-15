@@ -100,8 +100,61 @@ class RequestService
         }
     }
 
-    public function getAllRequestsByPrisonId($prison_id){
+    public function getAllRequestsByPrisonId($username){
+        try{
+            $stmt = $this->db->prepare("SELECT id_prison FROM admins WHERE username = :username");
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $prisonId = $row['id_prison'];
 
+            $stmt1 = $this->db->prepare("SELECT * FROM request WHERE id_prison = :prison_id");
+            $stmt1->bindParam(':prison_id', $prisonId, PDO::PARAM_INT);
+            $stmt1->execute();
+            $requests = array();
+            while($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+                $request = new RequestM();
+                $request->setId($row['id']);
+                $request->setVisitorType($row['visitor_type']);
+                $request->setVisitType($row['visit_type']);
+                $request->setDateOfVisit($row['date_of_visit']);
+                $request->setStatus($row['status']);
+                $request->setIdInmate($row['id_inmate']);
+                $request->setVisitorName($row['visitor_name']);
+                $request->setRequestCreated($row['request_created']);
+
+                $stmt2 = $this->db->prepare("SELECT * FROM inmate WHERE id = :id");
+                $stmt2->bindParam(':id', $row['id_inmate'], PDO::PARAM_INT);
+                $stmt2->execute();
+
+                $inmate = $stmt2->fetch(PDO::FETCH_ASSOC);
+                $inmateName = $inmate['first_name'] . ' ' . $inmate['last_name'];
+                $request->setInmateName($inmateName);
+                $request->setInmateCnp($inmate['cnp']);
+
+                $requests[] = $request;
+
+            }
+            return $requests;
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+
+    }
+
+    public function updateStatus($id, $status){
+        try{
+            file_put_contents('nume_fisier.txt', $id . $status, FILE_APPEND);
+            $stmt = $this->db->prepare("UPDATE request SET status = :status WHERE id = :id");
+            $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
     }
 
 
