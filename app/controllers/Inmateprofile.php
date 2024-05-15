@@ -6,19 +6,6 @@ class Inmateprofile extends Controller
     {
         $inmates = [];
 
-        if(isset($_GET['prisoner-cnp']) && strlen($_GET['prisoner-cnp']) != 0){
-            $cnp = $_GET['prisoner-cnp'];
-
-            $this->model('inmate');
-            $this->model('prison');
-            $iService = new InmateService();
-
-            $inmate = $iService->getInmateByCnp($cnp);
-            if(!is_null($inmate))
-                $inmates[] = $inmate;
-
-            $this->view('inmateprofile', $inmates);
-        } else{
             $criteria = [];
 
             foreach ($_GET as $key => $value) {
@@ -40,5 +27,4 @@ class Inmateprofile extends Controller
                 $this->view('inmateprofile', $inmates);
             }
         }
-    }
 }

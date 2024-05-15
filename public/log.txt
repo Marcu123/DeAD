@@ -1,0 +1,27 @@
+SELECT * FROM inmate WHERE first_name = :first_name AND prisoner-cnp = :prisoner-cnp AND id_prison = :id_prison
+first_name=ioja
+prisoner-cnp=1
+first_name=ioja
+prisoner-cnp=1
+first_name=ioja
+prisoner-cnp=1
+first_name=ioja
+prisoner-cnp=1
+first_name=florin
+prisoner-cnp=1
+first_name=florin
+prison=Socola
+first_name=florin
+prisoner-cnp=1
+Query: SELECT * FROM inmate WHERE first_name = :first_name AND prisoner-cnp = :prisoner-cnp AND id_prison = :id_prison
+:first_name = florin
+Error: SQLSTATE[HY093]: Invalid parameter number: :prisoner-cnp
+Query: SELECT * FROM inmate WHERE first_name = :first_name AND prisoner-cnp = :prisoner-cnp AND id_prison = :id_prison
+:first_name = ioja
+Error: SQLSTATE[HY093]: Invalid parameter number: :prisoner-cnp
+first_name=ioja
+prisoner-cnp=1
+prison=Socola
+first_name=florin
+prisoner-cnp=1
+prison=Socola

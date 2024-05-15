@@ -98,7 +98,10 @@ class InmateService {
 
             if ($key == 'prison') {
                 $query .= 'id_prison = :id_prison';
-            } else {
+            } else if($key == 'prisoner-cnp') {
+                $query .= 'cnp = :cnp';
+            }
+            else {
                 $query .= $key . ' = :' . $key;
             }
 
@@ -112,12 +115,16 @@ class InmateService {
 
 
             foreach ($criteria as $key => $value) {
+                file_put_contents('log.txt', $key . "=" . $value . PHP_EOL, FILE_APPEND);
                 if ($key == 'prison') {
                     $prisonService = new PrisonService();
                     $prisonValue = $prisonService->getIdByName($value);
                     $stmt->bindValue(':id_prison', $prisonValue, PDO::PARAM_INT);
-                } else {
-                    $stmt->bindValue(':' . $key, $value, PDO::PARAM_STR);
+                } else if($key == 'prisoner-cnp') {
+                    $stmt->bindValue(':cnp', $value, PDO::PARAM_STR);
+                }
+                else {
+                    $stmt->bindValue(':' . $key, strval($value), PDO::PARAM_STR);
                 }
 
             }
