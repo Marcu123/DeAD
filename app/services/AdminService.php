@@ -88,4 +88,18 @@ class AdminService
         }
     }
 
+    public function getPrisonIdByUsername($username){
+        try{
+            $stmt = $this->db->prepare("SELECT id_prison FROM admins WHERE username = :username");
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $row['id_prison'];
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
 }

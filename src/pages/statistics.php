@@ -23,7 +23,7 @@
     <h1 class="header">
       Statistics generator
     </h1>
-      <form action="#" method="post" class="form">
+      <form action="statistics/generate" method="post" class="form">
         <label for="criteria">Criteria:</label>
         <select name="criteria" class="form__field" id="criteria">
           <option value="crime category">Crime Category</option>
