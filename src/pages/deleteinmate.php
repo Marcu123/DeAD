@@ -21,7 +21,7 @@
 
   <main>
     <h1 class="header">Delete Inmate</h1>
-    <form action="#" method="post" class = "form">
+    <form action="Deleteinmate/delete" method="post" class = "form">
         <label for="cnp">CNP: </label>
         <input type="text" class="form__field" name="cnp" id="cnp" placeholder="" autocomplete="off" required>
         <button type="submit" class="form__button">Delete</button>

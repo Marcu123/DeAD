@@ -27,16 +27,16 @@ session_start();
     <h1 class="header">Welcome to Admin's Control Panel</h1>
     <div class="panel">
         <div class="panel__buttons">
-            <a href ="addinmate.php" class="panel__button">Add Inmate</a>
-            <a href ="deleteinmate.php" class="panel__button">Delete Inmate</a>
-            <a href ="updateinmate.php" class="panel__button">Update Inmate</a>
-            <a href ="addvisitinfo.php" class="panel__button">Add Visit Info</a>
-            <a href ="deletevisitinfo.php" class="panel__button">Delete Visit Info</a>
-            <a href ="updatevisitinfo.php" class="panel__button">Update Visit Info</a>
+            <a href ="Addinmate" class="panel__button">Add Inmate</a>
+            <a href ="Deleteinmate" class="panel__button">Delete Inmate</a>
+            <a href ="Updateinmate" class="panel__button">Update Inmate</a>
+            <a href ="Addvisitinfo" class="panel__button">Add Visit Info</a>
+            <a href ="Deletevisitinfo" class="panel__button">Delete Visit Info</a>
+            <a href ="Updatevisitinfo" class="panel__button">Update Visit Info</a>
             <a href ="visitinfo" class="panel__button">See Visit Info</a>
             <a href ="requestadmin" class="panel__button">See Requests</a>
-            <a href ="statistics.php" class="panel__button">Statistics</a>
-            <a href ="ban.php" class="panel__button">Ban User</a>
+            <a href ="statistics" class="panel__button">Statistics</a>
+            <a href ="ban" class="panel__button">Ban User</a>
             <a href="javascript:void(0);" onclick="logoutUser();" class="panel__button">Log Out</a>
 
             <script>

@@ -25,13 +25,22 @@
         Add Inmate
     </h1>
 
-    <form action="#" method="get" class="form">
+    <form action="Addinmate/Add" method="get" class="form">
 
-        <label for="name">Name</label>
-        <input type="text" class="form__field" id="name" name="name" required>
+        <label for="first_name">First Name</label>
+        <input type="text" class="form__field" id="first_name" name="first_name" required>
+
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form__field" id="last_name" name="last_name" required>
 
         <label for="prisoner-cnp">Inmate CNP</label>
         <input type="text" class="form__field" id="prisoner-cnp" name="prisoner-cnp" required>
+
+        <label for="age">Age</label>
+        <input type="text" class="form__field" id="age" name="age" required>
+
+        <label for="gender">Gender</label>
+        <input type="text" class="form__field" id="gender" name="gender" required>
 
         <label for="date">Date of incarceration</label>
         <input type="text" class="form__field" id="date" name="date" required>

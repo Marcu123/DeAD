@@ -21,7 +21,7 @@
 
   <main>
     <h1 class="header">Ban</h1>
-    <form action="#" method="post" class = "form">
+    <form action="Ban/execute" method="post" class = "form">
         <label for="username">Username: </label>
         <input type="text" class="form__field" name="username" placeholder="" id="username" autocomplete="off" required>
         <button type="submit" class="form__button">Ban</button>

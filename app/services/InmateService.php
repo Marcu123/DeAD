@@ -115,7 +115,6 @@ class InmateService {
 
 
             foreach ($criteria as $key => $value) {
-                file_put_contents('log.txt', $key . "=" . $value . PHP_EOL, FILE_APPEND);
                 if ($key == 'prison') {
                     $prisonService = new PrisonService();
                     $prisonValue = $prisonService->getIdByName($value);
@@ -173,6 +172,47 @@ class InmateService {
             $stmt->bindParam(':date_of_incarceracion', $inmate->dateOfIncarceration);
             $stmt->bindParam(':end_of_incarceration', $inmate->endOfIncarceration);
             $stmt->bindParam(':crime', $inmate->crime, PDO::PARAM_STR);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+    //add check for prison
+    public function deleteInmate($cnp){
+        try{
+            $stmt = $this->db->prepare("DELETE FROM inmate where cnp = :cnp");
+            $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function updateByCriteria($cnp, $criteria){
+        $query = "UPDATE inmate SET ";
+        $first = true;
+
+
+        foreach ($criteria as $key => $value) {
+            if (!$first) {
+                $query .= ' , ';
+            }
+
+            $query .= $key . ' = :' . $key;
+
+            $first = false;
+        }
+
+        $query .= ' WHERE cnp = :cnp';
+        try{
+            $stmt = $this->db->prepare($query);
+
+            foreach ($criteria as $key => $value)
+                $stmt->bindValue(':' . $key, strval($value), PDO::PARAM_STR);
+
+            $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);

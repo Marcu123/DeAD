@@ -185,4 +185,14 @@ class UserService
             return false;
         }
     }
+    public function delete($username){
+        try{
+            $stmt = $this->db->prepare("DELETE FROM users WHERE username = :username");
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
 }

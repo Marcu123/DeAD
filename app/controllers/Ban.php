@@ -6,5 +6,12 @@ class Ban extends Controller
     {
         $this->view('ban');
     }
+    public function execute(){
+        $this->model('user');
 
+        $uService = new UserService();
+        $uService->delete($_POST['username']);
+
+        header('Location: ../Ban');
+    }
 }
