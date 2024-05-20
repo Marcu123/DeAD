@@ -4,6 +4,10 @@ class Statistics extends Controller
 {
     public function index()
     {
+        session_start();
+        if (!isset($_SESSION['username_adm'])) {
+            header('Location: adminlog');
+        }
         $this->view('statistics');
     }
 
@@ -19,7 +23,7 @@ class Statistics extends Controller
 
             require_once '../app/services/AdminService.php';
             $adminService = new AdminService();
-            $prisonID = $adminService->getPrisonIdByUsername($_SESSION['username']);
+            $prisonID = $adminService->getPrisonIdByUsername($_SESSION['username_adm']);
 
             if($format == 'html')
             {

@@ -1,14 +1,15 @@
 <?php
-session_start();
+
 
 class Userlog extends Controller{
 
     public function index(){
+        session_start();
         $this->view('userlog');
     }
 
     public function login(){
-
+        session_start();
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['log_btn'])){
             require_once '../app/services/UserService.php';
             $userService = new UserService();

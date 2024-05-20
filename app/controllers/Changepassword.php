@@ -1,9 +1,13 @@
 <?php
-session_start();
+
 class Changepassword extends Controller
 {
     public function index()
     {
+        session_start();
+        if (!isset($_SESSION['username'])) {
+            header('Location: userlog');
+        }
         $this->view('changepassword');
     }
 
@@ -14,7 +18,7 @@ class Changepassword extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['password']) && isset($_POST['new_password'])) {
             require_once '../app/services/UserService.php';
             $userService = new UserService();
-
+            session_start();
             $username = $_SESSION['username'];
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
             //$password = password_hash($password, PASSWORD_DEFAULT);

@@ -4,6 +4,10 @@ class Requestuser extends Controller
 {
     public function index()
     {
+        session_start();
+        if (!isset($_SESSION['username'])) {
+            header('Location: userlog');
+        }
         $this->view('requestuser');
     }
 

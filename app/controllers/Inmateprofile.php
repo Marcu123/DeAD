@@ -4,6 +4,7 @@ class Inmateprofile extends Controller
 {
     public function index()
     {
+        session_start();
         $inmates = [];
 
             $criteria = [];

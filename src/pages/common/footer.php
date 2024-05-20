@@ -55,3 +55,5 @@
         </ul>
     </div>
 </footer>
+
+<script src="../src/script/searchBar.js"></script>

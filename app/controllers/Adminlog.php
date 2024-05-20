@@ -23,7 +23,7 @@ class Adminlog extends Controller
             if ($adminService->getAdminByUsername($username)) {
 
                 if (password_verify($admin_key, $adminService->getPasswordByUsername($username))) {
-                    $_SESSION['username'] = $username;
+                    $_SESSION['username_adm'] = $username;
                     $_SESSION['admin_key'] = $admin_key;
                     $_SESSION['prison_name'] = $adminService->getPrisonByUsername($username);
                     $_SESSION['requests_nr'] = $adminService->getNewRequestsNr($username);

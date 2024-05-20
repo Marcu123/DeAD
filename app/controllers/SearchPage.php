@@ -8,6 +8,7 @@ class SearchPage extends Controller {
         $this->view('home/index', ['name' => $user->name]);
 
         echo $user->name;*/
+        session_start();
         $this->view('searchpage');
 
     }

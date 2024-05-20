@@ -49,6 +49,46 @@ class RequestService
         }
     }
 
+    public function getCnpByVisitorName($visitorName){
+        try{
+            $stmt = $this->db->prepare("SELECT cnp FROM visitor WHERE visitor_name = :visitor_name");
+            $stmt->bindParam(':visitor_name', $visitorName, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $row['cnp'];
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function getEmailByVisitorName($visitorName){
+        try{
+            $stmt = $this->db->prepare("SELECT email FROM visitor WHERE visitor_name = :visitor_name");
+            $stmt->bindParam(':visitor_name', $visitorName, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['email'];
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function getPhoneNumberByVisitorName($visitorName){
+        try{
+            $stmt = $this->db->prepare("SELECT phone_number FROM visitor WHERE visitor_name = :visitor_name");
+            $stmt->bindParam(':visitor_name', $visitorName, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['phone_number'];
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
     public function getAllRequestsByVisitorCnp($visitorCnp){
         try{
             $stmt = $this->db->prepare("SELECT * FROM visitor WHERE cnp = :cnp");

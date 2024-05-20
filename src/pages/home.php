@@ -56,7 +56,7 @@
   </main>
 
 <?php include 'common/footer.php'; ?>
-  <script src="../src/script/searchBar.js"></script>
+
 </body>
 
 </html>

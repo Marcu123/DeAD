@@ -4,6 +4,10 @@ class Requestadmin extends Controller
 {
     public function index()
     {
+        session_start();
+        if (!isset($_SESSION['username_adm'])) {
+            header('Location: adminlog');
+        }
         $this->view('requestadmin');
     }
 
@@ -11,9 +15,9 @@ class Requestadmin extends Controller
         session_start();
         require_once '../app/services/RequestService.php';
         $requestService = new RequestService();
-        $requests = $requestService->getAllRequestsByPrisonId($_SESSION['username']);
+        $requests = $requestService->getAllRequestsByPrisonId($_SESSION['username_adm']);
 
-        $requestsArray = array_map(function($request) {
+        $requestsArray = array_map(function($request) use ($requestService){
 
             return [
                 'id' => $request->getId(),
@@ -24,9 +28,9 @@ class Requestadmin extends Controller
                 'id_inmate' => $request->getIdInmate(),
                 'visitor_name' => $request->getVisitorName(),
                 'request_created' => $request->getRequestCreated(),
-                'cnp' => $_SESSION['cnp'],
-                'email' => $_SESSION['email'],
-                'phone_number' => $_SESSION['phone_number'],
+                'cnp' => $requestService->getCnpByVisitorName($request->getVisitorName()),
+                'email' => $requestService->getEmailByVisitorName($request->getVisitorName()),
+                'phone_number' => $requestService->getPhoneNumberByVisitorName($request->getVisitorName()),
                 'inmate_name' => $request->getInmateName(),
                 'inmate_cnp' => $request->getInmateCnp()
             ];

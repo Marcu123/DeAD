@@ -23,7 +23,10 @@
                 <a class="nav-list__link" href="help">Help</a>
             </li>
             <li class="nav-list__element">
-                <a class="nav-list__link" href="userlog">Profile</a>
+                <a class="nav-list__link" href="<?php if(isset($_SESSION['username'])) echo 'userprofile';
+                                                        else if(isset($_SESSION['username_adm'])) echo 'adminpanel';
+                                                        else echo 'userlog'?>"
+                >Profile</a>
             </li>
         </ul>
     </nav>
