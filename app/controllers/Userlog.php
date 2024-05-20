@@ -6,6 +6,8 @@ class Userlog extends Controller{
     public function index(){
         session_start();
         $this->view('userlog');
+        unset($_SESSION['error']);
+
     }
 
     public function login(){
@@ -30,15 +32,18 @@ class Userlog extends Controller{
                     $_SESSION['cnp'] = $userService->getCNPByUsername($username);
                     $_SESSION['email'] = $userService->getEmailByUsername($username);
                     $_SESSION['phone_number'] = $userService->getPhoneByUsername($username);
+                    unset($_SESSION['error']);
 
                     header('Location: ../userprofile');
 
                 }
                 else {
+                    $_SESSION['error'] = "Invalid username or password";
                     header('Location: ../userlog');
 
                 }
             }else {
+                $_SESSION['error'] = "Invalid username or password";
                 header('Location: ../userlog');
 
             }

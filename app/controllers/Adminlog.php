@@ -1,14 +1,16 @@
 <?php
-session_start();
+
 class Adminlog extends Controller
 {
     public function index()
     {
+        session_start();
         $this->view('adminlog');
+        unset($_SESSION['error_adm']);
     }
 
     public function login(){
-
+        session_start();
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['log_btn'])){
             require_once '../app/services/AdminService.php';
             $adminService = new AdminService();
@@ -31,26 +33,21 @@ class Adminlog extends Controller
                     $prisonService = new PrisonService();
                     $_SESSION['inmates_nr'] = $prisonService->getNrOfInmatesById($username);
 
+                    unset($_SESSION['error_adm']);
                     header('Location: ../adminpanel');
 
                 }
                 else {
+                    $_SESSION['error_adm'] = "Invalid username or password";
                     header('Location: ../adminlog');
 
                 }
             }else {
+                $_SESSION['error_adm'] = "Invalid username or password";
                 header('Location: ../adminlog');
 
             }
         }
 
     }
-
-    public function da(){
-        $password = password_hash('baba', PASSWORD_DEFAULT);
-        echo $password;
-    }
-
-
-
 }

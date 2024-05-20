@@ -23,12 +23,23 @@
     <div>
         <h1 class = "header">Login</h1>
     <form action="adminlog/login" method="post" class = "form">
+        <?php
+
+        $usernameErrorClass = isset($_SESSION['error_adm']) ? '--error' : '';
+        $passwordErrorClass = isset($_SESSION['error_adm']) ? '--error' : '';
+
+        ?>
         <label for="username">Username: </label>
-        <input type="text" class="form__field" name="username" placeholder="" id="username" autocomplete="off" required>
+        <input type="text" class="form__field<?php echo $usernameErrorClass; ?>" name="username" placeholder="" id="username" autocomplete="off" required>
 
         <label for="admin_key">Admin Key: </label>
-        <input type="password" class="form__field" name="admin_key" placeholder="" id="admin_key" autocomplete="off" required>
+        <input type="password" class="form__field<?php echo $passwordErrorClass; ?>" name="admin_key" placeholder="" id="admin_key" autocomplete="off" required>
 
+        <?php if(isset($_SESSION['error_adm']))
+        {
+            echo '<p class="form__error">'.$_SESSION['error_adm'].'</p>';
+        }
+        ?>
         <button type="submit" class="form__button" name="log_btn">Submit</button>
     </form>
     <div class="sep">
