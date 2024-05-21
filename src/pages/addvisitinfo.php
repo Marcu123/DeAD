@@ -21,12 +21,12 @@
 
   <main>
     <h1 class="header">Add Visit Info</h1>
-    <form action="#" method="post" class = "form">
-        <label for="id">Request Id: </label>
-        <input type="text" class="form__field" name="id" id="id" placeholder="" autocomplete="off" required>
+    <form action="AddVisitInfo/add" method="post" class = "form">
+        <label for="request-id">Request ID: </label>
+        <input type="text" class="form__field" name="request-id" id="request-id" placeholder="" autocomplete="off" required>
 
-        <label for="inmate-id">Inmate Id: </label>
-        <input type="text" class="form__field" name="inmate-id" id="inmate-id" placeholder="" autocomplete="off" required>
+        <label for="prisoner-cnp">Inmate CNP: </label>
+        <input type="text" class="form__field" name="prisoner-cnp" id="prisoner-cnp" placeholder="" autocomplete="off" required>
 
         <label for="objects">Objects Traded: </label>
         <input type="text" class="form__field" name="objects" id="objects" placeholder="" autocomplete="off">

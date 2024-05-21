@@ -90,6 +90,7 @@ CREATE TABLE visit_info (
 CREATE TABLE employee (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255)
+    --id_prison
 );
 
 CREATE TABLE witnesses (
