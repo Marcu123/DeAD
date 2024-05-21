@@ -8,6 +8,8 @@ class User
     private $cnp;
     private $phone;
     private $photo;
+    private $enabled;
+    private $activationCode;
 
     public function __construct()
     {
@@ -17,6 +19,34 @@ class User
         $this->cnp = null;
         $this->phone = null;
         $this->photo = null;
+        $this->enabled = false;
+        $this->activationCode = null;
+    }
+
+    public function getEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return null
+     */
+    public function getActivationCode()
+    {
+        return $this->activationCode;
+    }
+
+    /**
+     * @param null $activationCode
+     */
+    public function setActivationCode($activationCode)
+    {
+        $this->activationCode = $activationCode;
     }
 
 

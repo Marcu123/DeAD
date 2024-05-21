@@ -47,7 +47,9 @@ CREATE TABLE users (
     cnp VARCHAR(13),
     phone_number VARCHAR(20),
     account_created TIMESTAMP,
-    last_logged TIMESTAMP
+    last_logged TIMESTAMP,
+    enabled BOOLEAN,
+    activation_code VARCHAR(255)
 );
 
 CREATE TABLE request (

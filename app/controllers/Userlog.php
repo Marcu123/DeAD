@@ -1,18 +1,21 @@
 <?php
 
 
-class Userlog extends Controller{
+class Userlog extends Controller
+{
 
-    public function index(){
+    public function index()
+    {
         session_start();
         $this->view('userlog');
         unset($_SESSION['error']);
 
     }
 
-    public function login(){
+    public function login()
+    {
         session_start();
-        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['log_btn'])){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['log_btn'])) {
             require_once '../app/services/UserService.php';
             $userService = new UserService();
 
@@ -21,9 +24,7 @@ class Userlog extends Controller{
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
 
 
-
-
-            if ($userService->getUserByUsername($username)) {
+            if ($userService->getUserByUsername($username) && $userService->getEnabledByUsername($username)) {
                 if (password_verify($password, $userService->getPasswordByUsername($username))) {
 
                     $_SESSION['username'] = $username;
@@ -36,13 +37,12 @@ class Userlog extends Controller{
 
                     header('Location: ../userprofile');
 
-                }
-                else {
+                } else {
                     $_SESSION['error'] = "Invalid username or password";
                     header('Location: ../userlog');
 
                 }
-            }else {
+            } else {
                 $_SESSION['error'] = "Invalid username or password";
                 header('Location: ../userlog');
 
@@ -51,8 +51,9 @@ class Userlog extends Controller{
 
     }
 
-    public function register(){
-        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['reg_btn'])){
+    public function register()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['reg_btn'])) {
             require_once '../app/models/User.php';
 
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -71,26 +72,47 @@ class Userlog extends Controller{
             $user->setCnp($cnp);
             $user->setPhone($phone);
             $user->setPhoto($photo);
+            $user->setEnabled(false);
+
+
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < 10; $i++) {
+                $randomString .= $characters[random_int(0, $charactersLength - 1)];
+            }
+            $user->setActivationCode($randomString);
+
 
             require_once '../app/services/UserService.php';
             $userService = new UserService();
 
 
-            if ($userService->registerUser($user)){
+            if ($userService->registerUser($user)) {
+                $to = $user->getEmail();
+                $subject = 'Activation code';
+                $message = 'Please visit to following page and activate your account with the following code: ' . $user->getActivationCode() . ' http://localhost/DeAD/public/activate';
+                $headers = array(
+                    'From' => 'marcugames03@gmail.com',
+                    'Reply-To' => 'marcugames03@gmail.com',
+                );
+
+                mail($to, $subject, $message, $headers);
+
                 header('Location: ../userlog');
                 exit;
-            }
-            else{
+            } else {
                 header('Location: ../userlog');
                 exit;
             }
         }
-        
+
     }
 
-    public function logout(){
+    public function logout()
+    {
         //echo $_SERVER['REQUEST_METHOD'];
-        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
             //echo "logout";
             session_destroy();
             header('Location: ../../userlog');
@@ -98,10 +120,11 @@ class Userlog extends Controller{
         }
     }
 
-    public function __toString()
-    {
-        return "Userlog";
-    }
+
+
+
+
+
 
 
 }

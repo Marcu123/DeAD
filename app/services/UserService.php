@@ -21,15 +21,18 @@ class UserService
         $cnp = $user->getCnp();
         $phone = $user->getPhone();
         $photo = $user->getPhoto();
+        $activationCode = $user->getActivationCode();
 
         try{
-            $stmt = $this->db->prepare('INSERT INTO users (username, password, email, cnp, phone_number, photo, account_created, last_logged) values (:username, :password, :email, :cnp, :phone_number, :photo, now(), now())');
+            $stmt = $this->db->prepare('INSERT INTO users (username, password, email, cnp, phone_number, photo, account_created, last_logged,enabled,activation_code) values (:username, :password, :email, :cnp, :phone_number, :photo, now(), now(), :enabled, :activation_code)');
             $stmt->bindParam(':username',$username , PDO::PARAM_STR);
             $stmt->bindParam(':password', $password, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
             $stmt->bindParam(':phone_number', $phone, PDO::PARAM_STR);
             $stmt->bindParam(':photo', $photo, PDO::PARAM_STR);
+            $stmt->bindValue(':enabled', false, PDO::PARAM_BOOL);
+            $stmt->bindParam(':activation_code', $activationCode, PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {
             trigger_error('Error in ' . __METHOD__ . ': ' . $e->getMessage(), E_USER_ERROR);
@@ -52,6 +55,24 @@ class UserService
                 return false;
 
             return true;
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function getEnabledByUsername($username)
+    {
+        try{
+            $stmt = $this->db->prepare("SELECT enabled FROM users WHERE username = :username");
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!$row)
+                return false;
+
+            return $row['enabled'];
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
             return false;
@@ -191,6 +212,42 @@ class UserService
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function getUserByActivationCode($activationCode)
+    {
+        try{
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE activation_code = :activation_code");
+            $stmt->bindParam(':activation_code', $activationCode, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!$row)
+                return false;
+
+            return true;
+
+        }
+        catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function activateUser($activationCode)
+    {
+        try{
+            $stmt = $this->db->prepare("UPDATE users SET enabled = true WHERE activation_code = :activation_code");
+            $stmt->bindParam(':activation_code', $activationCode, PDO::PARAM_STR);
+            $stmt->execute();
+
+
+
+        }
+        catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
             return false;
         }
