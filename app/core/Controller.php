@@ -5,7 +5,9 @@
 class Controller{
     public function model($model){
         require_once "../app/models/" . $model . ".php";
-        require_once "../app/services/" . $model . "Service.php";
+        if(file_exists("../app/services/" . $model . "Service.php")){
+            include_once "../app/services/" . $model . "Service.php";
+        }
     }
 
     public function view($src, $data = []){

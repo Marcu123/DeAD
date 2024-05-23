@@ -21,7 +21,7 @@ CREATE TABLE admins (
     id_prison INT,
     account_created TIMESTAMP,
     last_logged TIMESTAMP,
-    FOREIGN KEY (id_prison) REFERENCES prison (id)
+    FOREIGN KEY (id_prison) REFERENCES prison (id) ON DELETE CASCADE
 );
 
 CREATE TABLE inmate (
@@ -36,7 +36,7 @@ CREATE TABLE inmate (
     date_of_incarceracion TIMESTAMP,
     end_of_incarceration TIMESTAMP,
     crime VARCHAR(255),
-    FOREIGN KEY (id_prison) REFERENCES prison (id)
+    FOREIGN KEY (id_prison) REFERENCES prison (id) ON DELETE CASCADE
 );
 
 CREATE TABLE users (
@@ -63,8 +63,8 @@ CREATE TABLE request (
                          status_changed TIMESTAMP,
                          visitor_name VARCHAR(255),
                          id_prison INT,
-                         FOREIGN KEY (id_inmate) REFERENCES inmate (id),
-                         FOREIGN KEY (id_prison) REFERENCES prison (id)
+                         FOREIGN KEY (id_inmate) REFERENCES inmate (id) ON DELETE CASCADE,
+                         FOREIGN KEY (id_prison) REFERENCES prison (id) ON DELETE CASCADE
 );
 CREATE TABLE visitor (
     id SERIAL PRIMARY KEY,
@@ -74,7 +74,7 @@ CREATE TABLE visitor (
     email VARCHAR(255),
     phone_number VARCHAR(20),
     id_request INT,
-    FOREIGN KEY (id_request) REFERENCES request (id)
+    FOREIGN KEY (id_request) REFERENCES request (id) ON DELETE CASCADE
 );
 
 CREATE TABLE visit_info (
@@ -85,13 +85,14 @@ CREATE TABLE visit_info (
     conversation_resume TEXT,
     health_status VARCHAR(255),
     mood VARCHAR(255),
-    FOREIGN KEY (id_request) REFERENCES request (id),
-    FOREIGN KEY (id_inmate) REFERENCES inmate (id)
+    FOREIGN KEY (id_request) REFERENCES request (id) ON DELETE CASCADE,
+    FOREIGN KEY (id_inmate) REFERENCES inmate (id) ON DELETE CASCADE
 );
 
 CREATE TABLE employee (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255)
+    name VARCHAR(255),
+    cnp varchar(13)
     --id_prison
 );
 
@@ -100,7 +101,7 @@ CREATE TABLE witnesses (
     id_visit INT,
     id_visitor INT,
     id_employee INT,
-    FOREIGN KEY (id_visit) REFERENCES visit_info (id),
-    FOREIGN KEY (id_visitor) REFERENCES visitor (id),
-    FOREIGN KEY (id_employee) REFERENCES employee (id)
+    FOREIGN KEY (id_visit) REFERENCES visit_info (id) ON DELETE CASCADE,
+    FOREIGN KEY (id_visitor) REFERENCES visitor (id) ON DELETE CASCADE,
+    FOREIGN KEY (id_employee) REFERENCES employee (id) ON DELETE CASCADE
 );

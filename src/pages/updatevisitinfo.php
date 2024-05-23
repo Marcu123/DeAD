@@ -20,18 +20,18 @@
 
   <main>
     <h1 class="header">Update Visit Info</h1>
-    <form action="#" method="post" class = "form">
+    <form action="updatevisitinfo/update" method="post" class = "form">
         <label for="id">Request Id: </label>
         <input type="text" class="form__field" name="id" id="id" placeholder="" autocomplete="off" required>
 
-        <label for="objects">Objects Traded: </label>
-        <input type="text" class="form__field" name="objects" id="objects" placeholder="" autocomplete="off">
+        <label for="objects_traded">Objects Traded: </label>
+        <input type="text" class="form__field" name="objects_traded" id="objects_traded" placeholder="" autocomplete="off">
 
-        <label for="conversation">Conversation Resume: </label>
-        <textarea class="form__field" name="conversation" id="conversation" rows="4" cols="50"></textarea>
+        <label for="conversation_resume">Conversation Resume: </label>
+        <textarea class="form__field" name="conversation_resume" id="conversation_resume" rows="4" cols="50"></textarea>
 
-        <label for="health">Health Status: </label>
-        <select name="health" class="form__field" id="health">
+        <label for="health_status">Health Status: </label>
+        <select name="health_status" class="form__field" id="health_status">
             <option value="healthy">Healthy</option>
             <option value="sick">Sick</option>
         </select>

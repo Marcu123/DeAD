@@ -1,3 +1,7 @@
+<?php
+    echo password_hash('dead', PASSWORD_DEFAULT);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

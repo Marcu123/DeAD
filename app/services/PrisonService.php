@@ -14,7 +14,6 @@ class PrisonService{
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
         return $row['id'];
     }
@@ -26,7 +25,6 @@ class PrisonService{
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
         return new Prison($row['name'], $row['inmate_number'], $row['employee_number']);
     }
@@ -36,7 +34,6 @@ class PrisonService{
 
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
 
     }

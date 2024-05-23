@@ -8,7 +8,8 @@ class Addvisitinfo extends Controller
     }
 
     public function add(){
-        $this->model('Visitinfo');
+        $this->model('SeeVisitinfo');
+        $this->model('Inmate');
 
         $visitInfo = new Visitinfo(0, $_POST['request-id'],
                                     $_POST['prisoner-cnp'],
@@ -16,7 +17,7 @@ class Addvisitinfo extends Controller
                                     $_POST['conversation'],
                                     $_POST['health'],
                                     $_POST['mood'],
-                                    []);
+                                    explode(", ", $_POST['witness']));
         $vService = new VisitInfoService();
         $vService->create($visitInfo);
     }

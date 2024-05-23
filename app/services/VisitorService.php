@@ -26,10 +26,8 @@ class VisitorService
             $stmt->bindParam(':phone_number', $phoneNumber, PDO::PARAM_STR);
             $stmt->bindParam(':id_request', $idRequest, PDO::PARAM_INT);
             $stmt->execute();
-            return true;
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
     }
 

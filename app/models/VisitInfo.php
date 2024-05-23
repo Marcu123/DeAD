@@ -4,7 +4,7 @@ class VisitInfo{
     private $id;
     private $requestId;
     private $inmateCNP;
-
+    private $inmate;
     private $objects_traded;
     private $conversation_resume;
     private $health_status;
@@ -16,13 +16,13 @@ class VisitInfo{
      * @param $id
      * @param $requestId
      * @param $inmateCNP
-     * @param array $objects_traded
+     * @param $objects_traded
      * @param $conversation_resume
      * @param $health_status
      * @param $mood
      * @param array $witnesses
      */
-    public function __construct($id, $requestId, $inmateCNP, array $objects_traded, $conversation_resume, $health_status, $mood, array $witnesses)
+    public function __construct($id, $requestId, $inmateCNP, $objects_traded, $conversation_resume, $health_status, $mood, array $witnesses)
     {
         $this->id = $id;
         $this->requestId = $requestId;
@@ -83,7 +83,7 @@ class VisitInfo{
     }
 
     /**
-     * @return array
+     * @return mixed
      */
     public function getObjectsTraded()
     {
@@ -91,7 +91,7 @@ class VisitInfo{
     }
 
     /**
-     * @param array $objects_traded
+     * @param $objects_traded
      */
     public function setObjectsTraded($objects_traded)
     {
@@ -149,7 +149,7 @@ class VisitInfo{
     /**
      * @return array
      */
-    public function getWitnesses()
+    public function getWitnesses(): array
     {
         return $this->witnesses;
     }
@@ -157,9 +157,29 @@ class VisitInfo{
     /**
      * @param array $witnesses
      */
-    public function setWitnesses($witnesses)
+    public function setWitnesses(array $witnesses)
     {
         $this->witnesses = $witnesses;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInmate()
+    {
+        return $this->inmate;
+    }
+
+    /**
+     * @param mixed $inmate
+     */
+    public function setInmate($inmate)
+    {
+        $this->inmate = $inmate;
+    }
+
+    public function addWitness(Witness $witness){
+        $this->witnesses[] = $witness;
     }
 
 }
