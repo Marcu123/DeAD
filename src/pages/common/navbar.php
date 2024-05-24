@@ -25,8 +25,13 @@
             <li class="nav-list__element">
                 <a class="nav-list__link" href="<?php if(isset($_SESSION['username'])) echo 'userprofile';
                                                         else if(isset($_SESSION['username_adm'])) echo 'adminpanel';
-                                                        else echo 'userlog'?>"
-                >Profile</a>
+                                                        else echo 'userlog';?>"
+                ><?php
+                    if(isset($_SESSION['username'])) echo "Account profile";
+                    else if(isset($_SESSION['username_adm'])) echo "Admin panel";
+                    else echo "Profile";
+                    ?>
+                </a>
             </li>
         </ul>
     </nav>

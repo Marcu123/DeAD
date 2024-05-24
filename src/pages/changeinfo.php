@@ -22,26 +22,54 @@
     <main>
         <h1 class = "header">Change your account's information</h1>
         <form action="changeinfo/change" method="post" class = "form">
+            <?php
+
+            if(isset($_SESSION['error']))
+            {
+                $changeErrorClass = '--error';
+            }
+            else if(isset($_SESSION['good']))
+            {
+                $changeErrorClass = '--good';
+            }
+            else
+            {
+                $changeErrorClass = '';
+            }
+            ?>
             <label for="username">Username: </label>
-            <input type="text" class="form__field" name="username" id="username" placeholder="" autocomplete="off">
+            <input type="text" class="form__field<?php echo $changeErrorClass; ?>" name="username" id="username" placeholder="" autocomplete="off">
     
             <label for="email">E-mail address: </label>
-            <input type="email" class="form__field" name="email" id="email" placeholder="" autocomplete="off">
+            <input type="email" class="form__field<?php echo $changeErrorClass; ?>" name="email" id="email" placeholder="" autocomplete="off">
     
             <label for="cnp">CNP: </label>
-            <input type="text" class="form__field" name="cnp" id="cnp" placeholder="" autocomplete="off">
+            <input type="text" class="form__field<?php echo $changeErrorClass; ?>" name="cnp" id="cnp" placeholder="" autocomplete="off">
     
             <label for="imageUpload">Photo: </label>
             <input type="file" name="image" class="form__field form__field--file" id="imageUpload" accept="image/*">
     
             <label for="phone-number">Phone Number: </label>
-            <input type="tel" class="form__field" name="phone-number" id="phone-number" placeholder="" autocomplete="off">
-    
+            <input type="tel" class="form__field<?php echo $changeErrorClass; ?>" name="phone-number" id="phone-number" placeholder="" autocomplete="off">
+
+            <?php
+            if(isset($_SESSION['error']))
+            {
+                echo '<p class="form__error">'.$_SESSION['error'].'</p>';
+            }
+            if(isset($_SESSION['good']))
+            {
+                echo '<p class="form__good">'.$_SESSION['good'].'</p>';
+            }
+            ?>
             <button type="submit" class="form__button">Submit</button>
         </form>
     </main>
 
-    <?php include 'common/footer.php'; ?>
+    <?php include 'common/footer.php';
+    unset($_SESSION['error']);
+    unset($_SESSION['good']);
+    ?>
 
 </body>
 

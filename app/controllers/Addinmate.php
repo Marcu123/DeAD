@@ -9,9 +9,12 @@ class Addinmate extends Controller
             header('Location: adminlog');
         }
         $this->view('addinmate');
+        unset($_SESSION['error']);
+        unset($_SESSION['good']);
     }
 
     public function add(){
+        session_start();
         $this->model('inmate');
         $inmate = new Inmate(0, 
         'test', 
@@ -26,8 +29,20 @@ class Addinmate extends Controller
         $_GET['crime']);
 
         $inmateService = new InmateService();
-        $inmateService->addInmate($inmate);
+        $result = $inmateService->addInmate($inmate);
+        if($result==='rau'){
+            file_put_contents('debug.txt', $result, FILE_APPEND);
+            $_SESSION['error'] = 'Invalid CNP format';
+            header('Location: ../Addinmate');
+            return;
+        }
 
+        if($result){
+            $_SESSION['good'] = 'Inmate added successfully';
+        }
+        else{
+            $_SESSION['error'] = 'Inmate already exists';
+        }
         header('Location: ../Addinmate');
     }
 }

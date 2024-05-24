@@ -54,6 +54,16 @@
       <div>
           <h1 class="header">Register</h1>
           <form action="userlog/register" method="post" class="form">
+              <?php
+                if (isset($_SESSION['error'])) {
+                    $usernameErrorClass = '--error';
+                } else if (isset($_SESSION['good'])) {
+                    $usernameErrorClass = '--good';
+                } else {
+                    $usernameErrorClass = '';
+                }
+
+              ?>
               <label for="username">Username: </label>
               <input type="text" class="form__field" name="username" id="username" placeholder="" autocomplete="off" required>
 
@@ -83,6 +93,15 @@
               <label for="phone-number">Phone Number: </label>
               <input type="tel" class="form__field" name="phone-number" id="phone-number" placeholder="" autocomplete="off" required>
 
+              <?php if(isset($_SESSION['error']))
+              {
+                  echo '<p class="form__error">'.$_SESSION['error'].'</p>';
+              }
+                if(isset($_SESSION['good']))
+                {
+                    echo '<p class="form__good">'.$_SESSION['good'].'</p>';
+                }
+              ?>
               <button type="submit" class="form__button" name="reg_btn" id="reg_btn" disabled>Submit</button>
           </form>
       </div>
@@ -90,7 +109,10 @@
   </main>
 
     <?php include 'common/footer.php'; ?>
-  <?php unset($_SESSION['error']); ?>
+  <?php
+    unset($_SESSION['error']);
+    unset($_SESSION['good']);
+  ?>
 
   <script>
       document.getElementById('password').addEventListener('input', function() {

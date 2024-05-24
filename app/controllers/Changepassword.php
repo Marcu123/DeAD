@@ -9,6 +9,8 @@ class Changepassword extends Controller
             header('Location: userlog');
         }
         $this->view('changepassword');
+        unset($_SESSION['error']);
+        unset($_SESSION['good']);
     }
 
     public function newPassword()
@@ -27,18 +29,30 @@ class Changepassword extends Controller
                 if(password_verify($password, $userService->getPasswordByUsername($username))){
                     $new_password = filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_SPECIAL_CHARS);
                     $new_password = password_hash($new_password, PASSWORD_DEFAULT);
+                    $result = $userService->existsPassword($new_password);
+                    file_put_contents('delete_log.txt', $new_password, FILE_APPEND);
+                    if($result){
+                        $_SESSION['error'] = 'Password already exists';
+                        header('Location: ../changepassword');
+                        exit;
+                    }
+
+
                     $userService->updatePassword($new_password,$username);
 
                     session_destroy();
 
+                    $_SESSION['good'] = 'Password changed successfully';
                     header('Location: ../userlog');
                 }
                 else{
 
+                    $_SESSION['error'] = 'Incorrect password';
                     header('Location: ../changepassword');
                 }
             }
             else{
+                $_SESSION['error'] = 'User not found';
                 header('Location: ../changepassword');
             }
         }

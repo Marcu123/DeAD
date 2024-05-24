@@ -26,37 +26,62 @@
     </h1>
 
     <form action="Addinmate/Add" method="get" class="form">
+        <?php
 
+        if(isset($_SESSION['error']))
+        {
+            $inmateErrorClass = '--error';
+        }
+        else if(isset($_SESSION['good']))
+        {
+            $inmateErrorClass = '--good';
+        }
+        else
+        {
+            $inmateErrorClass = '';
+        }
+        ?>
         <label for="first_name">First Name</label>
-        <input type="text" class="form__field" id="first_name" name="first_name" required>
+        <input type="text" class="form__field<?php echo $inmateErrorClass; ?>" id="first_name" name="first_name" required>
 
         <label for="last_name">Last Name</label>
-        <input type="text" class="form__field" id="last_name" name="last_name" required>
+        <input type="text" class="form__field<?php echo $inmateErrorClass; ?>" id="last_name" name="last_name" required>
 
         <label for="prisoner-cnp">Inmate CNP</label>
-        <input type="text" class="form__field" id="prisoner-cnp" name="prisoner-cnp" required>
+        <input type="text" class="form__field<?php echo $inmateErrorClass; ?>" id="prisoner-cnp" name="prisoner-cnp" required>
 
         <label for="age">Age</label>
-        <input type="text" class="form__field" id="age" name="age" required>
+        <input type="text" class="form__field<?php echo $inmateErrorClass; ?>" id="age" name="age" required>
 
         <label for="gender">Gender</label>
-        <input type="text" class="form__field" id="gender" name="gender" required>
+        <input type="text" class="form__field<?php echo $inmateErrorClass; ?>" id="gender" name="gender" required>
 
         <label for="date">Date of incarceration</label>
-        <input type="text" class="form__field" id="date" name="date" required>
+        <input type="text" class="form__field<?php echo $inmateErrorClass; ?>" id="date" name="date" required>
 
         <label for="end">End of incarceration</label>
-        <input type="text" class="form__field" id="end" name="end" required>
+        <input type="text" class="form__field<?php echo $inmateErrorClass; ?>" id="end" name="end" required>
 
         <label for="crime">Crime</label>
-        <input type="text" class="form__field" id="crime" name="crime" required>
-
+        <input type="text" class="form__field<?php echo $inmateErrorClass; ?>" id="crime" name="crime" required>
+        <?php
+        if(isset($_SESSION['error']))
+        {
+            echo '<p class="form__error">'.$_SESSION['error'].'</p>';
+        }
+        if(isset($_SESSION['good']))
+        {
+            echo '<p class="form__good">'.$_SESSION['good'].'</p>';
+        }
+        ?>
         <button type="submit" class="form__button">Add</button>
     </form>
     <div class="sep"></div>
 </main>
 
-<?php include 'common/footer.php'; ?>
+<?php include 'common/footer.php';
+unset($_SESSION['error']);
+unset($_SESSION['good']);?>
 </body>
 
 </html>

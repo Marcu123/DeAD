@@ -161,6 +161,21 @@ class InmateService {
 
     public function addInmate(Inmate $inmate) {
         try{
+            $cnp = $inmate->cnp;
+            $stmt1 = $this->db->prepare("SELECT * FROM inmate WHERE cnp = :cnp");
+            $stmt1->bindParam(':cnp', $cnp, PDO::PARAM_STR);
+            $stmt1->execute();
+            $row = $stmt1->fetch(PDO::FETCH_ASSOC);
+            if($row != false)
+                return false;
+
+            $result = $this->cnpValidation($cnp);
+            if(!$result){
+                return "rau";
+            }
+
+
+
             $stmt = $this->db->prepare("INSERT INTO inmate (photo,first_name, last_name, cnp, age, gender, id_prison, date_of_incarceracion, end_of_incarceration, crime) VALUES (:photo, :first_name, :last_name, :cnp, :age, :gender, :id_prison, :date_of_incarceracion, :end_of_incarceration, :crime)");
             $stmt->bindParam(':photo', $inmate->photo, PDO::PARAM_LOB);
             $stmt->bindParam(':first_name', $inmate->firstName, PDO::PARAM_STR);
@@ -173,10 +188,24 @@ class InmateService {
             $stmt->bindParam(':end_of_incarceration', $inmate->endOfIncarceration);
             $stmt->bindParam(':crime', $inmate->crime, PDO::PARAM_STR);
             $stmt->execute();
+            return true;
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
             return false;
         }
+    }
+
+    public function cnpValidation($cnp){
+        $cnp_length = strlen($cnp);
+        for($i=0; $i<$cnp_length; $i++){
+            if(!is_numeric($cnp[$i])){
+                return false;
+            }
+        }
+        if($cnp_length != 13){
+            return false;
+        }
+        return true;
     }
     //add check for prison
     public function deleteInmate($cnp){

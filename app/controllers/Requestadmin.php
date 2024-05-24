@@ -57,6 +57,17 @@ class Requestadmin extends Controller
 
                 if ($requestService->updateStatus($id, $status)) {
                     file_put_contents('nume_fisier.txt', $input['id'] . $input['status'], FILE_APPEND);
+                    $email = $requestService->getEmailByRequestId($id);
+                    $inmateName = $requestService->getInmateNameByRequestId($id);
+                    $to = $email;
+                    $subject = 'Request status updated';
+                    $message = 'Your request for ' . $inmateName . ' has been ' . $status . ' by the admin. You can visit him/her on ' . $requestService->getDateOfVisitByRequestId($id);
+                    $headers = array(
+                        'From' => 'marcugames03@gmail.com',
+                        'Reply-To' => 'marcugames03@gmail.com',
+                    );
+
+                    mail($to, $subject, $message, $headers);
                     echo json_encode(['success' => true]);
                 } else {
                     echo json_encode(['success' => false, 'error' => 'Failed to update request status']);

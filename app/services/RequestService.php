@@ -35,6 +35,18 @@ class RequestService
             return false;
         }
     }
+    public function cnpValidation($cnp){
+        $cnp_length = strlen($cnp);
+        for ($i = 0; $i < $cnp_length; $i++) {
+            if (!is_numeric($cnp[$i])) {
+                return false;
+            }
+        }
+        if($cnp_length != 13){
+            return false;
+        }
+        return true;
+    }
 
     public function getRequestIdByVisitorName($visitorName){
         try{
@@ -197,7 +209,47 @@ class RequestService
         }
     }
 
+    public function getEmailByRequestId($id)
+    {
+        try {
+            $stmt = $this->db->prepare("SELECT email FROM visitor JOIN request ON visitor.visitor_name = request.visitor_name WHERE request.id = :id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['email'];
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
 
+    public function getInmateNameByRequestId($id)
+    {
+        try {
+            $stmt = $this->db->prepare("SELECT first_name, last_name FROM inmate JOIN request ON inmate.id = request.id_inmate WHERE request.id = :id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['first_name'] . ' ' . $row['last_name'];
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function getDateOfVisitByRequestId($id)
+    {
+        try {
+            $stmt = $this->db->prepare("SELECT date_of_visit FROM request WHERE id = :id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['date_of_visit'];
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
 
 
 }

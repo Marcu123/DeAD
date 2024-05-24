@@ -34,6 +34,7 @@ class Userlog extends Controller
                     $_SESSION['email'] = $userService->getEmailByUsername($username);
                     $_SESSION['phone_number'] = $userService->getPhoneByUsername($username);
                     unset($_SESSION['error']);
+                    unset($_SESSION['good']);
 
                     header('Location: ../userprofile');
 
@@ -53,6 +54,7 @@ class Userlog extends Controller
 
     public function register()
     {
+        session_start();
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['reg_btn'])) {
             require_once '../app/models/User.php';
 
@@ -99,6 +101,7 @@ class Userlog extends Controller
 
                 mail($to, $subject, $message, $headers);
 
+                $_SESSION['good'] = "Email sent! Please activate your account by clicking the link in the email";
                 header('Location: ../userlog');
                 exit;
             } else {

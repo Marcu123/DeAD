@@ -25,13 +25,27 @@
     </h1>
     <div class="form-instr">
         <form method="post" class="form" id="visitorForm" enctype="multipart/form-data">
+            <?php
 
+            if(isset($_SESSION['error']))
+            {
+                $requestErrorClass = '--error';
+            }
+            else if(isset($_SESSION['good']))
+            {
+                $requestErrorClass = '--good';
+            }
+            else
+            {
+                $requestErrorClass = '';
+            }
+            ?>
         <label for="name">Visitor Name:</label>
-        <input type="text" id="name" name="name" class="form__field" placeholder="Enter name">
+        <input type="text" id="name" name="name" class="form__field<?php echo $requestErrorClass; ?>" placeholder="Enter name">
 
 
         <label for="visitType">Visitor Type</label>
-        <select name="visitType" id="visitType" class="form__field">
+        <select name="visitType" id="visitType" class="form__field<?php echo $requestErrorClass; ?>">
           <option value="family">Family</option>
           <option value="friend">Friend</option>
           <option value="lawyer">Lawyer</option>
@@ -40,7 +54,7 @@
 
 
         <label for="visit-type">Visit Type</label>
-        <select name="visit-type" id="visit-type" class="form__field">
+        <select name="visit-type" id="visit-type" class="form__field<?php echo $requestErrorClass; ?>">
           <option value="health">Verify how he/she feels</option>
           <option value="communicate">Speak about personal information</option>
           <option value="process">Discuss how the process is going</option>
@@ -54,34 +68,46 @@
 
 
         <label for="date">Date of the visit:</label>
-        <input type="date" id="date" class="form__field" name="date">
+        <input type="date" id="date" class="form__field<?php echo $requestErrorClass; ?>" name="date">
 
         <label for="cnp">CNP:</label>
-        <input type="text" id="cnp" class="form__field" name="cnp" placeholder="Enter cnp" autocomplete="off">
+        <input type="text" id="cnp" class="form__field<?php echo $requestErrorClass; ?>" name="cnp" placeholder="Enter cnp" autocomplete="off">
 
 
         <label for="imageUpload">Photo with the visitor:</label>
         <input type="file" id="imageUpload" class="form__field form__field--file" name="image" accept="image/*" multiple>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" class="form__field" name="email" placeholder="Enter email">
+        <input type="email" id="email" class="form__field<?php echo $requestErrorClass; ?>" name="email" placeholder="Enter email">
 
 
         <label for="phone-number">Phone Number:</label>
-        <input type="tel" id="phone-number" class="form__field" name="phone-number" placeholder="Enter phone number">
+        <input type="tel" id="phone-number" class="form__field<?php echo $requestErrorClass; ?>" name="phone-number" placeholder="Enter phone number">
 
 
         <label for="prisoner-cnp">Inmate CNP:</label>
-        <input type="text" id="prisoner-cnp" class="form__field" name="prisoner-cnp" placeholder="Enter inmate cnp">
+        <input type="text" id="prisoner-cnp" class="form__field<?php echo $requestErrorClass; ?>" name="prisoner-cnp" placeholder="Enter inmate cnp">
 
+            <?php
+            if(isset($_SESSION['error']))
+            {
+                echo '<p class="form__error">'.$_SESSION['error'].'</p>';
+            }
+            if(isset($_SESSION['good']))
+            {
+                echo '<p class="form__good">'.$_SESSION['good'].'</p>';
+            }
+            ?>
           <button type="button" id="addMore" class="form__button">+</button>
-
           <button type="submit" id="button" class="form__button">Submit</button>
       </form>
       </div>
   </main>
 
-        <?php include 'common/footer.php'; ?>
+        <?php include 'common/footer.php';
+        unset($_SESSION['error']);
+        unset($_SESSION['good']);
+        ?>
 
     <script>
         let numClicks = 0;

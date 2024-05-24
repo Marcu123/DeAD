@@ -7,6 +7,7 @@ class Activate extends Controller
         session_start();
         $this->view('activate');
         unset($_SESSION['error']);
+        unset($_SESSION['good']);
     }
 
     public function activate(){
@@ -17,7 +18,9 @@ class Activate extends Controller
             $activationCode = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
             if ($userService->getUserByActivationCode($activationCode)) {
                 $userService->activateUser($activationCode);
-                header('Location: ../userlog');
+
+                $_SESSION['good'] = "Account activated";
+                header('Location: ../activate');
             }else {
                 $_SESSION['error'] = "Invalid activation code";
                 header('Location: ../activate');

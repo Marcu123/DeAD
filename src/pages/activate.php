@@ -24,12 +24,22 @@
     <form action="activate/activate" method="post" class = "form">
         <label for="username">Activation Code: </label>
         <?php
-        $codeErrorClass = isset($_SESSION['error']) ? '--error' : '';
+        if (isset($_SESSION['error'])) {
+            $codeErrorClass = '--error';
+        } else if (isset($_SESSION['good'])) {
+            $codeErrorClass = '--good';
+        } else {
+            $codeErrorClass = '';
+        }
         ?>
         <input type="text" class="form__field<?php echo $codeErrorClass; ?>" name="username" placeholder="" id="username" autocomplete="off" required>
         <?php if(isset($_SESSION['error']))
         {
             echo '<p class="form__error">'.$_SESSION['error'].'</p>';
+        }
+        else if(isset($_SESSION['good']))
+        {
+            echo '<p class="form__good">'.$_SESSION['good'].'</p>';
         }
         ?>
         <button type="submit" class="form__button">Activate</button>
@@ -37,7 +47,12 @@
     <div class="sep"></div>
 </main>
 
-<?php include 'common/footer.php'; ?>
+<?php
+include 'common/footer.php';
+unset($_SESSION['error']);
+unset($_SESSION['good']);
+
+?>
 </body>
 
 </html>

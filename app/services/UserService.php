@@ -211,6 +211,8 @@ class UserService
             $stmt = $this->db->prepare("DELETE FROM users WHERE username = :username");
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
+
+            return $stmt->rowCount();
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
             return false;
@@ -252,4 +254,106 @@ class UserService
             return false;
         }
     }
+
+    public function existsEmail($email)
+    {
+        try{
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE email = :email");
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!$row)
+                return false;
+
+            return true;
+
+        }
+        catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function existsCNP($cnp)
+    {
+        try{
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE cnp = :cnp");
+            $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!$row)
+                return false;
+
+            return true;
+
+        }
+        catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function existsPhone($phone)
+    {
+        try{
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE phone_number = :phone_number");
+            $stmt->bindParam(':phone_number', $phone, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!$row)
+                return false;
+
+            return true;
+
+        }
+        catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function existsUsername($username)
+    {
+        try{
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE username = :username");
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!$row)
+                return false;
+
+            return true;
+
+        }
+        catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+    public function existsPassword($password)
+    {
+        try{
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE password = :password");
+            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!$row)
+                return false;
+
+            return true;
+
+        }
+        catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
+
 }
