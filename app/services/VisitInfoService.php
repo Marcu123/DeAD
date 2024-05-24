@@ -48,7 +48,6 @@ class VisitInfoService
                         $witness->setVisitor($visitor);
 
                         $visitInfo->addWitness($witness);
-                        var_dump($witness);
                         echo "<br>";
                     }
                 } else if(isset($row['id_employee']) && strlen($row['id_employee']) > 0){
@@ -67,7 +66,6 @@ class VisitInfoService
                         $witness->setEmployee($employee);
 
                         $visitInfo->addWitness($witness);
-                        var_dump($witness);
                         echo "<br>";
                     }
                 }

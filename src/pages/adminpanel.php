@@ -33,7 +33,7 @@
             <a href ="Addvisitinfo" class="panel__button">Add Visit Info</a>
             <a href ="Deletevisitinfo" class="panel__button">Delete Visit Info</a>
             <a href ="Updatevisitinfo" class="panel__button">Update Visit Info</a>
-            <a href ="visitinfo" class="panel__button">See Visit Info</a>
+            <a href ="Seevisitinfo" class="panel__button">See Visit Info</a>
             <a href ="requestadmin" class="panel__button">See Requests</a>
             <a href ="statistics" class="panel__button">Statistics</a>
             <a href ="ban" class="panel__button">Ban User</a>
