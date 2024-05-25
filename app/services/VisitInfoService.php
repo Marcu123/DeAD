@@ -1,5 +1,5 @@
 <?php
-
+//$2y$10$pbo5g382eJcCjoLljpSVNOM8cCZbSew8vMxEq5fr07oG.uyznThdS
 class VisitInfoService
 {
     private $db;
@@ -31,10 +31,11 @@ class VisitInfoService
 
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 if(isset($row['id_visitor']) && strlen($row['id_visitor']) > 0){
-                    $stmt = $this->db->prepare("SELECT * FROM visitor WHERE id = :id");
-                    $stmt->bindParam(':id', $row['id_visitor']);
-                    $stmt->execute();
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $stmt2 = $this->db->prepare("SELECT * FROM visitor WHERE id = :id");
+                    $stmt2->bindParam(':id', $row['id_visitor']);
+                    $stmt2->execute();
+
+                    $row = $stmt2->fetch(PDO::FETCH_ASSOC);
 
                     if($row){
                         $visitor = new Visitor();
@@ -48,13 +49,13 @@ class VisitInfoService
                         $witness->setVisitor($visitor);
 
                         $visitInfo->addWitness($witness);
-                        echo "<br>";
                     }
                 } else if(isset($row['id_employee']) && strlen($row['id_employee']) > 0){
-                    $stmt = $this->db->prepare("SELECT * FROM employee WHERE id = :id");
-                    $stmt->bindParam(':id', $row['id_employee']);
-                    $stmt->execute();
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $stmt2 = $this->db->prepare("SELECT * FROM employee WHERE id = :id");
+                    $stmt2->bindParam(':id', $row['id_employee']);
+                    $stmt2->execute();
+
+                    $row = $stmt2->fetch(PDO::FETCH_ASSOC);
 
                     if($row){
                         $employee = new Employee();
@@ -66,7 +67,6 @@ class VisitInfoService
                         $witness->setEmployee($employee);
 
                         $visitInfo->addWitness($witness);
-                        echo "<br>";
                     }
                 }
             }

@@ -3,13 +3,24 @@
 require_once '../app/models/Inmate.php';
 require_once '../app/db/Database.php';
 class InmateService {
+    /**
+     * @var
+     * used to connect to the database
+     */
     private $db;
-
     public function __construct() {
         $this->db = Database::getConnection();
     }
 
-    public function getInmateById($id) {
+    /**
+     * Gets the inmate with the specified id
+     *
+     * No inmate is found => returns null
+     *
+     * @param int $id
+     * @return Inmate|null
+     */
+    public function getInmateById(int $id) {
         try{
             $stmt = $this->db->prepare("SELECT * FROM inmate WHERE id = :id");
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -17,12 +28,11 @@ class InmateService {
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if($row == false)
+            if(!$row)
                 return null;
             
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return null;
         }
         $prisonId = $row["id_prison"];
         $prisonService = new PrisonService();
@@ -33,7 +43,15 @@ class InmateService {
             $row['date_of_incarceracion'], $row['end_of_incarceration'], $row['crime']
         );
     }
-    public function getInmateByCnp($cnp){
+
+    /**
+     * Gets the inmate with the specified cnp
+     *
+     * No inmate is found => returns null
+     * @param  string $cnp
+     * @return Inmate|null
+     */
+    public function getInmateByCnp(string $cnp){
         try{
             $stmt = $this->db->prepare("SELECT * FROM inmate WHERE cnp = :cnp");
             $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
@@ -41,12 +59,11 @@ class InmateService {
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if($row == false)
+            if(!$row)
                 return null;
 
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
         $prisonId = $row["id_prison"];
         $prisonService = new PrisonService();
@@ -59,7 +76,14 @@ class InmateService {
         );
     }
 
-    public function getInmateIdByCNP($cnp){
+    /**
+     * Gets the id of the specified inmate by cnp
+     *
+     * No inmate is found => returns null
+     * @param  string $cnp
+     * @return int|void
+     */
+    public function getInmateIdByCNP(string $cnp){
         try{
             $stmt = $this->db->prepare("SELECT id FROM inmate WHERE cnp = :cnp");
             $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
@@ -68,11 +92,15 @@ class InmateService {
             return $row['id'];
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
     }
 
-    public function getInmatePrisonId($id){
+    /**
+     * Gets the prison id of the inmate specified by id
+     * @param  int $id
+     * @return int|void
+     */
+    public function getInmatePrisonId(int $id){
         try{
             $stmt = $this->db->prepare("SELECT id_prison FROM inmate WHERE id = :id");
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -81,20 +109,27 @@ class InmateService {
             return $row['id_prison'];
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
     }
-    public function getInmateByCriteria($criteria){
+
+    /**
+     * Gets the inmates that match the criteria
+     *
+     * No inmate found => returns an empty array
+     * @param array $criteria
+     * @return array
+     */
+    public function getInmatesByCriteria(array $criteria): array
+    {
         $inmates = [];
         $query = "SELECT * FROM inmate WHERE ";
         $first = true;
 
-
+        //builds the query from the key/value pairs
         foreach ($criteria as $key => $value) {
             if (!$first) {
                 $query .= ' AND ';
             }
-
 
             if ($key == 'prison') {
                 $query .= 'id_prison = :id_prison';
@@ -108,16 +143,18 @@ class InmateService {
             $first = false;
         }
 
-
-
+        //binds the values-params/handles the prison
         try {
             $stmt = $this->db->prepare($query);
-
 
             foreach ($criteria as $key => $value) {
                 if ($key == 'prison') {
                     $prisonService = new PrisonService();
                     $prisonValue = $prisonService->getIdByName($value);
+
+                    if(is_null($prisonValue))
+                        return $inmates;
+
                     $stmt->bindValue(':id_prison', $prisonValue, PDO::PARAM_INT);
                 } else if($key == 'prisoner-cnp') {
                     $stmt->bindValue(':cnp', $value, PDO::PARAM_STR);
@@ -128,10 +165,9 @@ class InmateService {
 
             }
 
-
             $stmt->execute();
 
-
+            //fetches inmates
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $prisonId = $row["id_prison"];
                 $prisonService = new PrisonService();
@@ -153,28 +189,30 @@ class InmateService {
             }
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
         return $inmates;
     }
 
 
+    /**
+     * @param  Inmate $inmate
+     * @return int (0 -> valid, 1 -> inmate already exists, 2 -> cnp is invalid)
+     */
     public function addInmate(Inmate $inmate) {
         try{
             $cnp = $inmate->cnp;
-            $stmt1 = $this->db->prepare("SELECT * FROM inmate WHERE cnp = :cnp");
-            $stmt1->bindParam(':cnp', $cnp, PDO::PARAM_STR);
-            $stmt1->execute();
-            $row = $stmt1->fetch(PDO::FETCH_ASSOC);
-            if($row != false)
-                return false;
 
             $result = $this->cnpValidation($cnp);
             if(!$result){
-                return "rau";
+                return 2; // -> invalid cnp
             }
 
-
+            $stmt1 = $this->db->prepare("SELECT EXISTS(SELECT * FROM inmate WHERE cnp = :cnp) check");
+            $stmt1->bindParam(':cnp', $cnp, PDO::PARAM_STR);
+            $stmt1->execute();
+            $row = $stmt1->fetch(PDO::FETCH_ASSOC);
+            if($row['check'])
+                return 1; // ->inmate already exists
 
             $stmt = $this->db->prepare("INSERT INTO inmate (photo,first_name, last_name, cnp, age, gender, id_prison, date_of_incarceracion, end_of_incarceration, crime) VALUES (:photo, :first_name, :last_name, :cnp, :age, :gender, :id_prison, :date_of_incarceracion, :end_of_incarceration, :crime)");
             $stmt->bindParam(':photo', $inmate->photo, PDO::PARAM_LOB);
@@ -188,38 +226,56 @@ class InmateService {
             $stmt->bindParam(':end_of_incarceration', $inmate->endOfIncarceration);
             $stmt->bindParam(':crime', $inmate->crime, PDO::PARAM_STR);
             $stmt->execute();
-            return true;
+            return 0;
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
     }
 
-    public function cnpValidation($cnp){
+    /**
+     * @param string $cnp
+     * @return bool
+     */
+    public function cnpValidation(string $cnp): bool
+    {
         $cnp_length = strlen($cnp);
+        if($cnp_length != 13){
+            return false;
+        }
+
         for($i=0; $i<$cnp_length; $i++){
             if(!is_numeric($cnp[$i])){
                 return false;
             }
         }
-        if($cnp_length != 13){
-            return false;
-        }
         return true;
     }
     //add check for prison
-    public function deleteInmate($cnp){
+
+    /**
+     * Deletes inmate with specified cnp
+     *
+     * @param string $cnp
+     * @return void
+     */
+    public function deleteInmate(string $cnp){
         try{
             $stmt = $this->db->prepare("DELETE FROM inmate where cnp = :cnp");
             $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
     }
 
-    public function updateByCriteria($cnp, $criteria){
+    /**
+     * Updates the inmate with specified cnp
+     *
+     * @param string $cnp
+     * @param array $criteria
+     * @return void
+     */
+    public function updateByCriteria(string $cnp, array $criteria){
         $query = "UPDATE inmate SET ";
         $first = true;
 
@@ -245,7 +301,7 @@ class InmateService {
             $stmt->execute();
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
     }
 }
+

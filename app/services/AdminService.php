@@ -24,7 +24,6 @@ class AdminService
             return true;
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
     }
 

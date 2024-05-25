@@ -16,6 +16,11 @@ class Addinmate extends Controller
     public function add(){
         session_start();
         $this->model('inmate');
+        $this->model('prison');
+
+        $pService = new PrisonService();
+        $prisonID = $pService->getIdByName($_SESSION['prison_name']);
+
         $inmate = new Inmate(0, 
         'test', 
         $_GET['first_name'], 
@@ -23,25 +28,30 @@ class Addinmate extends Controller
         $_GET['prisoner-cnp'],
         $_GET['age'],
         $_GET['gender'],
-        0,
+        $prisonID,
         $_GET['date'],
         $_GET['end'],
         $_GET['crime']);
 
         $inmateService = new InmateService();
         $result = $inmateService->addInmate($inmate);
-        if($result==='rau'){
-            file_put_contents('debug.txt', $result, FILE_APPEND);
+        //cnp check
+        if($result === 2){
+
             $_SESSION['error'] = 'Invalid CNP format';
             header('Location: ../Addinmate');
             return;
         }
 
-        if($result){
+        //exists check
+        if($result === 0){
+            file_put_contents('debug.txt', "bun", FILE_APPEND);
             $_SESSION['good'] = 'Inmate added successfully';
+
         }
-        else{
-            $_SESSION['error'] = 'Inmate already exists';
+        else if($result === 1){
+            file_put_contents('debug.txt', "exista", FILE_APPEND);
+            $_SESSION['error'] = 'CNP is already in use';
         }
         header('Location: ../Addinmate');
     }

@@ -8,7 +8,7 @@ class Addvisitinfo extends Controller
     }
 
     public function add(){
-        $this->model('SeeVisitinfo');
+        $this->model('visitinfo');
         $this->model('Inmate');
 
         $visitInfo = new Visitinfo(0, $_POST['request-id'],

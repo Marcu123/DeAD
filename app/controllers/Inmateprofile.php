@@ -23,7 +23,7 @@ class Inmateprofile extends Controller
                 $this->model('prison');
                 $iService = new InmateService();
 
-                $inmates = $iService->getInmateByCriteria($criteria);
+                $inmates = $iService->getInmatesByCriteria($criteria);
 
                 $this->view('inmateprofile', $inmates);
             }

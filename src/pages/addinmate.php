@@ -34,6 +34,7 @@
         }
         else if(isset($_SESSION['good']))
         {
+
             $inmateErrorClass = '--good';
         }
         else
