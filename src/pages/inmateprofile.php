@@ -18,6 +18,7 @@
 
 <body>
     <?php include 'common/navbar.php'; ?>
+    <button id="scrollToTopBtn" class="form__button">Top</button>
 
       <main>
         <?php 
@@ -47,5 +48,36 @@
 
     <?php include 'common/footer.php'; ?>
 </body>
+<script>
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+    scrollToTopBtn.style.position = "fixed";
+    scrollToTopBtn.style.bottom = "20px";
+    scrollToTopBtn.style.right = "30px";
+    scrollToTopBtn.style.display = "none";
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        const footer = document.querySelector('footer');
+        const footerPosition = footer.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            if (footerPosition <= windowHeight) {
+                scrollToTopBtn.style.display = "none";
+            } else {
+                scrollToTopBtn.style.display = "block";
+            }
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    scrollToTopBtn.addEventListener('click', function() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    });
+</script>
 
 </html>

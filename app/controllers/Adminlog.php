@@ -5,7 +5,15 @@ class Adminlog extends Controller
     public function index()
     {
         session_start();
-        $this->view('adminlog');
+        if(isset($_SESSION['username_adm'])){
+            header('Location: adminpanel');
+        }
+        else if(isset($_SESSION['username'])){
+            header('Location: userprofile');
+        }
+        else {
+            $this->view('adminlog');
+        }
         unset($_SESSION['error_adm']);
     }
 

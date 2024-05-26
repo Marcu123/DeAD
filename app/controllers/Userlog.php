@@ -7,7 +7,13 @@ class Userlog extends Controller
     public function index()
     {
         session_start();
-        $this->view('userlog');
+        if (isset($_SESSION['username'])) {
+            header('Location: userprofile');
+        } else if (isset($_SESSION['username_adm'])) {
+            header('Location: adminpanel');
+        } else {
+            $this->view('userlog');
+        }
         unset($_SESSION['error']);
 
     }
