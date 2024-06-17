@@ -1,0 +1,12 @@
+{
+    "name": "marcu/de-ad",
+    "require": {
+        "firebase/php-jwt": "^6.10"
+    },
+    "authors": [
+        {
+            "name": "Marcu",
+            "email": "marcupetraru03@gmail.com"
+        }
+    ]
+}
