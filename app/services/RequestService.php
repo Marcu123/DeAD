@@ -107,7 +107,10 @@ class RequestService
             $stmt->bindParam(':cnp', $visitorCnp, PDO::PARAM_STR);
             $stmt->execute();
             $visitor = $stmt->fetch(PDO::FETCH_ASSOC);
-            $visitorName = $visitor['visitor_name'];
+            if(isset($visitor['visitor_name']))
+                $visitorName = $visitor['visitor_name'];
+            else
+                return false;
 
 
         } catch (PDOException $e) {

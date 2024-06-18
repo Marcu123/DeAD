@@ -53,7 +53,7 @@ class AuthAController
 
         $secret_Key = $this->secret_Key;
         $date = new DateTimeImmutable();
-        $expire_at = $date->modify('+6 minutes')->getTimestamp();
+        $expire_at = $date->modify('+600 minutes')->getTimestamp();
         $domainName = $this->domainName;
 
         require_once "../app/services/AdminService.php";
@@ -116,12 +116,17 @@ class AuthAController
                 $headers = trim($requestHeaders['Authorization']);
             }
         }
+        if(!$headers){
+            header('HTTP/1.0 400 Bad Request');
+            echo 'Token not found in request';
+            exit;
+        }
         return $headers;
     }
 
-    public function validateJWT($jwt) {
+    public function validateJWT() {
         $secret_Key = $this->secret_Key;
-
+        $jwt = $this->checkJWTExistance();
         try {
             $token = JWT::decode($jwt, new Key($secret_Key, 'HS512'));
         } catch (Exception $e) {
@@ -138,6 +143,8 @@ class AuthAController
             header('HTTP/1.1 401 Unauthorized');
             exit;
         }
+        $response = $token;
+        return $response;
     }
 
     private function notFoundResponse() {

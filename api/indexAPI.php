@@ -3,6 +3,7 @@ require_once "../app/db/Database.php";
 require_once ($_SERVER['DOCUMENT_ROOT'] . '/DeAD/vendor/autoload.php');
 include_once "AuthUController.php";
 include_once "AuthAController.php";
+include_once "RequestController.php";
 
 
 ini_set('display_errors', 1);
@@ -32,6 +33,14 @@ switch ($uri[3]) {
         break;
     case 'auth-admin':
         $authAController->processRequest();
+        break;
+    case 'request':
+        $response = $authAController->validateJWT();
+        $type = $response->type;
+        $username = $response->username;
+
+        $request = new RequestController($db, $requestMethod, $type,$username);
+        $request->processRequest();
         break;
     default:
         header("HTTP/1.1 404 Not Found");
