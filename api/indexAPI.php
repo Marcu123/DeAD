@@ -5,6 +5,7 @@ include_once "AuthUController.php";
 include_once "AuthAController.php";
 include_once "RequestController.php";
 include_once "UserBanController.php";
+include_once "StatisticsController.php";
 
 
 ini_set('display_errors', 1);
@@ -49,6 +50,14 @@ switch ($uri[3]) {
         $username = $response->username;
 
         $request = new UserBanController($db, $requestMethod, $uri);
+        $request->processRequest();
+        break;
+    case 'statistics':
+        $response = $authAController->validateJWT();
+        $type = $response->type;
+        $username = $response->username;
+
+        $request = new StatisticsController($db, $requestMethod, $username, $uri);
         $request->processRequest();
         break;
     default:
