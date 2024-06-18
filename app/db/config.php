@@ -6,5 +6,5 @@ return array(
     "host" => "localhost",
     "name" => "DeAD",
     "user" => "postgres",
-    "pass" => "marcu"
+    "pass" => "dead"
 );

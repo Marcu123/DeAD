@@ -4,7 +4,6 @@ class RequestController
 {
     private $db;
     private $request_method;
-
     private $type;
     private $username;
     private $uri;

@@ -5,6 +5,7 @@ include_once "AuthUController.php";
 include_once "AuthAController.php";
 include_once "RequestController.php";
 include_once "UserBanController.php";
+include_once "InmateController.php";
 
 
 ini_set('display_errors', 1);
@@ -50,6 +51,30 @@ switch ($uri[3]) {
 
         $request = new UserBanController($db, $requestMethod, $uri);
         $request->processRequest();
+        break;
+    case 'inmates':
+        $request = new InmateController($uri);
+        //$request->getByCnp();
+
+        if($_SERVER["REQUEST_METHOD"] == "DELETE") {
+            $response = $authAController->validateJWT();
+            $type = $response->type;
+            $username = $response->username;
+
+            $request->delete($uri, $type, $username);
+        } else if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $response = $authAController->validateJWT();
+            $type = $response->type;
+            $username = $response->username;
+
+            $request->create($type, $username);
+        } else if($_SERVER["REQUEST_METHOD"] == "PUT"){
+            $response = $authAController->validateJWT();
+            $type = $response->type;
+            $username = $response->username;
+
+            $request->update($uri, $type, $username);
+        }
         break;
     default:
         header("HTTP/1.1 404 Not Found");
