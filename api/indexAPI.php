@@ -5,12 +5,7 @@ include_once "AuthUController.php";
 include_once "AuthAController.php";
 include_once "RequestController.php";
 include_once "UserBanController.php";
-<<<<<<< HEAD
 include_once "InmateController.php";
-=======
-include_once "StatisticsController.php";
->>>>>>> f88b163c3fe9d513e38fe61d936be2d9d2d3841c
-
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
