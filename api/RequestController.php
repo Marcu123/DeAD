@@ -176,14 +176,106 @@ class RequestController
                     }
                     break;
 
-                case 'POST':
-
                 default:
                     return $this->notFoundResponse();
             }
         }
         else{
-            $this->notFoundResponse();
+            if($this->request_method ==='POST'){
+                require_once "../app/services/RequestService.php";
+                require_once "../app/services/UserService.php";
+                require_once "../app/models/RequestM.php";
+                require_once "../app/models/Visitor.php";
+                require_once "../app/services/InmateService.php";
+                require_once "../app/services/RequestService.php";
+                require_once "../app/services/VisitorService.php";
+
+                $data = json_decode(file_get_contents("php://input"), true);
+                $requestService = new RequestService();
+                $userService = new UserService();
+                $request = new RequestM();
+                $inmateService = new InmateService();
+
+                $request->setVisitorType($data['visitor_type']);
+                $request->setVisitType($data['visit_type']);
+                $request->setDateOfVisit($data['date_of_visit']);
+
+                $inmateCnp = $data['inmate_cnp'];
+                $inmate_id = $inmateService->getInmateIdByCNP($inmateCnp);
+                $request->setIdInmate($inmate_id);
+                $request->setVisitorName($data['visitor_name']);
+                $request->setStatus('pending');
+                $request->setRequestCreated(date('Y-m-d H:i:s'));
+                $request->setPrisonId($inmateService->getInmatePrisonId($inmate_id));
+
+                $visitor = new Visitor();
+                $visitor1 = new Visitor();
+                $visitor2 = new Visitor();
+
+                $visitor->setVisitorName($data['visitor_name']);
+                $visitor->setCnp($data['cnp']);
+                $visitor->setEmail($data['email']);
+                $visitor->setPhoneNumber($data['phone_number']);
+
+                $visitorsNr= $data['visitors_nr'];
+                if($visitorsNr>3){
+                    header('HTTP/1.0 400 Bad Request');
+                    echo 'Too many visitors';
+                    exit;
+                }
+
+                if(isset($data['visitor1_name']) && $data['visitor1_name'] !== ""){
+                    $visitor1->setVisitorName($data['visitor1_name']);
+                    $visitor1->setCnp($data['cnp1']);
+                    $visitor1->setEmail($data['email1']);
+                    $visitor1->setPhoneNumber($data['phone_number1']);
+                }
+
+                if(isset($data['visitor2_name']) && $data['visitor2_name'] !== ""){
+                    $visitor2->setVisitorName($data['visitor2_name']);
+                    $visitor2->setCnp($data['cnp2']);
+                    $visitor2->setEmail($data['email2']);
+                    $visitor2->setPhoneNumber($data['phone_number2']);
+                }
+
+                if ($requestService->addRequest($request)) {
+                    echo json_encode(['success' => true]);
+                } else {
+                    echo json_encode(['success' => false, 'error' => 'Failed to create request']);
+                }
+
+                $visitorName = $visitor->getVisitorName();
+                $request_id = $requestService->getRequestIdByVisitorName($visitorName);
+                $visitor->setIdRequest($request_id);
+                $visitor1->setIdRequest($request_id);
+                $visitor2->setIdRequest($request_id);
+
+                $visitorService = new VisitorService();
+                $visitorService->addVisitor($visitor);
+                if ($visitor1->getVisitorName() != "") {
+                    $visitorService->addVisitor($visitor1);
+                } else if ($visitor2->getVisitorName() != "") {
+                    $visitorService->addVisitor($visitor2);
+                    $visitorService->addVisitor($visitor2);
+                }
+
+
+
+                $response['status_code_header'] = 'HTTP/1.1 200 OK';
+                $response['content_type_header'] = 'Content-Type: application/json';
+                $response['body'] = json_encode([
+                    'message' => 'Request created'
+                ]);
+
+                header($response['status_code_header']);
+                header($response['content_type_header']);
+                if ($response['body']) {
+                    echo $response['body'];
+                }
+            }
+            else{
+                header('HTTP/1.0 400 Bad Request');
+            }
         }
 
     }

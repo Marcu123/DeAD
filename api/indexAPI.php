@@ -44,6 +44,10 @@ switch ($uri[3]) {
         $request = new RequestController($db, $requestMethod, $type,$username,$uri);
         $request->processRequest();
         break;
+    case 'request-nolog':
+        $request = new RequestController($db, $requestMethod, 'nolog',null,$uri);
+        $request->processRequest();
+        break;
     case 'ban':
         $response = $authAController->validateJWT();
         $type = $response->type;
