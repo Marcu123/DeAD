@@ -5,9 +5,11 @@ class UserBanController
     private $db;
     private $requestMethod;
     private $uri;
+    private $type;
 
-    public function __construct($db, $requestMethod, $uri)
+    public function __construct($db, $requestMethod, $type,$uri)
     {
+        $this->type = $type;
         $this->db = $db;
         $this->requestMethod = $requestMethod;
         $this->uri = $uri;

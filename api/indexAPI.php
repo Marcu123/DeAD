@@ -5,7 +5,11 @@ include_once "AuthUController.php";
 include_once "AuthAController.php";
 include_once "RequestController.php";
 include_once "UserBanController.php";
+<<<<<<< HEAD
 include_once "InmateController.php";
+=======
+include_once "StatisticsController.php";
+>>>>>>> f88b163c3fe9d513e38fe61d936be2d9d2d3841c
 
 
 ini_set('display_errors', 1);
@@ -44,12 +48,24 @@ switch ($uri[3]) {
         $request = new RequestController($db, $requestMethod, $type,$username,$uri);
         $request->processRequest();
         break;
+    case 'request-nolog':
+        $request = new RequestController($db, $requestMethod, 'nolog',null,$uri);
+        $request->processRequest();
+        break;
     case 'ban':
         $response = $authAController->validateJWT();
         $type = $response->type;
         $username = $response->username;
 
-        $request = new UserBanController($db, $requestMethod, $uri);
+        $request = new UserBanController($db, $requestMethod, $type,$uri);
+        $request->processRequest();
+        break;
+    case 'statistics':
+        $response = $authAController->validateJWT();
+        $type = $response->type;
+        $username = $response->username;
+
+        $request = new StatisticsController($db, $requestMethod, $username, $type,$uri);
         $request->processRequest();
         break;
     case 'inmates':

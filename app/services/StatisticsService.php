@@ -8,8 +8,6 @@ class StatisticsService
         $this->db = Database::getConnection();
     }
 
-    public function getVisitsStatistics($prisonId) {
-    }
     public function getCrimeStatistics($prisonId) {
         try {
             $stmt = $this->db->prepare("SELECT crime, COUNT(*) as count FROM inmate WHERE id_prison = :id_prison GROUP BY crime ORDER BY crime");
