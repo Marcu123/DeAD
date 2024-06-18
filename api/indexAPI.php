@@ -49,7 +49,7 @@ switch ($uri[3]) {
         $type = $response->type;
         $username = $response->username;
 
-        $request = new UserBanController($db, $requestMethod, $uri);
+        $request = new UserBanController($db, $requestMethod, $type,$uri);
         $request->processRequest();
         break;
     case 'statistics':
@@ -57,7 +57,7 @@ switch ($uri[3]) {
         $type = $response->type;
         $username = $response->username;
 
-        $request = new StatisticsController($db, $requestMethod, $username, $uri);
+        $request = new StatisticsController($db, $requestMethod, $username, $type,$uri);
         $request->processRequest();
         break;
     default:

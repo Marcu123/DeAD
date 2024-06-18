@@ -6,9 +6,11 @@ class StatisticsController
     private $request_method;
     private $uri;
     private $username;
+    private $type;
 
-    public function __construct($db, $request_method, $username,$uri)
+    public function __construct($db, $request_method, $username,$type, $uri)
     {
+        $this->type = $type;
         $this->db = $db;
         $this->request_method = $request_method;
         $this->username = $username;
@@ -17,46 +19,61 @@ class StatisticsController
 
     public function processRequest()
     {
-        $stat = [];
-        switch ($this->request_method) {
-            case 'GET':
-                require_once "../app/services/StatisticsService.php";
-                require_once "../app/services/AdminService.php";
-                $statisticsService = new StatisticsService();
-                $adminService = new AdminService();
-                $prisonId = $adminService->getPrisonIdByUsername($this->username);
-                switch($this->uri[4]){
-                    case 'crime':
-                        $stat = $statisticsService->getCrimeStatistics($prisonId);
-                        break;
-                    case 'age':
-                        $stat = $statisticsService->getAgeStatistics($prisonId);
-                        break;
-                    case 'gender':
-                        $stat = $statisticsService->getGenderStatistics($prisonId);
-                        break;
-                    default:
-                        header('HTTP/1.0 400 Bad Request');
-                        break;
-                }
-                break;
-            default:
+        if($this->type==="admin") {
+
+            $stat = [];
+            switch ($this->request_method) {
+                case 'GET':
+                    require_once "../app/services/StatisticsService.php";
+                    require_once "../app/services/AdminService.php";
+                    $statisticsService = new StatisticsService();
+                    $adminService = new AdminService();
+                    $prisonId = $adminService->getPrisonIdByUsername($this->username);
+                    switch ($this->uri[4]) {
+                        case 'crime':
+                            $stat = $statisticsService->getCrimeStatistics($prisonId);
+                            break;
+                        case 'age':
+                            $stat = $statisticsService->getAgeStatistics($prisonId);
+                            break;
+                        case 'gender':
+                            $stat = $statisticsService->getGenderStatistics($prisonId);
+                            break;
+                        default:
+                            header('HTTP/1.0 400 Bad Request');
+                            break;
+                    }
+                    break;
+                default:
+                    $response = $this->notFoundResponse();
+                    break;
+            }
+            if ($stat == null) {
                 $response = $this->notFoundResponse();
-                break;
-        }
-        if($stat == null){
-            $response = $this->notFoundResponse();
-            return $response;
-        }
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['content_type_header'] = 'Content-Type: application/json';
-        $response['body'] = json_encode([
-            'statistic' => $stat
-        ]);
-        header($response['status_code_header']);
-        header($response['content_type_header']);
-        if ($response['body']) {
-            echo $response['body'];
+                return $response;
+            }
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+            $response['content_type_header'] = 'Content-Type: application/json';
+            $response['body'] = json_encode([
+                'statistic' => $stat
+            ]);
+            header($response['status_code_header']);
+            header($response['content_type_header']);
+            if ($response['body']) {
+                echo $response['body'];
+
+            }
+        }else {
+            $response['status_code_header'] = 'HTTP/1.1 400 Bad Request';
+            $response['content_type_header'] = 'Content-Type: application/json';
+            $response['body'] = json_encode([
+                'message' => 'You are not admin!'
+            ]);
+            header($response['status_code_header']);
+            header($response['content_type_header']);
+            if ($response['body']) {
+                echo $response['body'];
+            }
         }
     }
     private function notFoundResponse() {
