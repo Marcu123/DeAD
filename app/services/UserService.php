@@ -1,7 +1,4 @@
 <?php
-
-
-
 require_once '../app/models/User.php';
 require_once '../app/db/Database.php';
 

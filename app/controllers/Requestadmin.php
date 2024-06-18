@@ -56,7 +56,6 @@ class Requestadmin extends Controller
                 $requestService = new RequestService();
 
                 if ($requestService->updateStatus($id, $status)) {
-                    file_put_contents('nume_fisier.txt', $input['id'] . $input['status'], FILE_APPEND);
                     $email = $requestService->getEmailByRequestId($id);
                     $inmateName = $requestService->getInmateNameByRequestId($id);
                     $to = $email;

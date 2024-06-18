@@ -200,7 +200,6 @@ class RequestService
 
     public function updateStatus($id, $status){
         try{
-            file_put_contents('nume_fisier.txt', $id . $status, FILE_APPEND);
             $stmt = $this->db->prepare("UPDATE request SET status = :status WHERE id = :id");
             $stmt->bindParam(':status', $status, PDO::PARAM_STR);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);

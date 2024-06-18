@@ -4,6 +4,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/DeAD/vendor/autoload.php');
 include_once "AuthUController.php";
 include_once "AuthAController.php";
 include_once "RequestController.php";
+include_once "UserBanController.php";
 
 
 ini_set('display_errors', 1);
@@ -39,7 +40,15 @@ switch ($uri[3]) {
         $type = $response->type;
         $username = $response->username;
 
-        $request = new RequestController($db, $requestMethod, $type,$username);
+        $request = new RequestController($db, $requestMethod, $type,$username,$uri);
+        $request->processRequest();
+        break;
+    case 'ban':
+        $response = $authAController->validateJWT();
+        $type = $response->type;
+        $username = $response->username;
+
+        $request = new UserBanController($db, $requestMethod, $uri);
         $request->processRequest();
         break;
     default:
