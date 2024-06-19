@@ -8,6 +8,8 @@ include_once "UserBanController.php";
 include_once "InmateController.php";
 include_once "StatisticsController.php";
 include_once "ForgotPassword.php";
+include_once "RegisterController.php";
+include_once "ActivateController.php";
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -28,7 +30,6 @@ $requestMethod = $_SERVER["REQUEST_METHOD"];
 
 $authUController = new AuthUController($db, $requestMethod);
 $authAController = new AuthAController($db, $requestMethod);
-
 
 switch ($uri[3]) {
     case 'auth-user':
@@ -71,7 +72,6 @@ switch ($uri[3]) {
         break;
     case 'inmates':
         $request = new InmateController($uri);
-        //$request->getByCnp();
 
         if($_SERVER["REQUEST_METHOD"] == "DELETE") {
             $response = $authAController->validateJWT();
@@ -91,6 +91,20 @@ switch ($uri[3]) {
             $username = $response->username;
 
             $request->update($uri, $type, $username);
+        } else if($_SERVER["REQUEST_METHOD"] == "GET"){
+            $request->search($uri);
+        }
+        break;
+    case 'register':
+        $request = new RegisterController();
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $request->register();
+        }
+        break;
+    case 'activate':
+        $request = new ActivateController();
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $request->activate($uri);
         }
         break;
     default:

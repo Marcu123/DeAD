@@ -230,5 +230,72 @@ class InmateController
         }
     }
 
+    public function search(array $uri)
+    {
+        require_once "../app/services/AdminService.php";
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $criteria = array();
+        if(isset($_GET['firstName'])){
+            $criteria['first_name'] = $_GET['firstName'];
+        }
+        if(isset($_GET['lastName'])){
+            $criteria['last_name'] = $_GET['lastName'];
+        }
+        if(isset($_GET['cnp'])){
+            $criteria['cnp'] = $_GET['cnp'];
+        }
+        if(isset($_GET['age'])){
+            $criteria['age'] = $_GET['age'];
+        }
+        if(isset($_GET['gender'])){
+            $criteria['gender'] = $_GET['gender'];
+        }
+        if(isset($_GET['dateOfIncarceration'])){
+            $criteria['date_of_incarceracion'] = $_GET['dateOfIncarceration'];
+        }
+        if(isset($_GET['endOfIncarceration'])){
+            $criteria['end_of_incarceration'] = $_GET['endOfIncarceration'];
+        }
+        if(isset($_GET['crime'])){
+            $criteria['crime'] = $_GET['crime'];
+        }
+        if(isset($_GET['prison'])){
+            $criteria['prison'] = $_GET['prison'];
+        }
+
+        $adminService = new AdminService();
+
+        $inmateService = new InmateService();
+        $inmates = $inmateService->getInmatesByCriteria($criteria);
+
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+        $inmatesArray = array_map(function($inmate) {
+
+            return [
+                'id' => $inmate->getId(),
+                'photo' => 'nica',
+                'firstName' => $inmate->getFirstName(),
+                'lastName' => $inmate->getLastName(),
+                'cnp' => $inmate->getCnp(),
+                'age' => $inmate->getAge(),
+                'gender' => $inmate->getGender(),
+                'prison' => $inmate->getIdPrison(),
+                'dateOfIncarceration' => $inmate->getDateOfIncarceration(),
+                'endOfIncarceration' => $inmate->getEndOfIncarceration(),
+                'crime' => $inmate->getCrime()
+            ];
+        }, $inmates);
+
+        $response['body'] = json_encode($inmatesArray);
+
+        header($response['status_code_header']);
+        header($response['content_type_header']);
+        if ($response['body']) {
+            echo $response['body'];
+        }
+    }
+
 
 }
