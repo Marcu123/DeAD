@@ -352,5 +352,19 @@ class UserService
         }
     }
 
+    public function resetPassword(mixed $email, string $newPassword)
+    {
+        try{
+            $stmt = $this->db->prepare("UPDATE users SET password = :password WHERE email = :email");
+            $stmt->bindParam(':password', $newPassword, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+        }
+        catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+    }
+
 
 }

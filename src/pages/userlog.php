@@ -47,7 +47,7 @@
 
         <button type="submit" class="form__button" name="log_btn">Submit</button>
 
-        <a href="forgotpassword.php" class="link">Forgot password?</a>
+        <a href="forgotpassword" class="link">Forgot password?</a>
     </form>
 </div>
 

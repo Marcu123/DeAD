@@ -6,6 +6,8 @@ include_once "AuthAController.php";
 include_once "RequestController.php";
 include_once "UserBanController.php";
 include_once "InmateController.php";
+include_once "StatisticsController.php";
+include_once "ForgotPassword.php";
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -61,6 +63,10 @@ switch ($uri[3]) {
         $username = $response->username;
 
         $request = new StatisticsController($db, $requestMethod, $username, $type,$uri);
+        $request->processRequest();
+        break;
+    case 'forgot-password':
+        $request = new ForgotPassword($db, $requestMethod);
         $request->processRequest();
         break;
     case 'inmates':
