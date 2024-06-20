@@ -10,6 +10,7 @@ include_once "StatisticsController.php";
 include_once "ForgotPassword.php";
 include_once "RegisterController.php";
 include_once "ActivateController.php";
+include_once "PhotoController.php";
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -69,6 +70,11 @@ switch ($uri[3]) {
     case 'forgot-password':
         $request = new ForgotPassword($db, $requestMethod);
         $request->processRequest();
+        break;
+    case 'upload':
+
+        $request = new PhotoController();
+        //$request->processRequest($pkey, $type);
         break;
     case 'inmates':
         $request = new InmateController($uri);

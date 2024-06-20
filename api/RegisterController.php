@@ -5,34 +5,35 @@ class RegisterController
 
     public function register()
     {
-        $data = json_decode(file_get_contents("php://input"), true);
+        //$_POST = json_decode(file_get_contents("php://input"), true);
 
-        if(isset($data['username'])){
-            $username = $data['username'];
+        if(isset($_POST['username'])){
+            $username = $_POST['username'];
         } else {
             $this->badRequest();
             exit;
         }
-        if(isset($data['password'])){
-            $password = password_hash($data['password'], PASSWORD_DEFAULT);
+        echo 'aici';
+        if(isset($_POST['password'])){
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         } else{
             $this->badRequest();
             exit;
         }
-        if(isset($data['email'])){
-            $email = $data['email'];
+        if(isset($_POST['email'])){
+            $email = $_POST['email'];
         } else{
             $this->badRequest();
             exit;
         }
-        if(isset($data['cnp'])){
-            $cnp = $data['cnp'];
+        if(isset($_POST['cnp'])){
+            $cnp = $_POST['cnp'];
         } else{
             $this->badRequest();
             exit;
         }
-        if(isset($data['phone'])){
-            $phone = $data['phone'];
+        if(isset($_POST['phone'])){
+            $phone = $_POST['phone'];
         } else{
             $this->badRequest();
             exit;
@@ -61,6 +62,9 @@ class RegisterController
         $userService = new UserService();
 
         if ($userService->registerUser($user)) {
+            include_once "PhotoController.php";
+            $photoController = new PhotoController();
+            $photoController->processRequest($user->getCnp(), 'user');
             $to = $user->getEmail();
             $subject = 'Activation code';
             $message = 'Please visit to following page and activate your account with the following code: ' . $user->getActivationCode() . ' http://localhost/DeAD/public/activate';

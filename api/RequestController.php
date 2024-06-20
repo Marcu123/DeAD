@@ -95,7 +95,8 @@ class RequestController
                             'email' => $requestService->getEmailByVisitorName($request->getVisitorName()),
                             'phone_number' => $requestService->getPhoneNumberByVisitorName($request->getVisitorName()),
                             'inmate_name' => $request->getInmateName(),
-                            'inmate_cnp' => $request->getInmateCnp()
+                            'inmate_cnp' => $request->getInmateCnp(),
+                            'photo' => 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($requestService->getCnpByVisitorName($request->getVisitorName()))
                         ];
                     }, $requests);
 
@@ -153,7 +154,8 @@ class RequestController
                             'email' => $userService->getEmailByUsername($this->username),
                             'phone_number' => $userService->getPhoneByUsername($this->username),
                             'inmate_name' => $request->getInmateName(),
-                            'inmate_cnp' => $request->getInmateCnp()
+                            'inmate_cnp' => $request->getInmateCnp(),
+                            'photo' => 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($userService->getCNPByUsername($this->username))
                         ];
                     }, $requests);
 
@@ -189,20 +191,20 @@ class RequestController
                 require_once "../app/services/RequestService.php";
                 require_once "../app/services/VisitorService.php";
 
-                $data = json_decode(file_get_contents("php://input"), true);
+                //$data = json_decode(file_get_contents("php://input"), true);
                 $requestService = new RequestService();
                 $userService = new UserService();
                 $request = new RequestM();
                 $inmateService = new InmateService();
 
-                $request->setVisitorType($data['visitor_type']);
-                $request->setVisitType($data['visit_type']);
-                $request->setDateOfVisit($data['date_of_visit']);
+                $request->setVisitorType($_POST['visitor_type']);
+                $request->setVisitType($_POST['visit_type']);
+                $request->setDateOfVisit($_POST['date_of_visit']);
 
-                $inmateCnp = $data['inmate_cnp'];
+                $inmateCnp = $_POST['inmate_cnp'];
                 $inmate_id = $inmateService->getInmateIdByCNP($inmateCnp);
                 $request->setIdInmate($inmate_id);
-                $request->setVisitorName($data['visitor_name']);
+                $request->setVisitorName($_POST['visitor_name']);
                 $request->setStatus('pending');
                 $request->setRequestCreated(date('Y-m-d H:i:s'));
                 $request->setPrisonId($inmateService->getInmatePrisonId($inmate_id));
@@ -211,30 +213,30 @@ class RequestController
                 $visitor1 = new Visitor();
                 $visitor2 = new Visitor();
 
-                $visitor->setVisitorName($data['visitor_name']);
-                $visitor->setCnp($data['cnp']);
-                $visitor->setEmail($data['email']);
-                $visitor->setPhoneNumber($data['phone_number']);
+                $visitor->setVisitorName($_POST['visitor_name']);
+                $visitor->setCnp($_POST['cnp']);
+                $visitor->setEmail($_POST['email']);
+                $visitor->setPhoneNumber($_POST['phone_number']);
 
-                $visitorsNr= $data['visitors_nr'];
+                $visitorsNr= $_POST['visitors_nr'];
                 if($visitorsNr>3){
                     header('HTTP/1.0 400 Bad Request');
                     echo 'Too many visitors';
                     exit;
                 }
 
-                if(isset($data['visitor1_name']) && $data['visitor1_name'] !== ""){
-                    $visitor1->setVisitorName($data['visitor1_name']);
-                    $visitor1->setCnp($data['cnp1']);
-                    $visitor1->setEmail($data['email1']);
-                    $visitor1->setPhoneNumber($data['phone_number1']);
+                if(isset($_POST['visitor1_name']) && $_POST['visitor1_name'] !== ""){
+                    $visitor1->setVisitorName($_POST['visitor1_name']);
+                    $visitor1->setCnp($_POST['cnp1']);
+                    $visitor1->setEmail($_POST['email1']);
+                    $visitor1->setPhoneNumber($_POST['phone_number1']);
                 }
 
-                if(isset($data['visitor2_name']) && $data['visitor2_name'] !== ""){
-                    $visitor2->setVisitorName($data['visitor2_name']);
-                    $visitor2->setCnp($data['cnp2']);
-                    $visitor2->setEmail($data['email2']);
-                    $visitor2->setPhoneNumber($data['phone_number2']);
+                if(isset($_POST['visitor2_name']) && $_POST['visitor2_name'] !== ""){
+                    $visitor2->setVisitorName($_POST['visitor2_name']);
+                    $visitor2->setCnp($_POST['cnp2']);
+                    $visitor2->setEmail($_POST['email2']);
+                    $visitor2->setPhoneNumber($_POST['phone_number2']);
                 }
 
                 if ($requestService->addRequest($request)) {
@@ -249,13 +251,19 @@ class RequestController
                 $visitor1->setIdRequest($request_id);
                 $visitor2->setIdRequest($request_id);
 
+                include_once "PhotoController.php";
+                $photoController = new PhotoController();
+
                 $visitorService = new VisitorService();
                 $visitorService->addVisitor($visitor);
+                $photoController->processRequest($visitor->getCnp(), 'visitor');
+
                 if ($visitor1->getVisitorName() != "") {
                     $visitorService->addVisitor($visitor1);
+                    $photoController->processRequest($visitor1->getCnp(), 'visitor', 1);
                 } else if ($visitor2->getVisitorName() != "") {
                     $visitorService->addVisitor($visitor2);
-                    $visitorService->addVisitor($visitor2);
+                    $photoController->processRequest($visitor2->getCnp(), 'visitor', 2);
                 }
 
 
@@ -287,6 +295,21 @@ class RequestController
         ]);
         return $response;
     }
-
+    public function findPhoto($pkey){
+        echo $pkey . " ";
+        $fileName = 'uploads/visitors/' . $pkey;
+        if(file_exists($fileName . '.png'))
+            return $pkey . '.png';
+        else if(file_exists($fileName . '.webp'))
+            return $pkey . '.webp';
+        else if(file_exists($fileName . '.jpg'))
+            return $pkey . '.jpg';
+        else if(file_exists($fileName . '.jpeg'))
+            return $pkey . '.jpeg';
+        else if(file_exists($fileName . '.gif'))
+            return $pkey . '.gif';
+        else
+            return null;
+    }
 
 }

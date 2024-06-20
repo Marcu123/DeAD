@@ -89,50 +89,57 @@ class InmateController
         require_once "../app/services/AdminService.php";
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if(isset($data['firstName'])){
-            $firstName = $data['firstName'];
+        if (isset($_POST['firstName'])) {
+            $firstName = $_POST['firstName'];
         } else {
             $this->notEnoughParams();
             exit;
         }
-        if(isset($data['lastName'])){
-            $lastName = $data['lastName'];
+
+        if (isset($_POST['lastName'])) {
+            $lastName = $_POST['lastName'];
         } else {
             $this->notEnoughParams();
             exit;
         }
-        if(isset($data['cnp'])){
-            $cnp = $data['cnp'];
+
+        if (isset($_POST['cnp'])) {
+            $cnp = $_POST['cnp'];
         } else {
             $this->notEnoughParams();
             exit;
         }
-        if(isset($data['age'])){
-            $age = $data['age'];
+
+        if (isset($_POST['age'])) {
+            $age = $_POST['age'];
         } else {
             $this->notEnoughParams();
             exit;
         }
-        if(isset($data['gender'])){
-            $gender = $data['gender'];
+
+        if (isset($_POST['gender'])) {
+            $gender = $_POST['gender'];
         } else {
             $this->notEnoughParams();
             exit;
         }
-        if(isset($data['dateOfIncarceration'])){
-            $dateOfIncarceration = $data['dateOfIncarceration'];
+
+        if (isset($_POST['dateOfIncarceration'])) {
+            $dateOfIncarceration = $_POST['dateOfIncarceration'];
         } else {
             $this->notEnoughParams();
             exit;
         }
-        if(isset($data['endOfIncarceration'])){
-            $endOfIncarceration = $data['endOfIncarceration'];
+
+        if (isset($_POST['endOfIncarceration'])) {
+            $endOfIncarceration = $_POST['endOfIncarceration'];
         } else {
             $this->notEnoughParams();
             exit;
         }
-        if(isset($data['crime'])){
-            $crime = $data['crime'];
+
+        if (isset($_POST['crime'])) {
+            $crime = $_POST['crime'];
         } else {
             $this->notEnoughParams();
             exit;
@@ -156,6 +163,10 @@ class InmateController
 
         $inmateService = new InmateService();
         $inmateService->addInmate($inmate);
+
+        include_once "PhotoController.php";
+        $photoController = new PhotoController();
+        $photoController->processRequest($cnp, 'inmate');
 
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['content_type_header'] = 'Content-Type: application/json';
@@ -275,7 +286,7 @@ class InmateController
 
             return [
                 'id' => $inmate->getId(),
-                'photo' => 'nica',
+                'photo' => 'http://localhost/DeAD/api/uploads/inmates/' . $inmate->getCnp() . '.webp',
                 'firstName' => $inmate->getFirstName(),
                 'lastName' => $inmate->getLastName(),
                 'cnp' => $inmate->getCnp(),
