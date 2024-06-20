@@ -70,8 +70,10 @@ class RequestController
                 case 'GET':
                     require_once "../app/services/RequestService.php";
                     require_once "../app/services/UserService.php";
+                    require_once "../app/services/VisitorService.php";
 
                     $requestService = new RequestService();
+                    $visitorService = new VisitorService();
 
                     $requests=$requestService->getAllRequestsByPrisonId($this->username);
                     if(!$requests){
@@ -80,9 +82,10 @@ class RequestController
                         echo 'No request found';
                         exit;
                     }
-                    $requestsArray = array_map(function($request) use ($requestService) {
+                    $requestsArray = array_map(function($request) use ($visitorService, $requestService) {
+                        $visitorArray = $visitorService->findVisitorsCnpsByRequestId($request->getId());
 
-                        return [
+                        $response = [
                             'id' => $request->getId(),
                             'visitor_type' => $request->getVisitorType(),
                             'visit_type' => $request->getVisitType(),
@@ -98,7 +101,26 @@ class RequestController
                             'inmate_cnp' => $request->getInmateCnp(),
                             'photo' => 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($requestService->getCnpByVisitorName($request->getVisitorName()))
                         ];
+
+                        if (isset($visitorArray[2])) {
+                            $response['visitor1_name'] = $visitorService->getVisitorNameByCnp($visitorArray[2]);
+                            $response['visitor1_cnp'] = $visitorArray[2];
+                            $response['visitor1_email'] = $visitorService->getEmailByCnp($visitorArray[2]);
+                            $response['visitor1_phone'] = $visitorService->getPhoneNumberByCnp($visitorArray[2]);
+                            $response['visitor1_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($visitorArray[2]);
+                        }
+
+                        if(isset($visitorArray[4])){
+                            $response['visitor2_name'] = $visitorService->getVisitorNameByCnp($visitorArray[4]);
+                            $response['visitor2_cnp'] = $visitorArray[4];
+                            $response['visitor2_email'] = $visitorService->getEmailByCnp($visitorArray[4]);
+                            $response['visitor2_phone'] = $visitorService->getPhoneNumberByCnp($visitorArray[4]);
+                            $response['visitor2_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($visitorArray[4]);
+                        }
+
+                        return $response;
                     }, $requests);
+
 
                     if(!$requestsArray){
                         $response = $this->notFoundResponse();
@@ -128,9 +150,11 @@ class RequestController
                 case 'GET':
                     require_once "../app/services/UserService.php";
                     require_once "../app/services/RequestService.php";
+                    require_once "../app/services/VisitorService.php";
 
                     $userService = new UserService();
                     $requestService = new RequestService();
+                    $visitorService = new VisitorService();
 
                     $requests=$requestService->getAllRequestsByVisitorCnp($userService->getCNPByUsername($this->username));
                     if(!$requests){
@@ -139,9 +163,10 @@ class RequestController
                         echo 'No request found';
                         exit;
                     }
-                    $requestsArray = array_map(function($request) use ($userService) {
+                    $requestsArray = array_map(function($request) use ($visitorService, $userService) {
+                        $visitorArray = $visitorService->findVisitorsCnpsByRequestId($request->getId());
 
-                        return [
+                        $response = [
                             'id' => $request->getId(),
                             'visitor_type' => $request->getVisitorType(),
                             'visit_type' => $request->getVisitType(),
@@ -157,6 +182,24 @@ class RequestController
                             'inmate_cnp' => $request->getInmateCnp(),
                             'photo' => 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($userService->getCNPByUsername($this->username))
                         ];
+
+                        if (isset($visitorArray[2])) {
+                            $response['visitor1_name'] = $visitorService->getVisitorNameByCnp($visitorArray[2]);
+                            $response['visitor1_cnp'] = $visitorArray[2];
+                            $response['visitor1_email'] = $visitorService->getEmailByCnp($visitorArray[2]);
+                            $response['visitor1_phone'] = $visitorService->getPhoneNumberByCnp($visitorArray[2]);
+                            $response['visitor1_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($visitorArray[2]);
+                        }
+
+                        if(isset($visitorArray[4])){
+                            $response['visitor2_name'] = $visitorService->getVisitorNameByCnp($visitorArray[4]);
+                            $response['visitor2_cnp'] = $visitorArray[4];
+                            $response['visitor2_email'] = $visitorService->getEmailByCnp($visitorArray[4]);
+                            $response['visitor2_phone'] = $visitorService->getPhoneNumberByCnp($visitorArray[4]);
+                            $response['visitor2_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($visitorArray[4]);
+                        }
+
+                        return $response;
                     }, $requests);
 
                     if(!$requestsArray){

@@ -41,12 +41,12 @@ class PhotoController
                 exit;
             }
 
-            if (file_exists($target_file)) {
-                $uploadOk = 0;
-                http_response_code(400);
-                echo json_encode(['error' => 'Sorry, file already exists.']);
-                exit;
-            }
+//            if (file_exists($target_file)) {
+//                $uploadOk = 0;
+//                http_response_code(400);
+//                echo json_encode(['error' => 'Sorry, file already exists.']);
+//                exit;
+//            }
 
             if ($_FILES[$fileName]["size"] > 5000000) {
                 $uploadOk = 0;
