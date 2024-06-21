@@ -1,7 +1,9 @@
 <?php
     $visitInfo = $data['visitInfo'];
-    $inmate = $visitInfo->getInmate();
-    $witnesses = $visitInfo->getWitnesses();
+    if($visitInfo != null) {
+        $inmate = $visitInfo->getInmate();
+        $witnesses = $visitInfo->getWitnesses();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -33,15 +35,15 @@
                 <p class = "user-account__info__text">No VisitInfo found</p>
             </div>
         </div>';
-    }
+    } else {
         echo '<div class = "user-account">
             <h2>Visit Info: </h2>
             <div class="user-account__info">
-            <p class = "user-account__info__text">ID: '. $visitInfo->getID() . '</p>
-                <p class = "user-account__info__text">Request ID: '. $visitInfo->getRequestID(). '</p>
+            <p class = "user-account__info__text">ID: ' . $visitInfo->getID() . '</p>
+                <p class = "user-account__info__text">Request ID: ' . $visitInfo->getRequestID() . '</p>
                 <h3>Inmate: </h3>
-                <p class = "user-account__info__text">First-Name: '. $inmate->getFirstName(). '</p>
-                <p class = "user-account__info__text">Last-Name: ' . $inmate->getLastName(). '</p>
+                <p class = "user-account__info__text">First-Name: ' . $inmate->getFirstName() . '</p>
+                <p class = "user-account__info__text">Last-Name: ' . $inmate->getLastName() . '</p>
                 <p class = "user-account__info__text">CNP: ' . $inmate->getCnp() . '</p>
                 <p class = "user-account__info__text">Prison: ' . $inmate->getIdPrison() . '</p>
                 <p class = "user-account__info__text">Date of incarceration: ' . $inmate->getDateOfIncarceration() . '</p>
@@ -54,22 +56,23 @@
                 <p class = "user-account__info__text">Mood: ' . $visitInfo->getMood() . '</p>
                 
                 <h3>Witnesses: </h3>';
-            foreach($witnesses as $witness){
-                //visitor
-                if(strcmp($witness->getType(), 'visitor') == 0){
-                    $visitor = $witness->getVisitor();
-                    echo   '<p class = "user-account__info__text">Name: ' . $visitor->getVisitorName() . '</p>
+        foreach ($witnesses as $witness) {
+            //visitor
+            if (strcmp($witness->getType(), 'visitor') == 0) {
+                $visitor = $witness->getVisitor();
+                echo '<p class = "user-account__info__text">Name: ' . $visitor->getVisitorName() . '</p>
                             <p class = "user-account__info__text">CNP: ' . $visitor->getCnp() . '</p>
                             <p class = "user-account__info__text">Email: ' . $visitor->getEmail() . '</p>
                             <p class = "user-account__info__text">Phone Number: ' . $visitor->getPhoneNumber() . '</p>';
-                } else{ //employee
-                    $employee = $witness->getEmployee();
-                    echo   '<p class = "user-account__info__text">Employee</p>
+            } else { //employee
+                $employee = $witness->getEmployee();
+                echo '<p class = "user-account__info__text">Employee</p>
                             <p class = "user-account__info__text">Name: ' . $employee->getName() . '</p>
                             <p class = "user-account__info__text">CNP: ' . $employee->getCnp() . '</p>';
-                }
             }
-        echo' </div></div>';
+        }
+        echo ' </div></div>';
+    }
     ?>
 </main>
 
