@@ -37,6 +37,12 @@ main {
 .request-container__button:hover {
   background-color: #0056b3;
 }
+.request-container__visitor-photo {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 10px 0;
+}
 
 @media (max-width: 299px) {
   .request-container__title {
@@ -63,6 +69,12 @@ main {
   }
   .request-container__button:hover {
     background-color: #0056b3;
+  }
+  .request-container__visitor-photo {
+    width: 50px;
+    height: auto;
+    display: block;
+    margin: 10px 0;
   }
 }
 

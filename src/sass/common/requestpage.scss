@@ -38,6 +38,14 @@ main{
     &__button{
         @include base.button;
     }
+    &__visitor-photo {
+        width: 100px;
+        height: auto;
+        display: block;
+        margin: 10px 0;
+    }
+
+
 }
 @media (max-width: 299px) {
     .request-container {
@@ -63,6 +71,12 @@ main{
     
         &__button{
             @include base.button;
+        }
+        &__visitor-photo {
+            width: 50px;
+            height: auto;
+            display: block;
+            margin: 10px 0;
         }
     }
 

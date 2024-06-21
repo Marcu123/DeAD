@@ -1,6 +1,3 @@
-<?php
-//session_start();
-//?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,17 +44,35 @@
                 data.forEach(request => {
                     const requestDiv = document.createElement('div');
                     requestDiv.className = 'request-container';
+                    console.log(request.photo);
                     requestDiv.innerHTML = `
                         <p class="request-container__title">Request #${request.id}</p>
                         <p class="request-container__text">status: ${request.status}</p>
                         <p class="request-container__subtitle">Visitor(s) Info:</p>
-                        <p class="request-container__text">${request.visitor_name}</p>
+                        <img src="${request.photo}" alt="Visitor Photo" class="request-container__visitor-photo">
+                        <p class="request-container__text">Name: ${request.visitor_name}</p>
                         <p class="request-container__text">CNP: ${request.cnp}</p>
-                        <p class="request-container__text">${request.visitor_type}</p>
+                        <p class="request-container__text">Visitor Type: ${request.visitor_type}</p>
                         <p class="request-container__text">email: ${request.email}</p>
                         <p class="request-container__text">phone number: ${request.phone_number}</p>
+                        ${request.visitor1_name ? `
+                            <p class="request-container__subtitle">Additional Visitor 1 Info:</p>
+                            <img src="${request.visitor1_photo}" alt="Visitor 1 Photo" class="request-container__visitor-photo">
+                            <p class="request-container__text">Name: ${request.visitor1_name}</p>
+                            <p class="request-container__text">CNP: ${request.visitor1_cnp}</p>
+                            <p class="request-container__text">email: ${request.visitor1_email}</p>
+                            <p class="request-container__text">phone number: ${request.visitor1_phone}</p>
+                        ` : ''}
+                        ${request.visitor2_name ? `
+                            <p class="request-container__subtitle">Additional Visitor 2 Info:</p>
+                            <img src="${request.visitor2_photo}" alt="Visitor 2 Photo" class="request-container__visitor-photo">
+                            <p class="request-container__text">Name: ${request.visitor2_name}</p>
+                            <p class="request-container__text">CNP: ${request.visitor2_cnp}</p>
+                            <p class="request-container__text">email: ${request.visitor2_email}</p>
+                            <p class="request-container__text">phone number: ${request.visitor2_phone}</p>
+                        ` : ''}
                         <p class="request-container__subtitle">Inmate Info: </p>
-                        <p class="request-container__text">${request.inmate_name}</p>
+                        <p class="request-container__text">Name: ${request.inmate_name}</p>
                         <p class="request-container__text">CNP: ${request.inmate_cnp}</p>
                         <p class="request-container__subtitle">Date of visit: </p>
                         <p class="request-container__text">${request.date_of_visit}</p>
