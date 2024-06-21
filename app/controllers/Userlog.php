@@ -97,6 +97,10 @@ class Userlog extends Controller
 
 
             if ($userService->registerUser($user)) {
+                include_once "../api/PhotoController.php";
+                $photoController = new PhotoController();
+
+                $photoController->processRequestFront($user->getCnp(), 'user');
                 $to = $user->getEmail();
                 $subject = 'Activation code';
                 $message = 'Please visit to following page and activate your account with the following code: ' . $user->getActivationCode() . ' http://localhost/DeAD/public/activate';

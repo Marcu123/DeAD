@@ -306,6 +306,8 @@ class RequestController
                     $photoController->processRequest($visitor1->getCnp(), 'visitor', 1);
                 } else if ($visitor2->getVisitorName() != "") {
                     $visitorService->addVisitor($visitor2);
+                    $visitorService->addVisitor($visitor1);
+                    $photoController->processRequest($visitor1->getCnp(), 'visitor', 2);
                     $photoController->processRequest($visitor2->getCnp(), 'visitor', 2);
                 }
 

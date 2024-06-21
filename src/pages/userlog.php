@@ -53,7 +53,7 @@
 
       <div>
           <h1 class="header">Register</h1>
-          <form action="userlog/register" method="post" class="form">
+          <form action="userlog/register" method="post" class="form" enctype="multipart/form-data">
               <?php
                 if (isset($_SESSION['error'])) {
                     $usernameErrorClass = '--error';
@@ -88,7 +88,7 @@
               <input type="text" class="form__field" name="cnp" id="cnp" placeholder="" autocomplete="off" required>
 
               <label for="imageUpload">Photo: </label>
-              <input type="file" name="image" class="form__field form__field--file" id="imageUpload" accept="image/*" required>
+              <input type="file" id="imageUpload" class="form__field form__field--file" name="fileToUpload" accept="image/*" multiple>
 
               <label for="phone-number">Phone Number: </label>
               <input type="tel" class="form__field" name="phone-number" id="phone-number" placeholder="" autocomplete="off" required>

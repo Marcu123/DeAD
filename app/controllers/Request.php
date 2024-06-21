@@ -104,14 +104,23 @@ class Request extends Controller
         $visitor0->setIdRequest($request_id);
         $visitor1->setIdRequest($request_id);
 
+        include_once "../api/PhotoController.php";
+        $photoController = new PhotoController();
+
         require_once '../app/services/VisitorService.php';
         $visitorService = new VisitorService();
         $visitorService->addVisitor($visitor);
+        $photoController->processRequestFront($visitor->getCnp(), 'visitor');
         if ($visitor0->getVisitorName() != "") {
             $visitorService->addVisitor($visitor0);
+            $photoController->processRequestFront($visitor0->getCnp(), 'visitor', 1);
+
         } else if ($visitor1->getVisitorName() != "") {
             $visitorService->addVisitor($visitor0);
             $visitorService->addVisitor($visitor1);
+            $photoController->processRequestFront($visitor0->getCnp(), 'visitor', 2);
+            $photoController->processRequestFront($visitor1->getCnp(), 'visitor', 2);
+
         }
 
         $_SESSION['good'] = "Request submitted successfully!";

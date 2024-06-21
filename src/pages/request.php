@@ -75,7 +75,7 @@
 
 
         <label for="imageUpload">Photo with the visitor:</label>
-        <input type="file" id="imageUpload" class="form__field form__field--file" name="image" accept="image/*" multiple>
+        <input type="file" id="imageUpload" class="form__field form__field--file" name="fileToUpload" accept="image/*" multiple>
 
         <label for="email">Email:</label>
         <input type="email" id="email" class="form__field<?php echo $requestErrorClass; ?>" name="email" placeholder="Enter email">
@@ -125,7 +125,7 @@
                 const fields = [
                     { label: 'Visitor Name:', type: 'text', id: 'name_extra' + numClicks, name: 'name_extra' + numClicks, placeholder: 'Enter name' },
                     { label: 'CNP:', type: 'text', id: 'cnp_extra' + numClicks, name: 'cnp_extra' + numClicks, placeholder: 'Enter CNP' },
-                    { label: 'Photo with the visitor:', type: 'file', id: 'imageUpload_extra' + numClicks, name: 'image_extra' + numClicks, accept: 'image/*', multiple: true },
+                    { label: 'Photo with the visitor:', type: 'file', id: 'fileToUpload' + numClicks, name: 'image_extra' + numClicks, accept: 'image/*', multiple: true },
                     { label: 'Email:', type: 'email', id: 'email_extra' + numClicks, name: 'email_extra' + numClicks, placeholder: 'Enter email' },
                     { label: 'Phone Number:', type: 'tel', id: 'phone-number_extra' + numClicks, name: 'phone-number_extra' + numClicks, placeholder: 'Enter phone number' }
                 ];
