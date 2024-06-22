@@ -1,4 +1,8 @@
 <?php
+include_once "../app/models/Visitor.php";
+include_once "../app/models/Employee.php";
+include_once "../app/models/Witness.php";
+include_once "../app/models/VisitInfo.php";
 include_once "../app/services/VisitInfoService.php";
 include_once "../app/services/RequestService.php";
 include_once "../app/services/UserService.php";
@@ -44,7 +48,7 @@ class VisitInfoController
                     $response['visitor1_cnp']   = $visitor->getCnp();
                     $response['visitor1_email'] = $visitor->getEmail();
                     $response['visitor1_phone'] = $visitor->getPhoneNumber();
-                    $response['visitor1_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($visitorArray[0], 'visitors');
+                    $response['visitor1_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($visitor->getCnp(), 'visitors');
                 } else { //employee
                     $visitor = $witness->getEmployee();
                     $response['visitor1_type']  = 'employee';
@@ -62,7 +66,7 @@ class VisitInfoController
                     $response['visitor2_cnp'] = $visitor->getCnp();
                     $response['visitor2_email'] = $visitor->getEmail();
                     $response['visitor2_phone'] = $visitor->getPhoneNumber();
-                    $response['visitor2_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($visitorArray[1], 'visitors');
+                    $response['visitor2_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($visitor->getCnp(), 'visitors');
                 } else { //employee
                     $visitor = $witness->getEmployee();
                     $response['visitor2_type']  = 'employee';
@@ -80,7 +84,7 @@ class VisitInfoController
                     $response['visitor3_cnp'] = $visitor->getCnp();
                     $response['visitor3_email'] = $visitor->getEmail();
                     $response['visitor3_phone'] = $visitor->getPhoneNumber();
-                    $response['visitor3_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($visitorArray[2], 'visitors');
+                    $response['visitor3_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($visitor->getCnp(), 'visitors');
                 } else { //employee
                     $visitor = $witness->getEmployee();
                     $response['visitor3_type']  = 'employee';

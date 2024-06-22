@@ -117,7 +117,7 @@ switch ($uri[3]) {
     case 'visitinfo':
         $request = new VisitInfoController();
         if($_SERVER['REQUEST_METHOD'] == 'GET'){
-            $response = $authUController->validateJWT();
+            $response = $authAController->validateJWT();
             $type = $response->type;
             $username = $response->username;
 

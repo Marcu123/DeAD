@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class SeeVisitinfo extends Controller
 {
     public function index()
@@ -29,6 +29,7 @@ class SeeVisitinfo extends Controller
         $this->model('visitor');
         $this->model('employee');
         $this->model('user');
+        $this->model('request');
 
         $userService  = new UserService();
         $cnp = $userService->getCNPByUsername($_SESSION['username']);

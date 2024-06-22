@@ -1,6 +1,4 @@
-DROP FUNCTION bindWitness;
-
-CREATE FUNCTION bindWitness(p_visit_id INTEGER, p_witness_cnp VARCHAR)
+CREATE OR REPLACE FUNCTION bindWitness(p_visit_id INTEGER, p_witness_cnp VARCHAR)
     RETURNS BOOLEAN AS $$
 DECLARE
     v_ok BOOLEAN;

@@ -27,7 +27,7 @@
     <?php
     foreach($data as $visitInfo){
         $inmate = $visitInfo->getInmate();
-        $witnesses = $visitInfo->getWitness();
+        $witnesses = $visitInfo->getWitnesses();
         echo '<div class = "user-account">
             <h2>Visit Info: </h2>
             <div class="user-account__info">
