@@ -244,7 +244,6 @@ class InmateController
     public function search(array $uri)
     {
         require_once "../app/services/AdminService.php";
-        $data = json_decode(file_get_contents("php://input"), true);
 
         $criteria = array();
         if(isset($_GET['firstName'])){
@@ -282,11 +281,14 @@ class InmateController
 
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['content_type_header'] = 'Content-Type: application/json';
-        $inmatesArray = array_map(function($inmate) {
+
+        include_once "PhotoController.php";
+        $photoController = new PhotoController();
+        $inmatesArray = array_map(function($inmate) use ($photoController) {
 
             return [
                 'id' => $inmate->getId(),
-                'photo' => 'http://localhost/DeAD/api/uploads/inmates/' . $inmate->getCnp() . '.webp',
+                'photo' => 'http://localhost/DeAD/api/uploads/inmates/' . $photoController->findPhoto($inmate->getCnp(), 'inmates'),
                 'firstName' => $inmate->getFirstName(),
                 'lastName' => $inmate->getLastName(),
                 'cnp' => $inmate->getCnp(),

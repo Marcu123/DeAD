@@ -164,5 +164,21 @@ class PhotoController
         }
 
     }
+    public function findPhoto($pkey, $folder){
+        echo $pkey . " ";
+        $fileName = 'uploads/' . $folder . '/' . $pkey;
+        if(file_exists($fileName . '.png'))
+            return $pkey . '.png';
+        else if(file_exists($fileName . '.webp'))
+            return $pkey . '.webp';
+        else if(file_exists($fileName . '.jpg'))
+            return $pkey . '.jpg';
+        else if(file_exists($fileName . '.jpeg'))
+            return $pkey . '.jpeg';
+        else if(file_exists($fileName . '.gif'))
+            return $pkey . '.gif';
+        else
+            return null;
+    }
 
 }

@@ -21,4 +21,27 @@ class SeeVisitinfo extends Controller
 
         $this->view('visitinfo', ['visitInfo' => $visitInfo]);
     }
+    public function seeUser(){
+        $this->model('visitinfo');
+        $this->model('inmate');
+        $this->model('prison');
+        $this->model('witness');
+        $this->model('visitor');
+        $this->model('employee');
+        $this->model('user');
+
+        $userService  = new UserService();
+        $cnp = $userService->getCNPByUsername($_SESSION['username']);
+
+        $requestService = new RequestService();
+        $requestArray = $requestService->getAllRequestsByVisitorCnp($cnp);
+
+        $viService = new VisitInfoService();
+        $visitInfo = array();
+        foreach($requestArray as $request){
+            $visitInfo[] = $viService->getVisitInfoByRequestID($request->getId());
+        }
+
+        $this->view('visitinfouser', $visitInfo);
+    }
 }

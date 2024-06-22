@@ -11,6 +11,7 @@ include_once "ForgotPassword.php";
 include_once "RegisterController.php";
 include_once "ActivateController.php";
 include_once "PhotoController.php";
+include_once "VisitInfoController.php";
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -113,6 +114,15 @@ switch ($uri[3]) {
             $request->activate($uri);
         }
         break;
+    case 'visitinfo':
+        $request = new VisitInfoController();
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            $response = $authUController->validateJWT();
+            $type = $response->type;
+            $username = $response->username;
+
+            $request->search($username);
+        }
     default:
         header("HTTP/1.1 404 Not Found");
         exit();

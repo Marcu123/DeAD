@@ -85,6 +85,8 @@ class RequestController
                     $requestsArray = array_map(function($request) use ($visitorService, $requestService) {
                         $visitorArray = $visitorService->findVisitorsCnpsByRequestId($request->getId());
 
+                        include_once "PhotoController.php";
+                        $photoController = new PhotoController();
                         $response = [
                             'id' => $request->getId(),
                             'visitor_type' => $request->getVisitorType(),
@@ -99,7 +101,7 @@ class RequestController
                             'phone_number' => $requestService->getPhoneNumberByVisitorName($request->getVisitorName()),
                             'inmate_name' => $request->getInmateName(),
                             'inmate_cnp' => $request->getInmateCnp(),
-                            'photo' => 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($requestService->getCnpByVisitorName($request->getVisitorName()))
+                            'photo' => 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($requestService->getCnpByVisitorName($request->getVisitorName()), 'visitors')
                         ];
 
                         if (isset($visitorArray[2])) {
@@ -107,7 +109,7 @@ class RequestController
                             $response['visitor1_cnp'] = $visitorArray[2];
                             $response['visitor1_email'] = $visitorService->getEmailByCnp($visitorArray[2]);
                             $response['visitor1_phone'] = $visitorService->getPhoneNumberByCnp($visitorArray[2]);
-                            $response['visitor1_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($visitorArray[2]);
+                            $response['visitor1_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($visitorArray[2], 'visitors');
                         }
 
                         if(isset($visitorArray[4])){
@@ -115,7 +117,7 @@ class RequestController
                             $response['visitor2_cnp'] = $visitorArray[4];
                             $response['visitor2_email'] = $visitorService->getEmailByCnp($visitorArray[4]);
                             $response['visitor2_phone'] = $visitorService->getPhoneNumberByCnp($visitorArray[4]);
-                            $response['visitor2_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($visitorArray[4]);
+                            $response['visitor2_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($visitorArray[4], 'visitors');
                         }
 
                         return $response;
@@ -166,6 +168,9 @@ class RequestController
                     $requestsArray = array_map(function($request) use ($visitorService, $userService) {
                         $visitorArray = $visitorService->findVisitorsCnpsByRequestId($request->getId());
 
+                        include_once "PhotoController.php";
+                        $photoController = new PhotoController();
+
                         $response = [
                             'id' => $request->getId(),
                             'visitor_type' => $request->getVisitorType(),
@@ -180,7 +185,7 @@ class RequestController
                             'phone_number' => $userService->getPhoneByUsername($this->username),
                             'inmate_name' => $request->getInmateName(),
                             'inmate_cnp' => $request->getInmateCnp(),
-                            'photo' => 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($userService->getCNPByUsername($this->username))
+                            'photo' => 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($userService->getCNPByUsername($this->username), 'visitors')
                         ];
 
                         if (isset($visitorArray[2])) {
@@ -188,7 +193,7 @@ class RequestController
                             $response['visitor1_cnp'] = $visitorArray[2];
                             $response['visitor1_email'] = $visitorService->getEmailByCnp($visitorArray[2]);
                             $response['visitor1_phone'] = $visitorService->getPhoneNumberByCnp($visitorArray[2]);
-                            $response['visitor1_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($visitorArray[2]);
+                            $response['visitor1_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($visitorArray[2], 'visitors');
                         }
 
                         if(isset($visitorArray[4])){
@@ -196,7 +201,7 @@ class RequestController
                             $response['visitor2_cnp'] = $visitorArray[4];
                             $response['visitor2_email'] = $visitorService->getEmailByCnp($visitorArray[4]);
                             $response['visitor2_phone'] = $visitorService->getPhoneNumberByCnp($visitorArray[4]);
-                            $response['visitor2_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $this->findPhoto($visitorArray[4]);
+                            $response['visitor2_photo'] = 'http://localhost/DeAD/api/uploads/visitors/' . $photoController->findPhoto($visitorArray[4], 'visitors');
                         }
 
                         return $response;
@@ -340,21 +345,4 @@ class RequestController
         ]);
         return $response;
     }
-    public function findPhoto($pkey){
-        echo $pkey . " ";
-        $fileName = 'uploads/visitors/' . $pkey;
-        if(file_exists($fileName . '.png'))
-            return $pkey . '.png';
-        else if(file_exists($fileName . '.webp'))
-            return $pkey . '.webp';
-        else if(file_exists($fileName . '.jpg'))
-            return $pkey . '.jpg';
-        else if(file_exists($fileName . '.jpeg'))
-            return $pkey . '.jpeg';
-        else if(file_exists($fileName . '.gif'))
-            return $pkey . '.gif';
-        else
-            return null;
-    }
-
 }
