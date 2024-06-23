@@ -11,7 +11,9 @@ class Updateinmate extends Controller
         $this->view('updateinmate');
     }
     public function update(){
+        $this->model('admin');
         $this->model('inmate');
+        $this->model('prison');
 
         $criteria = [];
 
@@ -25,14 +27,22 @@ class Updateinmate extends Controller
 
         $cnp = $_POST['prisoner-cnp'];
 
-        if(count($criteria) != 0){
-            $this->model('inmate');
-            $this->model('prison');
-            $iService = new InmateService();
+        $inmateService = new InmateService();
+        $adminService  = new AdminService();
 
-            $iService->updateByCriteria($cnp, $criteria);
+        $prisonID = $adminService->getPrisonIdByUsername($_SESSION['username_adm']);
+        $inmateService = new InmateService();
+        $inmate = $inmateService->getInmateByCnp($cnp);
+        //check for same prison
+        if($prisonID == $inmateService->getInmatePrisonId($inmate->getId())){
+            if(count($criteria) != 0){
+                $this->model('inmate');
+                $this->model('prison');
+                $iService = new InmateService();
 
-            header('Location: ../UpdateInmate');
+                $iService->updateByCriteria($cnp, $criteria);
+            }
         }
+        header('Location: ../UpdateInmate');
     }
 }

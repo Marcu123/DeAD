@@ -20,5 +20,6 @@ class Addvisitinfo extends Controller
                                     explode(", ", $_POST['witness']));
         $vService = new VisitInfoService();
         $vService->create($visitInfo);
+        header('Location: ../Addvisitinfo');
     }
 }

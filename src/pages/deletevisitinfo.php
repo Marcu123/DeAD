@@ -22,7 +22,7 @@
 
   <main>
     <h1 class="header">Delete Visit Info</h1>
-    <form action="#" method="post" class = "form">
+    <form action="Deletevisitinfo/delete" method="post" class = "form">
         <label for="id">Request id: </label>
         <input type="text" class="form__field" name="id" id="id" placeholder="" autocomplete="off" required>
         <button type="submit" class="form__button">Delete</button>

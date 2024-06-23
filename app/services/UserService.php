@@ -21,23 +21,20 @@ class UserService
         $activationCode = $user->getActivationCode();
 
         try{
-            $stmt = $this->db->prepare('INSERT INTO users (username, password, email, cnp, phone_number, photo, account_created, last_logged,enabled,activation_code) values (:username, :password, :email, :cnp, :phone_number, :photo, now(), now(), :enabled, :activation_code)');
+            $stmt = $this->db->prepare('SELCECT insertUser(:username, :password, :email, :cnp, :phone_number, :activation_code) code');
             $stmt->bindParam(':username',$username , PDO::PARAM_STR);
             $stmt->bindParam(':password', $password, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
             $stmt->bindParam(':phone_number', $phone, PDO::PARAM_STR);
-            $stmt->bindParam(':photo', $photo, PDO::PARAM_STR);
-            $stmt->bindValue(':enabled', false, PDO::PARAM_BOOL);
             $stmt->bindParam(':activation_code', $activationCode, PDO::PARAM_STR);
             $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             trigger_error('Error in ' . __METHOD__ . ': ' . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
-
-        return true;
-
+        return $row['code'];
     }
 
     public function getUserByUsername($username)

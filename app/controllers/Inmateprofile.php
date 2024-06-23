@@ -5,7 +5,6 @@ class Inmateprofile extends Controller
     public function index()
     {
         session_start();
-        $inmates = [];
         $criteria = [];
 
         foreach ($_GET as $key => $value) {
@@ -29,6 +28,7 @@ class Inmateprofile extends Controller
 
             $this->view('inmateprofile', $inmates);
         }
+        else $this->view('inmateprofile');
     }
 
     private function findInmatePhoto($cnp)

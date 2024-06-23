@@ -9,6 +9,12 @@ class Updatevisitinfo extends Controller
 
     public function update(){
         $this->model('visitinfo');
+        $this->model('admin');
+        $this->model('inmate');
+        $this->model('prison');
+
+        $adminService = new AdminService();
+        $prisonService = new PrisonService();
 
         $criteria = [];
 
@@ -21,12 +27,15 @@ class Updatevisitinfo extends Controller
         }
 
         $requestID = $_POST['id'];
+        $prisonID = $adminService->getPrisonIdByUsername($_SESSION['username_adm']);
+
+        if($prisonID == $prisonService->getPrisonIdByRequestId($requestID))
 
         if(count($criteria) != 0){
-            $this->model('visitinfo');
             $viService = new VisitInfoService();
 
-            $viService->updateByCriteria($requestID, $criteria);
+            if($prisonID == $prisonService->getPrisonIdByRequestId($requestID))
+                $viService->updateByCriteria($requestID, $criteria);
 
             header('Location: ../UpdateVisitInfo');
         }

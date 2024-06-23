@@ -1,5 +1,7 @@
 <?php
-
+const USERNAME_TAKEN = 1;
+const EMAIL_TAKEN = 2;
+const CNP_TAKEN = 3;
 
 class Userlog extends Controller
 {

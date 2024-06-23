@@ -26,6 +26,7 @@
             <p class="user-account__info__text">No inmate found</p>
         </div>
       </div>';
+        echo '<div style="padding:90px; margin:90px;"></div>';
     } else {
         foreach ($data as $inmate) {
             echo '<div class="user-account">

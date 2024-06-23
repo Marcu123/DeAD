@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../app/models/Inmate.php';
 require_once '../app/db/Database.php';
 class InmateService {
@@ -256,13 +256,13 @@ class InmateService {
      * Deletes inmate with specified cnp
      *
      * @param string $cnp
-     * @return void
+     * @return boolean
      */
     public function deleteInmate(string $cnp){
         try{
             $stmt = $this->db->prepare("DELETE FROM inmate where cnp = :cnp");
             $stmt->bindParam(':cnp', $cnp, PDO::PARAM_STR);
-            $stmt->execute();
+            return $stmt->execute();
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
         }
@@ -276,6 +276,7 @@ class InmateService {
      * @return void
      */
     public function updateByCriteria(string $cnp, array $criteria){
+
         $query = "UPDATE inmate SET ";
         $first = true;
 
@@ -303,5 +304,6 @@ class InmateService {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
         }
     }
+
 }
 

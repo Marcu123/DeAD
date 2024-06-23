@@ -58,7 +58,6 @@
         <div class="panel__info">
           <div class="panel__text">Prison: <?php echo $_SESSION['prison_name']?></div>
           <div class="panel__text">Number of inmates: <?php echo $_SESSION['inmates_nr']?></div>
-          <div class="panel__text">Number of employees: <?php echo $_SESSION['empl_nr']?></div>
           <div class="panel__text">New visit requests: <?php echo $_SESSION['requests_nr']?></div>
           
         </div>

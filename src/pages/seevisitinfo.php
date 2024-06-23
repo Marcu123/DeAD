@@ -21,7 +21,7 @@
 
   <main>
     <h1 class="header">See Visit Info</h1>
-    <form action="seevisitinfo/see" method="get" class = "form">
+    <form action="seevisitinfo" method="get" class = "form">
         <label for="id">Request Id: </label>
         <input type="text" class="form__field" name="id" id="id" placeholder="" autocomplete="off" required>
         <button type="submit" class="form__button">Submit</button>

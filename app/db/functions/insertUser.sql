@@ -3,7 +3,8 @@ CREATE OR REPLACE FUNCTION insertUser(p_username varchar(30),
 									  p_password varchar(30),
 									  p_email varchar(30),
 									  p_cnp varchar(30),
-									  p_phone_number varchar(30)
+									  p_phone_number varchar(30),
+                                      p_activation_code text
 									  )
 RETURNS integer AS $code$
 DECLARE
@@ -28,8 +29,8 @@ BEGIN
 	END IF;
 	
 	IF code = 0 THEN
-		INSERT INTO users(username, password, email, cnp, phone_number, account_created) 
-		VALUES (p_username, p_password, p_email, p_cnp, p_phone_number, sysdate);
+		INSERT INTO users(username, password, email, cnp, phone_number, account_created, enabled, activation_code)
+		VALUES (p_username, p_password, p_email, p_cnp, p_phone_number, now(), false, p_activation_code);
 	END IF;
 	
 	RETURN code;

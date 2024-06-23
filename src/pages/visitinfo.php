@@ -12,16 +12,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../src/styles/inmateprofile.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../src/styles/inmateprofile.css">
 
-    <link rel="stylesheet" href="../../src/styles/common/body.css" >
-    <link rel="stylesheet" href="../../src/styles/common/header.css" >
+    <link rel="stylesheet" href="../src/styles/common/body.css" >
+    <link rel="stylesheet" href="../src/styles/common/header.css" >
 
-    <link rel="stylesheet" href="../../src/styles/common/navbar.css" >
-    <link rel="stylesheet" href="../../src/styles/common/footer.css" >
-    <link rel="stylesheet" href="../../src/styles/common/form.css">
-    <title>Inmate profile</title>
+    <link rel="stylesheet" href="../src/styles/common/navbar.css" >
+    <link rel="stylesheet" href="../src/styles/common/footer.css" >
+    <link rel="stylesheet" href="../src/styles/common/form.css">
+    <title>Visit Info</title>
 </head>
 
 <body>
@@ -35,6 +35,7 @@
                 <p class = "user-account__info__text">No VisitInfo found</p>
             </div>
         </div>';
+        echo '<div style="padding:90px; margin:90px;"></div>';
     } else {
         echo '<div class = "user-account">
             <h2>Visit Info: </h2>

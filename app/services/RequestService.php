@@ -249,9 +249,7 @@ class RequestService
             return $row['date_of_visit'];
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
-            return false;
         }
     }
-
 
 }
