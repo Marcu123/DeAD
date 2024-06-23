@@ -61,6 +61,21 @@ class RequestService
         }
     }
 
+    public function existsRequestById($request_id){
+        try{
+            $stmt = $this->db->prepare("SELECT * FROM request WHERE id = :id");
+            $stmt->bindParam(':id', $request_id, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($row){
+                return true;
+            }
+            return false;
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+    }
+
     public function getCnpByVisitorName($visitorName){
         try{
             $stmt = $this->db->prepare("SELECT cnp FROM visitor WHERE visitor_name = :visitor_name");

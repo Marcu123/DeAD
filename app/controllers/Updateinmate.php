@@ -11,6 +11,7 @@ class Updateinmate extends Controller
         $this->view('updateinmate');
     }
     public function update(){
+        session_start();
         $this->model('admin');
         $this->model('inmate');
         $this->model('prison');
@@ -33,6 +34,12 @@ class Updateinmate extends Controller
         $prisonID = $adminService->getPrisonIdByUsername($_SESSION['username_adm']);
         $inmateService = new InmateService();
         $inmate = $inmateService->getInmateByCnp($cnp);
+        if(!$inmate){
+            unset($_SESSION['error']);
+            $_SESSION['error'] = 'Inmate not found';
+            header('Location: ../UpdateInmate');
+            return;
+        }
         //check for same prison
         if($prisonID == $inmateService->getInmatePrisonId($inmate->getId())){
             if(count($criteria) != 0){
@@ -41,7 +48,9 @@ class Updateinmate extends Controller
                 $iService = new InmateService();
 
                 $iService->updateByCriteria($cnp, $criteria);
+                $_SESSION['good'] = 'Inmate updated';
             }
+
         }
         header('Location: ../UpdateInmate');
     }

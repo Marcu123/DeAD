@@ -98,7 +98,7 @@ class Userlog extends Controller
             $userService = new UserService();
 
 
-            if ($userService->registerUser($user)) {
+            if ($userService->registerUser($user)==0) {
                 include_once "../api/PhotoController.php";
                 $photoController = new PhotoController();
 

@@ -23,18 +23,19 @@ class Addinmate extends Controller
 
         $inmate = new Inmate(0, 
         'test', 
-        $_GET['first_name'], 
-        $_GET['last_name'],
-        $_GET['prisoner-cnp'],
-        $_GET['age'],
-        $_GET['gender'],
+        $_POST['first_name'],
+            $_POST['last_name'],
+            $_POST['prisoner-cnp'],
+            $_POST['age'],
+            $_POST['gender'],
         $prisonID,
-        $_GET['date'],
-        $_GET['end'],
-        $_GET['crime']);
+            $_POST['date'],
+            $_POST['end'],
+            $_POST['crime']);
 
         $inmateService = new InmateService();
         $result = $inmateService->addInmate($inmate);
+        $prisonerCNP = $_POST['prisoner-cnp'];
         //cnp check
         if($result === 2){
 
@@ -46,6 +47,13 @@ class Addinmate extends Controller
         //exists check
         if($result === 0){
             file_put_contents('debug.txt', "bun", FILE_APPEND);
+            include_once "../api/PhotoController.php";
+            $photoController = new PhotoController();
+            file_put_contents("dada.txt", $_SERVER['REQUEST_METHOD']. "    " .print_r($_FILES,true), FILE_APPEND);
+
+            $photoController->processRequestFront($prisonerCNP, 'inmate');
+
+            $_SESSION['inmates_nr']++;
             $_SESSION['good'] = 'Inmate added successfully';
 
         }

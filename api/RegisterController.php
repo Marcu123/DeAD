@@ -13,7 +13,6 @@ class RegisterController
             $this->badRequest();
             exit;
         }
-        echo 'aici';
         if(isset($_POST['password'])){
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         } else{
@@ -60,14 +59,13 @@ class RegisterController
 
         require_once '../app/services/UserService.php';
         $userService = new UserService();
-
-        if ($userService->registerUser($user)) {
+        if ($userService->registerUser($user)===0) {
             include_once "PhotoController.php";
             $photoController = new PhotoController();
             $photoController->processRequest($user->getCnp(), 'user');
             $to = $user->getEmail();
             $subject = 'Activation code';
-            $message = 'Please visit to following page and activate your account with the following code: ' . $user->getActivationCode() . ' http://localhost/DeAD/public/activate';
+            $message = 'Please visit to following page and activate your account with the following code: ' . $randomString . ' http://localhost/DeAD/public/activate';
             $headers = array(
                 'From' => 'marcugames03@gmail.com',
                 'Reply-To' => 'marcugames03@gmail.com',

@@ -21,7 +21,7 @@ class UserService
         $activationCode = $user->getActivationCode();
 
         try{
-            $stmt = $this->db->prepare('SELCECT insertUser(:username, :password, :email, :cnp, :phone_number, :activation_code) code');
+            $stmt = $this->db->prepare('SELECT insertUser(:username, :password, :email, :cnp, :phone_number, :activation_code) code');
             $stmt->bindParam(':username',$username , PDO::PARAM_STR);
             $stmt->bindParam(':password', $password, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);

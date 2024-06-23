@@ -25,7 +25,7 @@
         Add Inmate
     </h1>
 
-    <form action="Addinmate/Add" method="get" class="form">
+    <form action="Addinmate/Add" method="post" class="form" enctype="multipart/form-data">
         <?php
 
         if(isset($_SESSION['error']))
@@ -56,6 +56,10 @@
 
         <label for="gender">Gender</label>
         <input type="text" class="form__field<?php echo $inmateErrorClass; ?>" id="gender" name="gender" required>
+
+        <label for="fileToUpload">Photo: </label>
+        <input type="file" id="fileToUpload" class="form__field form__field--file" name="fileToUpload" accept="image/*" multiple>
+
 
         <label for="date">Date of incarceration</label>
         <input type="text" class="form__field<?php echo $inmateErrorClass; ?>" id="date" name="date" required>

@@ -19,40 +19,56 @@
     <ol role="directory">
       <li><a href="#abstract"><span>1. </span>Abstract</a></li>
       <li><a href="#introduction"><span>2. </span>Introduction</a></li>
-      <li><a href="#structure"><span>3. </span>Structure</a>
+      <li><a href="#structure-f"><span>3. </span>Frontend Structure</a>
         <ol role="directory">
           <li><a href="#navbar"><span>3.1 </span>The navbar</a></li>
           <li><a href="#footer"><span>3.2 </span>The footer</a></li>
           <li><a href="#home"><span>3.3 </span>The home page</a></li>
-          <li><a href="#search-inmate"><span>3.2 </span>The search inmate page</a></li>
-          <li><a href="#request"><span>3.3 </span>The request page</a></li>
-          <li><a href="#user-account"><span>3.4 </span>The user account page</a></li>
-          <li><a href="#admin-account"><span>3.5 </span>The admin account page</a></li>
+          <li><a href="#search-inmate"><span>3.4 </span>The search inmate page</a></li>
+          <li><a href="#request"><span>3.5 </span>The request page</a></li>
+          <li><a href="#user-account"><span>3.6 </span>The user account page</a></li>
+          <li><a href="#admin-account"><span>3.7 </span>The admin account page</a></li>
         </ol>
       </li>
-      <li><a href="#features"><span>4. </span>Features</a>
+      <li><a href="#structure-b"><span>4. </span>Backend Structure</a>
         <ol role="directory">
-          <li><a href="auth-user"><span>4.1</span>Authentication for users</a></li>
-          <li><a href="auth-admin"><span>4.2</span>Authentication for admins</a></li>
-          <li><a href="#search-by-cnp"><span>4.3 </span>Search by CNP</a></li>
-          <li><a href="#search-by-info"><span>4.4 </span>Search by info</a></li>
-          <li><a href="#uad"><span>4.5 </span>User Account Administration (for logged users)</a></li>
-          <li><a href="#request-history"><span>4.6 </span>Request history (for logged users)</a></li>
-          <li><a href="#visit-history"><span>4.7 </span>Visit history (for logged users)</a></li>
-          <li><a href="#inmate-admin"><span>4.8 </span>Inmate administration (for admins)</a></li>
-          <li><a href="#visit-info-admin"><span>4.9 </span>Visit info administration (for admins)</a>
-          <li><a href="#request-administration"><span>4.10 </span>Requests administration (for admins)</a>
-          <li><a href="#generate-statistics"><span>4.11 </span>Generate statistics(for admins)</a>
-          <li><a href="#ban-user"><span>4.12 </span>Ban user (for admins)</a>
+          <li><a href="#folder"><span>4.1 </span>Folder Structure</a></li>
+          <li><a href="#mvc"><span>4.2 </span>MVC</a></li>
+          <li><a href="#init"><span>4.3 </span>init.php</a></li>
+          <li><a href="#database"><span>4.4 </span>Database</a></li>
+          <li><a href="#login"><span>4.5 </span>Login</a></li>
+          <li><a href="#rest-api"><span>4.6 </span>REST API</a></li>
+
         </ol>
       </li>
-      <li><a href="#version-control"><span>5. </span>Version-control</a></li>
-      <li><a href="#security"><span>6. </span>Security</a>
+      <li><a href="#features"><span>5. </span>Features</a>
         <ol role="directory">
-          <li><a href="#sql"><span>6.1</span>SQL Injection</a></li>
+          <li><a href="#auth-user"><span>5.1</span>Authentication for users</a></li>
+          <li><a href="#auth-admin"><span>5.2</span>Authentication for admins</a></li>
+          <li><a href="#search-by-cnp"><span>5.3 </span>Search by CNP</a></li>
+          <li><a href="#search-by-info"><span>5.4 </span>Search by info</a></li>
+          <li><a href="#uad"><span>5.5 </span>User Account Administration (for logged users)</a></li>
+          <li><a href="#request-history"><span>5.6 </span>Request history (for logged users)</a></li>
+          <li><a href="#visit-history"><span>5.7 </span>Visit history (for logged users)</a></li>
+          <li><a href="#inmate-admin"><span>5.8 </span>Inmate administration (for admins)</a></li>
+          <li><a href="#visit-info-admin"><span>5.9 </span>Visit info administration (for admins)</a>
+          <li><a href="#request-administration"><span>5.10 </span>Requests administration (for admins)</a>
+          <li><a href="#generate-statistics"><span>5.11 </span>Generate statistics(for admins)</a>
+          <li><a href="#ban-user"><span>5.12 </span>Ban user (for admins)</a>
         </ol>
       </li>
-      <li><a href="#resources"><span>7. </span>Resources</a></li>
+      <li><a href="#rest"><span>6. </span>Rest API</a></li>
+      <li><a href="#version-control"><span>7. </span>Version-control</a></li>
+      <li><a href="#security"><span>8. </span>Security</a>
+        <ol role="directory">
+          <li><a href="#sql"><span>8.1 </span>SQL Injection</a></li>
+          <li><a href="#hash"><span>8.2 </span>Password-Hashing</a></li>
+            <li><a href="#xss"><span>8.3 </span>Cross-Site Scripting</a></li>
+
+
+        </ol>
+      </li>
+      <li><a href="#resources"><span>9. </span>Resources</a></li>
     </ol>
     <dl>
       <dt>Authors</dt>
@@ -87,19 +103,23 @@
       documents -- based on the data collected.
     </p>
     <p>
+      The web application will have a REST API for the main features.
+      It will serve as a bridge for other applications that want to use the data from DeAD.
+    </p>
+    <p>
       Our high-level goals are to:
     </p>
     <ul>
       <li>Enable structured statistics, accessibility, and internationalisation.</li>
-      <li>Be fully funcitioning on modern Web browsers.</li>
+      <li>Be fully functioning on modern Web browsers.</li>
       <li>Be easy to use for anyone.</li>
       <li>Connect people faster.</li>
 
     </ul>
 
   </section>
-  <section id="structure">
-    <h2><span>3. </span>Structure</h2>
+  <section id="structure-f">
+    <h2><span>3. </span>Frontend Structure</h2>
     <p>
       DeAD is a well-structured web application, which includes multiple pages that have two common components, the
       header and the footer.
@@ -254,7 +274,7 @@
         </code>
       </pre>
       <section id="search-inmate">
-        <h3><span>3.2 </span>The search inmate page</h3>
+        <h3><span>3.4 </span>The search inmate page</h3>
         <p>The search inmate page provides a form where the user needs to complete the fields in order to find the
           desired inmate. As many fields are completed,
           the end result will be more accurate.
@@ -268,7 +288,7 @@
 
       </section>
       <section id="request">
-        <h3><span>3.3 </span>The request page</h3>
+        <h3><span>3.5 </span>The request page</h3>
         <p>The request visit page is used to place a visit request for an specific inmate. </p>
         <p>The following fields must be completed: name of the visitor(s), visitor's type, date, reason, CNP(s), photo,
           email(s), phone number(s), inmate's CNP.</p>
@@ -277,44 +297,460 @@
 
       </section>
       <section id="user-account">
-        <h3><span>3.4 </span>The user account page</h3>
+        <h3><span>3.6 </span>The user account page</h3>
         <p>The user account page provides logged users with extra functionalities such as: request auto-complete and the
           ability to see request and visit history. </p>
       </section>
     </section>
 
     <section id="admin-account">
-      <h3><span>3.5 </span>The admin account page</h3>
+      <h3><span>3.7 </span>The admin account page</h3>
       <p>The admin account page provides an interface for the admin to interact with the database and our statistics
         engine under certain constraints defined by the
         prison that he is working for. Here, he can also manage the requests and the users.</p>
 
     </section>
+
+  </section>
+
+  <section id="structure-b">
+    <h2><span>4. </span>Backend Structure</h2>
+    <p>
+      The backend of the web application is made with PHP and uses the MVC pattern. Xampp was used as a local server for the development of the web application.
+        The main components of the backend are the controllers, the models, and the views.
+        The web app relies on a database in PostgreSQL.
+        Rest API is used for the connection between the web application and other applications that want to use the data from DeAD.
+    </p>
+
+  <section id="folder">
+      <h3><span>4.1 </span>Folder Structure</h3>
+      <p>
+        The folder structure of the backend is as follows:
+          - app
+            - controllers (here are the controllers for every .php file)
+            - db (here is the database connection, the config file and triggers and functions in PostgreSQL)
+            - models (here are the models for every .php file; the models are used to interact with the database)
+            - services (here are the services for every .php file; the controllers are using the services to interact with the database)
+            - core (here are the core files; they are used to load the controllers, models, and views)
+      </p>
+  </section>
+      <section id="mvc">
+          <h3><span>4.2 </span>MVC</h3>
+          <p>
+            The MVC pattern is used in the backend of the web application. The controllers are used to handle the requests from the user, the models are used to interact with the database, and the views are used to display the data to the user.
+          </p>
+      </section>
+      <section id="init">
+          <h3><span>4.3 </span>init.php</h3>
+          <p>The init.php file is used to load the controllers, models, and views. It is the entry point of the web application.
+          </p>
+      </section>
+      <section id="database">
+          <h3><span>4.4 </span>Database</h3>
+          <p>We used PostgreSQL as the primary database for this project due to its robustness, scalability,
+              and advanced features like MVCC, point in time recovery, tablespaces, asynchronous replication, nested transactions,
+              online/hot backups, a sophisticated query planner/optimizer, and write ahead logging for fault tolerance.</p>
+      </section>
+      <section id="login">
+          <h3><span>4.5 </span>Login</h3>
+          <p>
+              In the login controller and page, the user will be able to log in using the username and password. The password is hashed using the password_hash() function in PHP.
+              When the login is successful, some of his credentials will be saved in the session.
+
+              <pre>
+          <code>
+              class Userlog extends Controller
+{
+
+    public function index()
+    {
+        session_start();
+        if (isset($_SESSION['username'])) {
+            header('Location: userprofile');
+        } else if (isset($_SESSION['username_adm'])) {
+            header('Location: adminpanel');
+        } else {
+            $this->view('userlog');
+        }
+        unset($_SESSION['error']);
+
+    }
+
+    public function login()
+    {
+        session_start();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['log_btn'])) {
+            require_once '../app/services/UserService.php';
+            $userService = new UserService();
+
+
+            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+            if ($userService->getUserByUsername($username) && $userService->getEnabledByUsername($username)) {
+                if (password_verify($password, $userService->getPasswordByUsername($username))) {
+
+                    $_SESSION['username'] = $username;
+                    $_SESSION['password'] = $password;
+
+                    $_SESSION['cnp'] = $userService->getCNPByUsername($username);
+                    $_SESSION['email'] = $userService->getEmailByUsername($username);
+                    $_SESSION['phone_number'] = $userService->getPhoneByUsername($username);
+                    unset($_SESSION['error']);
+                    unset($_SESSION['good']);
+
+                    header('Location: ../userprofile');
+
+                } else {
+                    $_SESSION['error'] = "Invalid username or password";
+                    header('Location: ../userlog');
+
+                }
+            } else {
+                $_SESSION['error'] = "Invalid username or password";
+                header('Location: ../userlog');
+
+            }
+        }
+
+    }
+          </code>
+      </pre>
+          </p>
+      </section>
+
+      <section id="rest-api">
+          <h3><span>3.6 </span>REST API</h3>
+          <p>The REST API is a bridge between the web application and other applications that want to use the data from DeAD.</p>
+          <p>The following code will be the request handler for the REST API:</p>
+          <pre>
+          <code>
+            ?php
+require_once "../app/db/Database.php";
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/DeAD/vendor/autoload.php');
+include_once "AuthUController.php";
+include_once "AuthAController.php";
+include_once "RequestController.php";
+include_once "UserBanController.php";
+include_once "InmateController.php";
+include_once "StatisticsController.php";
+include_once "ForgotPassword.php";
+include_once "RegisterController.php";
+include_once "ActivateController.php";
+include_once "PhotoController.php";
+include_once "VisitInfoController.php";
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+$db = Database::getConnection();
+
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = explode( '/', $uri );
+
+$requestMethod = $_SERVER["REQUEST_METHOD"];
+
+$authUController = new AuthUController($db, $requestMethod);
+$authAController = new AuthAController($db, $requestMethod);
+
+switch ($uri[3]) {
+    case 'auth-user':
+        $authUController->processRequest();
+        break;
+    case 'auth-admin':
+        $authAController->processRequest();
+        break;
+    case 'request':
+        $response = $authAController->validateJWT();
+        $type = $response->type;
+        $username = $response->username;
+
+        $request = new RequestController($db, $requestMethod, $type,$username,$uri);
+        $request->processRequest();
+        break;
+    case 'request-nolog':
+        $request = new RequestController($db, $requestMethod, 'nolog',null,$uri);
+        $request->processRequest();
+        break;
+    case 'ban':
+        $response = $authAController->validateJWT();
+        $type = $response->type;
+        $username = $response->username;
+
+        $request = new UserBanController($db, $requestMethod, $type,$uri);
+        $request->processRequest();
+        break;
+    case 'statistics':
+        $response = $authAController->validateJWT();
+        $type = $response->type;
+        $username = $response->username;
+
+        $request = new StatisticsController($db, $requestMethod, $username, $type,$uri);
+        $request->processRequest();
+        break;
+    case 'forgot-password':
+        $request = new ForgotPassword($db, $requestMethod);
+        $request->processRequest();
+        break;
+    case 'upload':
+
+        $request = new PhotoController();
+        //$request->processRequest($pkey, $type);
+        break;
+    case 'inmates':
+        $request = new InmateController($uri);
+
+        if($_SERVER["REQUEST_METHOD"] == "DELETE") {
+            $response = $authAController->validateJWT();
+            $type = $response->type;
+            $username = $response->username;
+
+            $request->delete($uri, $type, $username);
+        } else if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $response = $authAController->validateJWT();
+            $type = $response->type;
+            $username = $response->username;
+
+            $request->create($type, $username);
+        } else if($_SERVER["REQUEST_METHOD"] == "PUT"){
+            $response = $authAController->validateJWT();
+            $type = $response->type;
+            $username = $response->username;
+
+            $request->update($uri, $type, $username);
+        } else if($_SERVER["REQUEST_METHOD"] == "GET"){
+            $request->search($uri);
+        }
+        break;
+    case 'register':
+        $request = new RegisterController();
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $request->register();
+        }
+        break;
+    case 'activate':
+        $request = new ActivateController();
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $request->activate($uri);
+        }
+        break;
+    case 'visitinfo':
+        $request = new VisitInfoController();
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            $response = $authAController->validateJWT();
+            $type = $response->type;
+            $username = $response->username;
+
+            $request->search($username);
+        }
+    default:
+        header("HTTP/1.1 404 Not Found");
+        exit();
+}
+
+          </code>
+        </pre>
+
+          <p>The controllers will be structured as the following one:</p>
+          <pre>
+        <code>
+
+
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+class AuthAController
+{
+    private $db;
+    private $requestMethod;
+    private $domainName = "https://127.0.0.1";
+
+    public function __construct($db, $requestMethod)
+    {
+        $this->db = $db;
+        $this->requestMethod = $requestMethod;
+    }
+
+    public function processRequest() {
+        switch ($this->requestMethod) {
+            case 'POST':
+                $response = $this->createJWT();
+                break;
+            default:
+                $response = $this->notFoundResponse();
+                break;
+        }
+
+        header($response['status_code_header']);
+        header($response['content_type_header']);
+        if ($response['body']) {
+            echo $response['body'];
+        }
+    }
+
+    private function unprocessableEntityResponse() {
+        $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
+        $response['content_type_header'] = 'Content-Type: application/json';
+        $response['body'] = json_encode([
+            'message' => 'Invalid input'
+        ]);
+        return $response;
+    }
+
+
+    private function createJWT() {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!isset($data['username'])) {
+            return $this->unprocessableEntityResponse();
+        }
+
+        $secret_Key = $this->secret_Key;
+        $date = new DateTimeImmutable();
+        $expire_at = $date->modify('+600 minutes')->getTimestamp();
+        $domainName = $this->domainName;
+
+        require_once "../app/services/AdminService.php";
+
+        $adminService = new AdminService();
+        $admin = $adminService->getAdminByUsername($data['username']);
+        if(!$admin){
+            return $this->unprocessableEntityResponse();
+        }
+        $password = $adminService->getPasswordByUsername($data['username']);
+
+        if (!password_verify($data['password'], $password)){
+            return $this->unprocessableEntityResponse();
+        }
+        $username = $data['username'];
+
+
+
+
+        $request_data = [
+            'iat' => $date->getTimestamp(), // Issued at: time when the token was generated
+            'iss' => $domainName,           // Issuer
+            'nbf' => $date->getTimestamp(), // Not before
+            'exp' => $expire_at,            // Expire
+            'username' => $username,        // User name
+            'type' => 'admin'                // Type of user
+        ];
+
+        $jwt = JWT::encode($request_data, $secret_Key, 'HS512');
+
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+        $response['body'] = json_encode([
+            'jwt' => $jwt
+        ]);
+
+        return $response;
+    }
+
+
+    private function checkJWTExistance() {
+        if (!preg_match('/Bearer\s(\S+)/', $this->getAuthorizationHeader(), $matches)) {
+            header('HTTP/1.0 400 Bad Request');
+            echo 'Token not found in request';
+            exit;
+        }
+        return $matches[1];
+    }
+
+    private function getAuthorizationHeader() {
+        $headers = null;
+        if (isset($_SERVER['Authorization'])) {
+            $headers = trim($_SERVER["Authorization"]);
+        } elseif (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+            $headers = trim($_SERVER["HTTP_AUTHORIZATION"]);
+        } elseif (function_exists('apache_request_headers')) {
+            $requestHeaders = apache_request_headers();
+            $requestHeaders = array_combine(array_map('ucwords', array_keys($requestHeaders)), array_values($requestHeaders));
+            if (isset($requestHeaders['Authorization'])) {
+                $headers = trim($requestHeaders['Authorization']);
+            }
+        }
+        if(!$headers){
+            header('HTTP/1.0 400 Bad Request');
+            echo 'Token not found in request';
+            exit;
+        }
+        return $headers;
+    }
+
+    public function validateJWT() {
+        $secret_Key = $this->secret_Key;
+        $jwt = $this->checkJWTExistance();
+        try {
+            $token = JWT::decode($jwt, new Key($secret_Key, 'HS512'));
+        } catch (Exception $e) {
+            header('HTTP/1.1 401 Unauthorized');
+            exit;
+        }
+
+        $now = new DateTimeImmutable();
+        $domainName = $this->domainName;
+
+        if ($token->iss !== $domainName ||
+            $token->nbf > $now->getTimestamp() ||
+            $token->exp < $now->getTimestamp()) {
+            header('HTTP/1.1 401 Unauthorized');
+            exit;
+        }
+        $response = $token;
+        return $response;
+    }
+
+    private function notFoundResponse() {
+        $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
+        $response['content_type_header'] = 'Content-Type: application/json';
+        $response['body'] = json_encode([
+            'message' => 'Not Found'
+        ]);
+        return $response;
+    }
+}
+
+        </code>
+      </pre>
+
+      </section>
+
   </section>
 
   <section id="features">
-    <h2><span>4. </span>Features</h2>
+    <h2><span>5. </span>Features</h2>
     <p>DeAD is a web application that uses the Scholarly HTML specification. The following features are implemented
       using the Scholarly HTML specification:</p>
+    <p>All these features are available using the endpoints of the REST API, too.</p>
 
     <section id="auth-user">
-      <h3><span>4.1 </span>Authentication for users</h3>
+      <h3><span>5.1 </span>Authentication for users</h3>
       <p>To use some specific actions and to get their request history saved, first of all, the users need to register
         on the web app using the button from the home page.
-        After that, they can log in using the username and password. The placeholder are requiered to be completed in
+        After that, they can log in using the username and password. The placeholders are requiered to be completed in
         order to log in or register.
       </p>
     </section>
 
     <section id="auth-admin">
-      <h3><span>4.2 </span>Authentication for admins</h3>
+      <h3><span>5.2 </span>Authentication for admins</h3>
       <p>The admin will log in with an username and an key. The account will be generated and printed in the contract
         that we sign with the prison.
         Every key will be unique for every prison.</p>
     </section>
 
     <section id="search-by-cnp">
-      <h3><span>4.3 </span>Search by CNP</h3>
+      <h3><span>5.3 </span>Search by CNP</h3>
       <p>Search by CNP is a feature that allows the user to search for an inmate by their CNP. This feature is
         present in the navbar. The user will press the search icon and and placeholder will appear. There he will
         insert a CNP and it will be searched in the database
@@ -323,7 +759,7 @@
     </section>
 
     <section id="search-by-info">
-      <h3><span>4.4 </span>Search by info</h3>
+      <h3><span>5.4 </span>Search by info</h3>
       <p>Search by info is a feature that allows the user to search for an inmate by their name, prison, date of
         incarceration, end of incarceration, crime. This feature is present in an specific page (Request page) that
         can be accesed from the navbar or the home page buttons.</p>
@@ -335,19 +771,19 @@
     </section>
 
     <section id="uad">
-      <h3><span>4.5 </span>User Account Administration (for logged users)</h3>
+      <h3><span>5.5 </span>User Account Administration (for logged users)</h3>
       <p>The logged user can change the account info and password. </p>
     </section>
 
     <section id="request-history">
-      <h3><span>4.6 </span>Request history (for logged users)</h3>
+      <h3><span>5.6 </span>Request history (for logged users)</h3>
       <p>The logged user can see the request history of his visits. There will be displayed all the requests that were
         approved/denied/waiting, providing the
         following information: visitor(s) info, inmate info, date.</p>
     </section>
 
     <section id="visit-history">
-      <h3><span>4.7 </span>Visit history (for logged users) </h3>
+      <h3><span>5.7 </span>Visit history (for logged users) </h3>
       <p>The logged user can see the visit history of his visits. There will be displayed all the visits that took
         place,
         providing the recorded information of the visit.</p>
@@ -359,30 +795,48 @@
     </section>
 
     <section id="visit-info-admin">
-      <h3><span>4.9 </span>Visit info administration (for admins)</h3>
+      <h3><span>5.9 </span>Visit info administration (for admins)</h3>
       <p>The admin can add, delete, update, see a visit.</p>
     </section>
 
     <section id="request-administration">
-      <h3><span>4.10 </span>Requests administration (for admins)</h3>
+      <h3><span>5.10 </span>Requests administration (for admins)</h3>
       <p>The admin can see all the requests and approve/deny them.</p>
     </section>
 
     <section id="generate-statistics">
-      <h3><span>4.11 </span>Generate statistics (for admins)</h3>
+      <h3><span>5.11 </span>Generate statistics (for admins)</h3>
       <p>The admin can generate statistics in HTML, CSV, and JSON format.</p>
       <p>The statistics will show the number of visits based on a specific criteria: crime category, age group, gender.
       </p>
     </section>
 
     <section id="ban-user">
-      <h3><span>4.12 </span>Ban user (for admins)</h3>
+      <h3><span>5.12 </span>Ban user (for admins)</h3>
       <p>The admin can ban a user if he doesn't respect the rules of the web applications.</p>
     </section>
 
   </section>
+  <section id="rest">
+    <h2><span>6. </span>Rest API</h2>
+    <p>The REST API is a bridge between the web application and other applications that want to use the data from DeAD.</p>
+    <p>For the connection part, we used Firebase/JWT library for creation and delivery of the token specific by the user.</p>
+    <p>The photos for every part of the web application will be stored local.</p>
+    <p>The following endpoints will be user:</p>
+    <ol>
+      <li>POST http://localhost/DeAD/api/auth-admin ----> + body (authentication for admins) </li>
+        <li>POST http://localhost/DeAD/api/auth-user ----> + body (authentication for users)</li>
+        <li>POST http://localhost/DeAD/api/register ----> + body of type form-data (register an account based on the frontend schema)</li>
+        <li> GET http://localhost/DeAD/api/request ----> + jwt token (requests retrieved from database based on account type)</li>
+        <li>POST http://localhost/DeAD/api/request-nolog ----> + body of type form-data (post a request)</li>
+        <li>PUT http://localhost/DeAD/api/request/22 ---> + jwt token for admin + body (update the status of a request)</li>
+        <li>DELETE http://localhost/DeAD/api/ban/marcu123 ----> + jwt token for admin (ban a user)</li>
+        <li>GET http://localhost/DeAD/api/statistics/crime ----> + jwt token for admin (get the statistic of the prison where the admin has rights) </li>
+        <li>GET http://localhost/DeAD/api/inmates?firstName= ----> (search for an inmate) </li>
+    </ol>
+  </section>
   <section id="version-control">
-    <h2><span>5. </span>Version control</h2>
+    <h2><span>7. </span>Version control</h2>
     <p>For the good management of the code, we used Github together with the Git. Every member of the team made a commit
       for his own written code and pushed in
       in the main branch. We also used branches for the development of the features and we merged them in the main
@@ -391,7 +845,7 @@
   </section>
 
   <section id="security">
-    <h2><span>6. </span>Security</h2>
+    <h2><span>8. </span>Security</h2>
     <p>
       The security component for DeAD is a crucial part in building every web application, because your personal data is
       valuable and corrupt in the application can
@@ -399,19 +853,34 @@
       tell you everything we do with your data.
     </p>
     <section id="sql">
-      <h3><span>6.1 </span>SQL Injection</h3>
+      <h3><span>8.1 </span>SQL Injection</h3>
       <p>We prevent SQL Injection attacks by binding parameters using safe functions on the server-side. All SQL queries are not composed by concatenation of string,
         but by using standard PHP functions to interact cu MySQL database.
       </p>
     </section>
+    <section id="hash">
+        <h3><span>8.2 </span>Password-Hashing</h3>
+        <p>We hash the passwords using the PHP password_hash() function.
+          This function uses a strong one-way hashing algorithm to hash the password. The password is hashed before it is stored in the database. When a user logs in, the password is hashed and compared with the hashed password stored in the database.</p>
+    </section>
+      <section id="xss">
+          <h3><span>8.3 </span>Cross-Site Scripting</h3>
+          <p>
+                We prevent Cross-Site Scripting attacks by escaping the output using the htmlspecialchars() function in PHP.
+                This function converts special characters to HTML entities. This prevents the browser from interpreting the characters as HTML code.
+          </p>
+      </section>
   </section>
 
-  <section id="Resources">
-    <h2><span>7. </span>Resources</h2>
+  <section id="resources">
+    <h2><span>9. </span>Resources</h2>
     <ul>
         <li>https://tehnologii-web.vercel.app/ - A well-structure to learn about web development</li>
         <li>https://profs.info.uaic.ro/andrei.panu/courses/web/ - Getting familiar with the web</li>
         <li>https://www.w3schools.com - Good HTML/CSS tutorials</li>
+        <li>https://www.php.net - PHP documentation</li>
+        <li>https://www.postgresql.org/ - PostgreSQL documentation</li>
+        <li>https://packagist.org/packages/firebase/php-jwt - JWT Importer</li>
     </ul>
   </section>
 

@@ -184,4 +184,13 @@ class VisitInfoService
             }
         }
     }
+
+    public function existsVisitInfoById(mixed $id)
+    {
+        $stmt = $this->db->prepare('SELECT * FROM visit_info WHERE id_request = :id_request');
+        $stmt->bindParam(':id_request', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC) != null;
+    }
 }

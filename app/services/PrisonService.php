@@ -48,7 +48,7 @@ class PrisonService{
     public function getPrisonIdByRequestId($id){
         try{
             $stmt = $this->db->prepare("SELECT id_prison FROM request WHERE id = :id");
-            $stmt->bindParam(':name', $id, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
