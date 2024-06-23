@@ -55,9 +55,9 @@
           <h1 class="header">Register</h1>
           <form action="userlog/register" method="post" class="form" enctype="multipart/form-data">
               <?php
-                if (isset($_SESSION['error'])) {
+                if (isset($_SESSION['error-reg'])) {
                     $usernameErrorClass = '--error';
-                } else if (isset($_SESSION['good'])) {
+                } else if (isset($_SESSION['good-reg'])) {
                     $usernameErrorClass = '--good';
                 } else {
                     $usernameErrorClass = '';
@@ -65,10 +65,10 @@
 
               ?>
               <label for="username">Username: </label>
-              <input type="text" class="form__field" name="username" id="username" placeholder="" autocomplete="off" required>
+              <input type="text" class="form__field<?php echo $usernameErrorClass; ?>" name="username" id="username" placeholder="" autocomplete="off" required>
 
               <label for="password">Password: </label>
-              <input type="password" class="form__field" name="password" id="password" placeholder="" autocomplete="off" required>
+              <input type="password" class="form__field<?php echo $usernameErrorClass; ?>" name="password" id="password" placeholder="" autocomplete="off" required>
               <div id="password-hint" class="password-hint">
                   <p id="password-complexity"></p>
                   <p>Minimum requirements:</p>
@@ -82,24 +82,24 @@
               </div>
 
               <label for="email">E-mail address: </label>
-              <input type="email" class="form__field" name="email" id="email" placeholder="" autocomplete="off" required>
+              <input type="email" class="form__field<?php echo $usernameErrorClass; ?>" name="email" id="email" placeholder="" autocomplete="off" required>
 
               <label for="cnp">CNP: </label>
-              <input type="text" class="form__field" name="cnp" id="cnp" placeholder="" autocomplete="off" required>
+              <input type="text" class="form__field<?php echo $usernameErrorClass; ?>" name="cnp" id="cnp" placeholder="" autocomplete="off" required>
 
               <label for="imageUpload">Photo: </label>
               <input type="file" id="imageUpload" class="form__field form__field--file" name="fileToUpload" accept="image/*" multiple>
 
               <label for="phone-number">Phone Number: </label>
-              <input type="tel" class="form__field" name="phone-number" id="phone-number" placeholder="" autocomplete="off" required>
+              <input type="tel" class="form__field<?php echo $usernameErrorClass; ?>" name="phone-number" id="phone-number" placeholder="" autocomplete="off" required>
 
-              <?php if(isset($_SESSION['error']))
+              <?php if(isset($_SESSION['error-reg']))
               {
-                  echo '<p class="form__error">'.$_SESSION['error'].'</p>';
+                  echo '<p class="form__error">'.$_SESSION['error-reg'].'</p>';
               }
-                if(isset($_SESSION['good']))
+                if(isset($_SESSION['good-reg']))
                 {
-                    echo '<p class="form__good">'.$_SESSION['good'].'</p>';
+                    echo '<p class="form__good">'.$_SESSION['good-reg'].'</p>';
                 }
               ?>
               <button type="submit" class="form__button" name="reg_btn" id="reg_btn" disabled>Submit</button>
@@ -110,8 +110,8 @@
 
     <?php include 'common/footer.php'; ?>
   <?php
-    unset($_SESSION['error']);
-    unset($_SESSION['good']);
+    unset($_SESSION['error-reg']);
+    unset($_SESSION['good-reg']);
   ?>
 
   <script>

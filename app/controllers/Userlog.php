@@ -96,6 +96,21 @@ class Userlog extends Controller
 
             require_once '../app/services/UserService.php';
             $userService = new UserService();
+            if($userService->existsUsername($username)){
+                $_SESSION['error-reg'] = "Username already taken";
+                header('Location: ../userlog');
+                exit;
+            }
+            if($userService->existsEmail($email)){
+                $_SESSION['error-reg'] = "Email already taken";
+                header('Location: ../userlog');
+                exit;
+            }
+            if($userService->existsCNP($cnp)){
+                $_SESSION['error-reg'] = "CNP already taken";
+                header('Location: ../userlog');
+                exit;
+            }
 
 
             if ($userService->registerUser($user)==0) {
@@ -113,7 +128,7 @@ class Userlog extends Controller
 
                 mail($to, $subject, $message, $headers);
 
-                $_SESSION['good'] = "Email sent! Please activate your account by clicking the link in the email";
+                $_SESSION['good-reg'] = "Email sent! Please activate your account by clicking the link in the email";
                 header('Location: ../userlog');
                 exit;
             } else {
