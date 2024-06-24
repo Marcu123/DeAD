@@ -1,0 +1,322 @@
+Array 1720716118041 Array  Array  Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\php3E11.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+    [fileToUpload0] => Array
+        (
+            [name] => former-u-s-president-donald-trump-speaks-to-reporters-news-photo-1680289458.jpg
+            [full_path] => former-u-s-president-donald-trump-speaks-to-reporters-news-photo-1680289458.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php3E23.tmp
+            [error] => 0
+            [size] => 56023
+        )
+
+)
+ Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\php3E11.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+    [fileToUpload0] => Array
+        (
+            [name] => former-u-s-president-donald-trump-speaks-to-reporters-news-photo-1680289458.jpg
+            [full_path] => former-u-s-president-donald-trump-speaks-to-reporters-news-photo-1680289458.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php3E23.tmp
+            [error] => 0
+            [size] => 56023
+        )
+
+)
+ Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\php8CDE.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+    [fileToUpload0] => Array
+        (
+            [name] => former-u-s-president-donald-trump-speaks-to-reporters-news-photo-1680289458.jpg
+            [full_path] => former-u-s-president-donald-trump-speaks-to-reporters-news-photo-1680289458.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php8CDF.tmp
+            [error] => 0
+            [size] => 56023
+        )
+
+)
+ Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\php8CDE.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+    [fileToUpload0] => Array
+        (
+            [name] => former-u-s-president-donald-trump-speaks-to-reporters-news-photo-1680289458.jpg
+            [full_path] => former-u-s-president-donald-trump-speaks-to-reporters-news-photo-1680289458.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php8CDF.tmp
+            [error] => 0
+            [size] => 56023
+        )
+
+)
+ Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\phpC2DB.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+    [fileToUpload0] => Array
+        (
+            [name] => asd.jpg
+            [full_path] => asd.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpC2DC.tmp
+            [error] => 0
+            [size] => 4498
+        )
+
+)
+ Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\phpC2DB.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+    [fileToUpload0] => Array
+        (
+            [name] => asd.jpg
+            [full_path] => asd.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpC2DC.tmp
+            [error] => 0
+            [size] => 4498
+        )
+
+)
+ Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\php7DCE.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+    [fileToUpload0] => Array
+        (
+            [name] => asd.jpg
+            [full_path] => asd.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php7DCF.tmp
+            [error] => 0
+            [size] => 4498
+        )
+
+)
+ Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\php7DCE.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+    [fileToUpload0] => Array
+        (
+            [name] => asd.jpg
+            [full_path] => asd.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php7DCF.tmp
+            [error] => 0
+            [size] => 4498
+        )
+
+)
+ POST    Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => Elon_Musk_Royal_Society_(cropped).jpg
+            [full_path] => Elon_Musk_Royal_Society_(cropped).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php9DD8.tmp
+            [error] => 0
+            [size] => 123139
+        )
+
+)
+Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => Elon_Musk_Royal_Society_(cropped).jpg
+            [full_path] => Elon_Musk_Royal_Society_(cropped).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php9DD8.tmp
+            [error] => 0
+            [size] => 123139
+        )
+
+)
+ POST    Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => Elon_Musk_Royal_Society_(cropped).jpg
+            [full_path] => Elon_Musk_Royal_Society_(cropped).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php1865.tmp
+            [error] => 0
+            [size] => 123139
+        )
+
+)
+Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => Elon_Musk_Royal_Society_(cropped).jpg
+            [full_path] => Elon_Musk_Royal_Society_(cropped).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php1865.tmp
+            [error] => 0
+            [size] => 123139
+        )
+
+)
+ Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\php2B4D.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+    [fileToUpload0] => Array
+        (
+            [name] => asd.jpg
+            [full_path] => asd.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2B4F.tmp
+            [error] => 0
+            [size] => 4498
+        )
+
+)
+ Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\php2B4D.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+    [fileToUpload0] => Array
+        (
+            [name] => asd.jpg
+            [full_path] => asd.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2B4F.tmp
+            [error] => 0
+            [size] => 4498
+        )
+
+)
+ POST    Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => Elon_Musk_Royal_Society_(cropped).jpg
+            [full_path] => Elon_Musk_Royal_Society_(cropped).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php3E57.tmp
+            [error] => 0
+            [size] => 123139
+        )
+
+)
+Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => Elon_Musk_Royal_Society_(cropped).jpg
+            [full_path] => Elon_Musk_Royal_Society_(cropped).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php3E57.tmp
+            [error] => 0
+            [size] => 123139
+        )
+
+)
+ Array
+(
+    [fileToUpload] => Array
+        (
+            [name] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [full_path] => 106878527-1620223837055-106748412-1602881184740-biden.webp
+            [type] => image/webp
+            [tmp_name] => C:\xampp\tmp\php9812.tmp
+            [error] => 0
+            [size] => 26856
+        )
+
+)
+ 

@@ -86,11 +86,13 @@ class PhotoController
 
     public function processRequestFront($pkey, $type, $number = null)
     {
+
         $fileName = 'fileToUpload';
         if (!is_null($number))
             $fileName = $fileName . $number;
-
+        file_put_contents("dada.txt", print_r($_FILES, true) . " ", FILE_APPEND);
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES[$fileName])) {
+
 
             if ($type === 'visitor') {
                 $target_dir = "../api/uploads/visitors/";

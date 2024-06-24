@@ -113,13 +113,13 @@ class Request extends Controller
         $photoController->processRequestFront($visitor->getCnp(), 'visitor');
         if ($visitor0->getVisitorName() != "") {
             $visitorService->addVisitor($visitor0);
-            $photoController->processRequestFront($visitor0->getCnp(), 'visitor', 1);
+            $photoController->processRequestFront($visitor0->getCnp(), 'visitor', 0);
 
         } else if ($visitor1->getVisitorName() != "") {
             $visitorService->addVisitor($visitor0);
             $visitorService->addVisitor($visitor1);
-            $photoController->processRequestFront($visitor0->getCnp(), 'visitor', 2);
-            $photoController->processRequestFront($visitor1->getCnp(), 'visitor', 2);
+            $photoController->processRequestFront($visitor0->getCnp(), 'visitor', 1);
+            $photoController->processRequestFront($visitor1->getCnp(), 'visitor', 1);
 
         }
 
